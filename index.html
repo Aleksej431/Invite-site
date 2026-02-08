@@ -23,7 +23,6 @@
         .reveal { opacity: 0; transform: translateY(40px); transition: var(--transition); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Шапка с видеофоном */
         header {
             height: 100vh; display: flex; justify-content: center; align-items: center;
             color: var(--white); text-align: center; position: relative; overflow: hidden; background: #000;
@@ -34,23 +33,26 @@
             object-fit: cover; filter: brightness(0.6);
         }
         .header-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1; }
-        .hero-content { position: relative; z-index: 2; padding: 20px; }
+        .hero-content { position: relative; z-index: 2; }
         .hero-content h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 10vw, 6rem); font-weight: 300; margin: 0; letter-spacing: 5px; font-style: italic; }
         .hero-subtitle { text-transform: uppercase; letter-spacing: 8px; font-size: 0.9rem; margin-bottom: 20px; display: block; }
 
-        /* Таймер */
         .countdown-container { display: flex; justify-content: center; gap: 15px; margin-top: 30px; }
         .countdown-item { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 15px; min-width: 80px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); }
-        .countdown-item span { display: block; font-size: 1.5rem; font-weight: 400; }
+        .countdown-item span { display: block; font-size: 1.5rem; }
 
-        /* Общие секции */
         section { padding: 80px 0; }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
         .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 5vw, 3.2rem); text-align: center; margin-bottom: 50px; font-weight: 300; }
 
         .card { background: var(--white); padding: 50px 30px; border-radius: 30px; border: 1px solid rgba(184, 156, 125, 0.15); text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
 
-        /* Форма регистрации */
+        .story-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+        .story-photos img { width: 100%; height: 400px; object-fit: cover; border-radius: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); transition: 0.3s; }
+        .story-photos img:hover { transform: scale(1.02); }
+
+        @media (max-width: 768px) { .story-photos { grid-template-columns: 1fr; } }
+
         .rsvp-form { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
         input, select { 
             background: #f9f9f9; border: 1px solid #eee; padding: 18px 25px; 
@@ -63,11 +65,12 @@
             padding: 15px; border-radius: 25px; cursor: pointer; font-weight: 500; margin-top: 5px;
         }
 
-        .btn-gold { background: var(--gold); color: white; border: none; padding: 22px; border-radius: 50px; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: 0.4s; font-weight: 500; margin-top: 15px; width: 100%; }
-        .btn-gold:disabled { background: #ccc; cursor: not-allowed; }
+        .btn-gold { background: var(--gold); color: white; border: none; padding: 22px; border-radius: 50px; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: 0.4s; font-weight: 500; margin-top: 15px; }
 
-        /* Карта */
         .map-wrapper { width: 100%; border-radius: 30px; overflow: hidden; margin-top: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
+        .gallery-grid img { width: 100%; height: 300px; object-fit: cover; border-radius: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
 
         footer { padding: 80px 0; text-align: center; background: var(--light-green); font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-style: italic; }
     </style>
@@ -91,6 +94,14 @@
     </header>
 
     <div class="container">
+        <section class="reveal">
+            <div class="card">
+                <h2 class="section-title">Наша история</h2>
+                <p id="welcomeText" style="line-height: 2; margin-bottom: 30px;"></p>
+                <div class="story-photos" id="storyPhotos"></div>
+            </div>
+        </section>
+
         <section class="reveal" id="rsvp">
             <div class="card">
                 <h2 class="section-title">Регистрация гостей</h2>
@@ -112,7 +123,7 @@
                             <label style="cursor:pointer"><input type="radio" name="has_music" value="no" checked> Нет</label>
                             <label style="cursor:pointer"><input type="radio" name="has_music" value="yes"> Да</label>
                         </div>
-                        <input type="text" name="music" id="musicInput" placeholder="Исполнитель и песня" style="display:none; width:100%;">
+                        <input type="text" name="music" id="musicInput" placeholder="Исполнитель и название песни" style="display:none; width:100%;">
                     </div>
 
                     <button type="submit" class="btn-gold" id="submitBtn">Отправить ответ</button>
@@ -130,23 +141,30 @@
                 </div>
             </div>
         </section>
+
+        <section class="reveal">
+            <h2 class="section-title">Галерея</h2>
+            <div class="gallery-grid" id="galleryContainer"></div>
+        </section>
     </div>
 
-    <footer><p id="footerText">Алексей & Алина</p></footer>
+    <footer><p id="footerText"></p></footer>
 
     <script>
         const weddingConfig = {
+            names: "Алексей & Алина",
             date: "2026-08-07T15:10:00",
+            welcome: "Мы будем очень рады видеть вас на нашей свадьбе! Этот день станет для нас особенным, и мы хотим разделить его с вами.",
+            storyPics: ["img/story1.jpg", "img/story2.jpg"],
+            gallery: ["gallery/1.jpg", "gallery/2.jpg", "gallery/3.jpg", "gallery/4.jpg"],
             scriptUrl: "https://script.google.com/macros/s/AKfycbzFsWKeo5RtSd1dUNG-ROPKrwL1Q7P6VDcle4z1oyY-oC1V9FCIb6X7o9pKIyCZ6KLR/exec"
         };
 
-        // Видео принудительный запуск
         const v = document.getElementById('bgVideo');
         const playV = () => v.play().catch(() => {});
-        window.addEventListener('scroll', playV, {once:true});
         window.addEventListener('click', playV, {once:true});
+        window.addEventListener('scroll', playV, {once:true});
 
-        // Таймер
         function updateTimer() {
             const diff = new Date(weddingConfig.date) - new Date();
             if (diff > 0) {
@@ -157,7 +175,12 @@
         }
         setInterval(updateTimer, 1000); updateTimer();
 
-        // Добавление гостей (лимит 9)
+        document.getElementById('heroNames').innerText = weddingConfig.names;
+        document.getElementById('welcomeText').innerText = weddingConfig.welcome;
+        document.getElementById('footerText').innerText = "Ваши " + weddingConfig.names;
+        weddingConfig.storyPics.forEach(src => { document.getElementById('storyPhotos').innerHTML += `<img src="${src}">`; });
+        weddingConfig.gallery.forEach(src => { document.getElementById('galleryContainer').innerHTML += `<img src="${src}">`; });
+
         let gCount = 0;
         const addBtn = document.getElementById('addGuestBtn');
         addBtn.onclick = function() {
@@ -171,19 +194,16 @@
             if (gCount >= 9) addBtn.style.display = 'none';
         };
 
-        // Логика музыки
         document.querySelectorAll('input[name="has_music"]').forEach(r => {
             r.onchange = () => { document.getElementById('musicInput').style.display = r.value === 'yes' ? 'block' : 'none'; };
         });
 
-        // Маска телефона
         document.getElementById('phoneInput').oninput = function() {
             let matrix = "+7 (___) ___-__-__", i = 0, def = matrix.replace(/\D/g, ""), val = this.value.replace(/\D/g, "");
             if (def.length >= val.length) val = def;
             this.value = matrix.replace(/./g, a => /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? "" : a);
         };
 
-        // НОВЫЙ ИСПРАВЛЕННЫЙ СКРИПТ ОТПРАВКИ
         document.getElementById('weddingForm').onsubmit = function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
@@ -193,17 +213,12 @@
             btn.disabled = true;
             btn.innerText = "ОТПРАВЛЯЕМ...";
             
-            fetch(weddingConfig.scriptUrl, { 
-                method: 'POST', 
-                body: new FormData(form), 
-                mode: 'no-cors' // Критически важно для Google Scripts
-            })
+            fetch(weddingConfig.scriptUrl, { method: 'POST', body: new FormData(form), mode: 'no-cors' })
             .then(() => {
                 msg.innerText = "Спасибо! Ответ успешно записан.";
                 btn.innerText = "ГОТОВО ✅";
                 btn.style.background = "#5a9a5a";
 
-                // Сброс формы через 3 секунды, чтобы можно было отправить еще раз
                 setTimeout(() => {
                     form.reset();
                     document.getElementById('additional-guests').innerHTML = '';
@@ -223,7 +238,6 @@
             });
         };
 
-        // Reveal анимация
         function reveal() {
             document.querySelectorAll(".reveal").forEach(r => {
                 if (r.getBoundingClientRect().top < window.innerHeight - 50) r.classList.add("active");
