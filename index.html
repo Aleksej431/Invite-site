@@ -23,7 +23,6 @@
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Шапка */
         header {
             height: 100vh; display: flex; justify-content: center; align-items: center;
             color: var(--white); text-align: center; position: relative; overflow: hidden; background: #000;
@@ -38,7 +37,6 @@
         .hero-content h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 10vw, 6rem); font-weight: 300; margin: 0; letter-spacing: 5px; font-style: italic; }
         .hero-subtitle { text-transform: uppercase; letter-spacing: 8px; font-size: 0.9rem; margin-bottom: 20px; display: block; }
 
-        /* Таймер */
         .countdown-container { display: flex; justify-content: center; gap: 15px; margin-top: 30px; }
         .countdown-item { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 15px; min-width: 80px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); }
         .countdown-item span { display: block; font-size: 1.5rem; }
@@ -54,7 +52,6 @@
 
         @media (max-width: 768px) { .story-photos { grid-template-columns: 1fr; } }
 
-        /* Форма регистрации */
         .rsvp-form { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
         input, select { 
             background: #f9f9f9; border: 1px solid #eee; padding: 18px 25px; 
@@ -120,12 +117,12 @@
                     <button type="button" class="add-guest-btn" id="addGuestBtn">+ Добавить гостя</button>
 
                     <div style="text-align: left; margin-top: 10px;">
-                        <label style="display:block; margin-bottom: 10px; font-size: 0.85rem;">Есть ли у вас пожелания по музыке для танцпола?</label>
+                        <label style="display:block; margin-bottom: 10px; font-size: 0.85rem; color:#666;">Есть ли у вас пожелания по музыке для танцпола?</label>
                         <div style="display:flex; gap: 25px; margin-bottom: 10px;">
                             <label style="cursor:pointer"><input type="radio" name="has_music" value="no" checked> Нет</label>
                             <label style="cursor:pointer"><input type="radio" name="has_music" value="yes"> Да</label>
                         </div>
-                        <input type="text" name="music" id="musicInput" placeholder="Исполнитель и песня" style="display:none; width:100%;">
+                        <input type="text" name="music" id="musicInput" placeholder="Исполнитель и название песни" style="display:none; width:100%;">
                     </div>
 
                     <button type="submit" class="btn-gold" id="submitBtn">Отправить ответ</button>
@@ -159,16 +156,14 @@
             welcome: "Мы будем очень рады видеть вас на нашей свадьбе! Этот день станет для нас особенным, и мы хотим разделить его с вами.",
             storyPics: ["img/story1.jpg", "img/story2.jpg"],
             gallery: ["gallery/1.jpg", "gallery/2.jpg", "gallery/3.jpg", "gallery/4.jpg"],
-            scriptUrl: "ВСТАВЬ_СЮДА_НОВУЮ_ССЫЛКУ_ИЗ_APPS_SCRIPT"
+            scriptUrl: "https://script.google.com/macros/s/AKfycbzFsWKeo5RtSd1dUNG-ROPKrwL1Q7P6VDcle4z1oyY-oC1V9FCIb6X7o9pKIyCZ6KLR/exec"
         };
 
-        // Видео
         const v = document.getElementById('bgVideo');
         const playV = () => v.play().catch(() => {});
         window.addEventListener('click', playV, {once:true});
         window.addEventListener('scroll', playV, {once:true});
 
-        // Таймер
         function updateTimer() {
             const diff = new Date(weddingConfig.date) - new Date();
             if (diff > 0) {
@@ -179,16 +174,15 @@
         }
         setInterval(updateTimer, 1000); updateTimer();
 
-        // Контент
         document.getElementById('heroNames').innerText = weddingConfig.names;
         document.getElementById('welcomeText').innerText = weddingConfig.welcome;
         document.getElementById('footerText').innerText = "Ваши " + weddingConfig.names;
         weddingConfig.storyPics.forEach(src => { document.getElementById('storyPhotos').innerHTML += `<img src="${src}">`; });
         weddingConfig.gallery.forEach(src => { document.getElementById('galleryContainer').innerHTML += `<img src="${src}">`; });
 
-        // Добавление гостей (до 9 человек)
         let gCount = 0;
-        document.getElementById('addGuestBtn').onclick = function() {
+        const addBtn = document.getElementById('addGuestBtn');
+        addBtn.onclick = function() {
             if (gCount < 9) {
                 gCount++;
                 const inp = document.createElement('input');
@@ -196,22 +190,19 @@
                 inp.placeholder = 'Имя гостя №' + (gCount + 1);
                 document.getElementById('additional-guests').appendChild(inp);
             }
-            if (gCount >= 9) this.style.display = 'none';
+            if (gCount >= 9) addBtn.style.display = 'none';
         };
 
-        // Музыка
         document.querySelectorAll('input[name="has_music"]').forEach(r => {
             r.onchange = () => { document.getElementById('musicInput').style.display = r.value === 'yes' ? 'block' : 'none'; };
         });
 
-        // Маска телефона
         document.getElementById('phoneInput').oninput = function() {
             let matrix = "+7 (___) ___-__-__", i = 0, def = matrix.replace(/\D/g, ""), val = this.value.replace(/\D/g, "");
             if (def.length >= val.length) val = def;
             this.value = matrix.replace(/./g, a => /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? "" : a);
         };
 
-        // ОТПРАВКА ФОРМЫ (Исправленная)
         document.getElementById('weddingForm').onsubmit = function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
@@ -223,17 +214,16 @@
             
             fetch(weddingConfig.scriptUrl, { method: 'POST', body: new FormData(form), mode: 'no-cors' })
             .then(() => {
-                msg.innerText = "Спасибо! Данные успешно отправлены.";
+                msg.innerText = "Спасибо! Ответ записан.";
                 btn.innerText = "ГОТОВО ✅";
                 btn.style.background = "#5a9a5a";
 
-                // Сброс для новой отправки через 3 секунды
                 setTimeout(() => {
                     form.reset();
                     document.getElementById('additional-guests').innerHTML = '';
                     document.getElementById('musicInput').style.display = 'none';
                     gCount = 0;
-                    document.getElementById('addGuestBtn').style.display = 'block';
+                    addBtn.style.display = 'block';
                     btn.disabled = false;
                     btn.innerText = "ОТПРАВИТЬ ЕЩЕ РАЗ";
                     btn.style.background = "var(--gold)";
@@ -241,7 +231,7 @@
                 }, 3000);
             })
             .catch(() => {
-                msg.innerText = "Ошибка. Проверьте соединение или таблицу.";
+                msg.innerText = "Ошибка отправки.";
                 btn.disabled = false;
                 btn.innerText = "ПОПРОБОВАТЬ СНОВА";
             });
