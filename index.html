@@ -40,59 +40,48 @@
         .countdown-container { display: flex; justify-content: center; gap: 20px; margin-top: 30px; }
         .countdown-item { background: rgba(255,255,255,0.1); backdrop-filter: blur(5px); padding: 15px; min-width: 80px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); }
         .countdown-item span { display: block; font-size: 1.5rem; font-weight: 400; }
-        .countdown-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; opacity: 0.8; }
 
         section { padding: 100px 0; }
         .bg-green { background-color: var(--light-green); }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 25px; }
         .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 3.5rem); text-align: center; margin-bottom: 60px; font-weight: 300; }
 
-        .card { background: var(--white); padding: 60px 40px; border-radius: 24px; border: 1px solid rgba(184, 156, 125, 0.1); text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.02); position: relative; overflow: hidden; }
+        .card { background: var(--white); padding: 60px 40px; border-radius: 24px; border: 1px solid rgba(184, 156, 125, 0.1); text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.02); position: relative; }
 
-        /* ИСТОРИЯ: Фото в один ряд */
-        .story-photos { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 20px; 
-            margin-top: 40px; 
+        .story-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+        .story-photos img { width: 100%; height: 350px; object-fit: cover; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+
+        @media (max-width: 768px) { .story-photos { grid-template-columns: 1fr; } }
+
+        /* СТИЛИ ФОРМЫ (ОКРУГЛЕНИЕ) */
+        .rsvp-form { max-width: 550px; margin: 0 auto; display: grid; gap: 20px; }
+        input, select { 
+            background: #fdfdfd; 
+            border: 1px solid #eee; 
+            padding: 15px 20px; 
+            font-family: inherit; 
+            outline: none; 
+            font-size: 1rem; 
+            border-radius: 20px; /* Скруглили всё */
+            transition: 0.3s; 
         }
-        .story-photos img { 
-            width: 100%; 
-            height: 350px; 
-            object-fit: cover; 
-            border-radius: 20px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            transition: var(--transition);
-        }
-        .story-photos img:hover { transform: scale(1.03); }
-
-        @media (max-width: 768px) {
-            .story-photos { grid-template-columns: 1fr; }
-        }
-
-        .timeline-item { display: flex; justify-content: center; align-items: center; margin: 35px 0; }
-        .time { color: var(--gold); font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 1.8rem; width: 120px; border-right: 1px solid var(--gold); margin-right: 25px; padding-right: 20px; text-align: right; }
-        .event-icon { font-size: 1.8rem; margin-right: 20px; min-width: 40px; text-align: center; }
-        .event { flex: 1; text-align: left; letter-spacing: 1.2px; font-size: 1.1rem; }
-
-        /* ФОРМА */
-        .rsvp-form { max-width: 550px; margin: 0 auto; display: grid; gap: 25px; }
-        input, select { background: transparent; border: none; border-bottom: 1px solid #ddd; padding: 15px 5px; font-family: inherit; outline: none; font-size: 1rem; transition: 0.3s; }
-        input:focus { border-bottom-color: var(--gold); }
+        input:focus, select:focus { border-color: var(--gold); background: #fff; }
         
         .add-guest-btn { 
-            background: none; border: 1px dashed var(--gold); color: var(--gold); 
-            padding: 10px; border-radius: 10px; cursor: pointer; font-size: 0.9rem; 
-            transition: 0.3s; margin-top: -10px; display: none;
+            background: #fff; border: 1px dashed var(--gold); color: var(--gold); 
+            padding: 12px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; 
+            transition: 0.3s; margin-top: 5px; font-weight: 500;
         }
-        .add-guest-btn:hover { background: rgba(184, 156, 125, 0.1); }
+        .add-guest-btn:hover { background: var(--gold); color: #fff; }
+
+        .guest-input-container { display: flex; flex-direction: column; gap: 10px; }
 
         .btn-gold { background: var(--gold); color: white; border: none; padding: 22px; border-radius: 50px; text-transform: uppercase; letter-spacing: 4px; cursor: pointer; transition: 0.4s; font-weight: 400; margin-top: 20px; }
         
-        .map-wrapper { width: 100%; margin-top: 30px; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 45px rgba(0,0,0,0.1); position: relative; }
+        .map-wrapper { width: 100%; margin-top: 30px; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 45px rgba(0,0,0,0.1); }
 
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
-        .gallery-grid img { width: 100%; height: 300px; object-fit: cover; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+        .gallery-grid img { width: 100%; height: 300px; object-fit: cover; border-radius: 20px; }
 
         footer { padding: 80px 20px; text-align: center; background: var(--light-green); font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-style: italic; }
     </style>
@@ -126,14 +115,7 @@
             </div>
         </section>
 
-        <section class="reveal bg-green">
-            <div class="container">
-                <h2 class="section-title">Программа дня</h2>
-                <div class="card" id="timelineBox"></div>
-            </div>
-        </section>
-
-        <section class="reveal" id="rsvp">
+        <section class="reveal bg-green" id="rsvp">
             <div class="container">
                 <div class="card">
                     <h2 class="section-title">Регистрация гостей</h2>
@@ -142,30 +124,27 @@
                         <input type="tel" name="phone" id="phoneInput" placeholder="+7 (___) ___-__-__" maxlength="18" required>
                         
                         <select name="status" id="statusSelect">
-                            <option value="single">Приду один / одна</option>
-                            <option value="couple">Придем вдвоем</option>
-                            <option value="not_attending">Не смогу</option>
+                            <option value="attending">Я приду</option>
+                            <option value="not_attending">Не смогу прийти</option>
                         </select>
+
+                        <div id="additional-guests" class="guest-input-container"></div>
                         
                         <button type="button" class="add-guest-btn" id="addGuestBtn">+ Добавить гостя</button>
 
-                        <div id="second-guest-wrap" style="display:none; opacity:0; transition:0.5s;">
-                            <input type="text" name="partner_name" placeholder="Имя второго гостя" style="width:100%">
-                        </div>
-
-                        <div class="music-choice">
-                            <label class="music-label">Ваши музыкальные пожелания:</label>
-                            <div class="radio-group">
-                                <label class="radio-item"><input type="radio" name="has_music" value="no" checked> Нет</label>
-                                <label class="radio-item"><input type="radio" name="has_music" value="yes"> Да</label>
+                        <div class="music-choice" style="text-align: left; margin-top: 15px;">
+                            <label style="font-size: 0.85rem; margin-bottom: 10px; display: block;">Есть ли у вас пожелания по музыке для танцпола?</label>
+                            <div style="display: flex; gap: 20px; margin-bottom: 10px;">
+                                <label style="cursor:pointer"><input type="radio" name="has_music" value="no" checked> Нет</label>
+                                <label style="cursor:pointer"><input type="radio" name="has_music" value="yes"> Да</label>
                             </div>
                             <div id="music-input-wrap" style="display:none; opacity:0; transition:0.5s;">
-                                <input type="text" name="music" id="musicInput" placeholder="Исполнитель и песня" style="width:100%">
+                                <input type="text" name="music" id="musicInput" placeholder="Исполнитель и название песни" style="width:100%">
                             </div>
                         </div>
 
                         <button type="submit" class="btn-gold" id="submitBtn">Отправить ответ</button>
-                        <div id="msg" style="margin-top: 20px; color: var(--gold);"></div>
+                        <div id="msg" style="margin-top: 20px; color: var(--gold); font-weight: 500;"></div>
                     </form>
                 </div>
             </div>
@@ -178,9 +157,7 @@
                     <p>г. Ульяновск, ул. Гимова, 3 (ЗАГС)</p>
                     <div class="map-wrapper">
                         <div style="position:relative;overflow:hidden;">
-                            <a href="https://yandex.ru/maps/org/otdel_zags_po_leninskomu_rayonu_g_ulyanovska/1088477357/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Отдел ЗАГС по Ленинскому району г. Ульяновска</a>
-                            <a href="https://yandex.ru/maps/195/ulyanovsk/category/registery_office/184107242/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:14px;">ЗАГС в Ульяновске</a>
-                            <iframe src="https://yandex.ru/map-widget/v1/?ll=48.404646%2C54.317105&mode=poi&poi%5Bpoint%5D=48.403864%2C54.317327&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D1088477357&z=19.19" width="100%" height="400" frameborder="0" allowfullscreen="true" style="position:relative;"></iframe>
+                            <iframe src="https://yandex.ru/map-widget/v1/?ll=48.404646%2C54.317105&mode=poi&poi%5Bpoint%5D=48.403864%2C54.317327&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D1088477357&z=17" width="100%" height="400" frameborder="0" allowfullscreen="true" style="position:relative;"></iframe>
                         </div>
                     </div>
                 </div>
@@ -202,22 +179,12 @@
             names: "Алексей & Алина",
             date: "2026-08-07T15:10:00",
             welcome: "Мы будем очень рады видеть вас на нашей свадьбе! Этот день станет для нас особенным.",
-            events: [
-                { time: "15:10", icon: "💍", text: "Церемония бракосочетания" },
-                { time: "16:30", icon: "🥂", text: "Праздничный фуршет" },
-                { time: "18:00", icon: "🍽️", text: "Ужин в кругу близких" }
-            ],
             storyPics: ["img/story1.jpg", "img/story2.jpg"],
             gallery: ["gallery/1.jpg", "gallery/2.jpg", "gallery/3.jpg", "gallery/4.jpg"],
             scriptUrl: "https://script.google.com/macros/s/AKfycbzFsWKeo5RtSd1dUNG-ROPKrwL1Q7P6VDcle4z1oyY-oC1V9FCIb6X7o9pKIyCZ6KLR/exec"
         };
 
-        // Видео и Таймер
-        const video = document.getElementById('bgVideo');
-        if (video) {
-            video.addEventListener('canplay', () => { video.style.opacity = "1"; video.play(); });
-            if (video.readyState >= 3) video.style.opacity = "1";
-        }
+        // ТАЙМЕР И КОНТЕНТ
         function updateTimer() {
             const diff = new Date(weddingConfig.date).getTime() - new Date().getTime();
             if (diff > 0) {
@@ -227,40 +194,36 @@
             }
         }
         setInterval(updateTimer, 1000); updateTimer();
-
-        // Наполнение
-        const timelineBox = document.getElementById('timelineBox');
-        weddingConfig.events.forEach(item => {
-            timelineBox.innerHTML += `<div class="timeline-item"><div class="time">${item.time}</div><div class="event-icon">${item.icon}</div><div class="event">${item.text}</div></div>`;
-        });
-        weddingConfig.storyPics.forEach(src => { document.getElementById('storyPhotos').innerHTML += `<img src="${src}">`; });
-        weddingConfig.gallery.forEach(src => { document.getElementById('galleryContainer').innerHTML += `<img src="${src}">`; });
         document.getElementById('heroNames').innerText = weddingConfig.names;
         document.getElementById('welcomeText').innerText = weddingConfig.welcome;
         document.getElementById('footerText').innerText = "Ваши " + weddingConfig.names;
+        weddingConfig.storyPics.forEach(src => { document.getElementById('storyPhotos').innerHTML += `<img src="${src}">`; });
+        weddingConfig.gallery.forEach(src => { document.getElementById('galleryContainer').innerHTML += `<img src="${src}">`; });
 
-        // ЛОГИКА ДОБАВЛЕНИЯ ГОСТЯ
-        const statusSelect = document.getElementById('statusSelect');
-        const addGuestBtn = document.getElementById('addGuestBtn');
-        const secondGuestWrap = document.getElementById('second-guest-wrap');
+        // ЛОГИКА ДОБАВЛЕНИЯ ГОСТЕЙ (ДО 10)
+        let guestCount = 0;
+        const addBtn = document.getElementById('addGuestBtn');
+        const guestContainer = document.getElementById('additional-guests');
 
-        statusSelect.onchange = function() {
-            if(this.value === 'couple') {
-                addGuestBtn.style.display = 'block';
-            } else {
-                addGuestBtn.style.display = 'none';
-                secondGuestWrap.style.display = 'none';
-                secondGuestWrap.style.opacity = '0';
+        addBtn.onclick = function() {
+            if (guestCount < 10) {
+                guestCount++;
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.name = 'extra_guest_' + guestCount;
+                input.placeholder = 'Имя гостя №' + (guestCount + 1);
+                input.style.opacity = '0';
+                input.style.transform = 'translateY(-10px)';
+                guestContainer.appendChild(input);
+                setTimeout(() => {
+                    input.style.opacity = '1';
+                    input.style.transform = 'translateY(0)';
+                }, 10);
             }
+            if (guestCount >= 10) addBtn.style.display = 'none';
         };
 
-        addGuestBtn.onclick = function() {
-            secondGuestWrap.style.display = 'block';
-            setTimeout(() => secondGuestWrap.style.opacity = '1', 50);
-            this.style.display = 'none';
-        };
-
-        // Остальное
+        // ТЕЛЕФОН МАСКА
         const phoneInput = document.getElementById('phoneInput');
         phoneInput.addEventListener('input', function() {
             let matrix = "+7 (___) ___-__-__", i = 0, def = matrix.replace(/\D/g, ""), val = this.value.replace(/\D/g, "");
@@ -270,6 +233,7 @@
             });
         });
 
+        // МУЗЫКА
         document.querySelectorAll('input[name="has_music"]').forEach(radio => {
             radio.addEventListener('change', function() {
                 const wrap = document.getElementById('music-input-wrap');
@@ -278,14 +242,13 @@
             });
         });
 
+        // ОТПРАВКА
         document.getElementById('weddingForm').onsubmit = function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
-            const formData = new FormData(this);
-            formData.set('phone', "'" + formData.get('phone')); 
             btn.disabled = true; btn.innerText = "ОТПРАВЛЯЕМ...";
-            fetch(weddingConfig.scriptUrl, { method: 'POST', body: formData })
-            .then(() => { document.getElementById('msg').innerText = "Спасибо!"; btn.innerText = "ГОТОВО"; });
+            fetch(weddingConfig.scriptUrl, { method: 'POST', body: new FormData(this) })
+            .then(() => { document.getElementById('msg').innerText = "Спасибо за ответ!"; btn.innerText = "ГОТОВО"; });
         };
 
         function reveal() {
