@@ -23,6 +23,13 @@
         .reveal { opacity: 0; transform: translateY(30px); transition: var(--transition); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
+        /* Декоративный узор */
+        .pattern-divider {
+            display: block; width: 100px; height: 30px; margin: 20px auto;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'%3E%3Cpath d='M10 10c10-10 30-10 40 0s30 10 40 0' fill='none' stroke='%23b89c7d' stroke-width='0.5'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; opacity: 0.6;
+        }
+
         header {
             height: 100vh; display: flex; justify-content: center; align-items: center;
             color: var(--white); text-align: center; position: relative; overflow: hidden; background: #000;
@@ -39,14 +46,13 @@
         .countdown-item { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 15px; min-width: 80px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.2); }
         .countdown-item span { display: block; font-size: 1.5rem; }
 
-        section { padding: 80px 0; }
+        section { padding: 60px 0; }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 5vw, 3.2rem); text-align: center; margin-bottom: 50px; font-weight: 300; }
+        .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 5vw, 3.2rem); text-align: center; margin-bottom: 20px; font-weight: 300; }
 
         .card { background: var(--white); padding: 50px 30px; border-radius: 30px; border: 1px solid rgba(184, 156, 125, 0.15); text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
 
-        /* Таймлайн */
-        .timeline { position: relative; max-width: 800px; margin: 0 auto; padding: 20px 0; }
+        .timeline { position: relative; max-width: 800px; margin: 40px auto; padding: 20px 0; }
         .timeline::before { content: ''; position: absolute; left: 50%; width: 1px; height: 100%; background: var(--gold); opacity: 0.3; }
         .timeline-item { margin-bottom: 40px; position: relative; width: 50%; padding: 0 40px; }
         .timeline-item:nth-child(odd) { left: 0; text-align: right; }
@@ -66,24 +72,22 @@
         .story-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
         .story-photos img { width: 100%; height: 400px; object-fit: cover; border-radius: 25px; }
 
-        /* Форма регистрации */
         .rsvp-form { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
         input, select { 
             background: #f9f9f9; border: 1px solid #eee; padding: 18px 25px; 
             font-family: inherit; font-size: 1rem; border-radius: 25px; outline: none; transition: 0.3s;
-            width: 100%;
         }
         input:focus { border-color: var(--gold); background: #fff; }
 
-        .guest-input-wrapper { display: flex; align-items: center; gap: 10px; width: 100%; }
-        .remove-guest { color: #cc0000; font-size: 1.5rem; cursor: pointer; padding: 0 5px; line-height: 1; }
+        .guest-input-wrapper { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
+        .remove-guest { color: #cc0000; font-size: 1.5rem; cursor: pointer; padding: 0 5px; }
 
         .add-guest-btn { 
             background: none; border: 1px dashed var(--gold); color: var(--gold); 
-            padding: 15px; border-radius: 25px; cursor: pointer; font-weight: 500; display: none;
+            padding: 15px; border-radius: 25px; cursor: pointer; font-weight: 500; display: none; margin-bottom: 10px;
         }
 
-        .btn-gold { background: var(--gold); color: white; border: none; padding: 22px; border-radius: 50px; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: 0.4s; font-weight: 500; margin-top: 15px; }
+        .btn-gold { background: var(--gold); color: white; border: none; padding: 22px; border-radius: 50px; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: 0.4s; font-weight: 500; margin-top: 10px; }
 
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .gallery-grid img { width: 100%; height: 300px; object-fit: cover; border-radius: 25px; }
@@ -94,9 +98,7 @@
 <body>
 
     <header>
-        <video autoplay muted loop playsinline id="bgVideo">
-            <source src="video/background.mp4" type="video/mp4">
-        </video>
+        <video autoplay muted loop playsinline id="bgVideo"><source src="video/background.mp4" type="video/mp4"></video>
         <div class="header-overlay"></div>
         <div class="hero-content">
             <span style="text-transform: uppercase; letter-spacing: 8px; font-size: 0.8rem; margin-bottom: 20px; display: block;">Save the Date</span>
@@ -113,6 +115,7 @@
         <section class="reveal">
             <div class="card">
                 <h2 class="section-title">Наша история</h2>
+                <div class="pattern-divider"></div>
                 <p style="line-height: 2;">Мы будем очень рады видеть вас на нашей свадьбе! Этот день станет для нас особенным, и мы хотим разделить его с вами.</p>
                 <div class="story-photos">
                     <img src="img/story1.jpg">
@@ -123,6 +126,7 @@
 
         <section class="reveal">
             <h2 class="section-title">Программа дня</h2>
+            <div class="pattern-divider"></div>
             <div class="timeline">
                 <div class="timeline-item">
                     <span class="time">15:10</span>
@@ -145,6 +149,7 @@
         <section class="reveal" id="rsvp">
             <div class="card">
                 <h2 class="section-title">Регистрация гостей</h2>
+                <div class="pattern-divider"></div>
                 <form class="rsvp-form" id="weddingForm">
                     <input type="text" name="guest_name" placeholder="Ваше Имя" required>
                     <input type="tel" name="phone" id="phoneInput" placeholder="+7 (___) ___-__-__" required>
@@ -160,17 +165,8 @@
                         <option value="plus-one">Приду с кем-то</option>
                     </select>
 
-                    <div id="additional-guests" style="display: flex; flex-direction: column; gap: 10px;"></div>
+                    <div id="additional-guests" style="display: flex; flex-direction: column; gap: 5px;"></div>
                     <button type="button" class="add-guest-btn" id="addGuestBtn">+ Добавить гостя</button>
-
-                    <div style="text-align: left; margin-top: 10px;">
-                        <label style="display:block; margin-bottom: 10px; font-size: 0.85rem; color:#666;">Пожелания по музыке?</label>
-                        <div style="display:flex; gap: 25px; margin-bottom: 10px;">
-                            <label style="cursor:pointer"><input type="radio" name="has_music" value="no" checked> Нет</label>
-                            <label style="cursor:pointer"><input type="radio" name="has_music" value="yes"> Да</label>
-                        </div>
-                        <input type="text" name="music" id="musicInput" placeholder="Исполнитель и песня" style="display:none;">
-                    </div>
 
                     <button type="submit" class="btn-gold" id="submitBtn">Отправить ответ</button>
                     <div id="msg" style="margin-top: 15px; color: var(--gold); font-weight: 500;"></div>
@@ -180,16 +176,18 @@
 
         <section class="reveal">
             <h2 class="section-title">Локация</h2>
+            <div class="pattern-divider"></div>
             <div class="card">
-                <p style="margin-bottom: 20px;">ЗАГС: ул. Гимова, 3</p>
-                <div style="width: 100%; border-radius: 25px; overflow: hidden; height: 400px;">
-                    <iframe src="https://yandex.ru/map-widget/v1/?ll=48.404646%2C54.317105&z=17" width="100%" height="100%" frameborder="0"></iframe>
+                <p style="margin-bottom: 25px; font-size: 1.1rem;">Торжественная церемония бракосочетания пройдет по адресу:<br><strong>г. Ульяновск, ул. Гимова, д. 3 (Дворец бракосочетания)</strong></p>
+                <div style="width: 100%; border-radius: 25px; overflow: hidden; height: 450px; border: 1px solid #eee;">
+                    <iframe src="https://yandex.ru/map-widget/v1/?ll=48.403864%2C54.317327&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1NjI2MDExMxIy0KDQvtGB0YHQuNGPLCDQo9C70YzRj9C90L7QstGB0LosINGD0LvQuNGG0LAg0JPQuNC80L7QstCwLCAzIgoNWh0WRhXfSllC&z=17" width="100%" height="100%" frameborder="0" allowfullscreen="true" style="position:relative;"></iframe>
                 </div>
             </div>
         </section>
 
         <section class="reveal">
             <h2 class="section-title">Галерея</h2>
+            <div class="pattern-divider"></div>
             <div class="gallery-grid">
                 <img src="gallery/1.jpg"><img src="gallery/2.jpg">
                 <img src="gallery/3.jpg"><img src="gallery/4.jpg">
@@ -212,7 +210,6 @@
         }
         setInterval(timer, 1000); timer();
 
-        // ЛОГИКА ДОБАВЛЕНИЯ ГОСТЕЙ
         let gCount = 0;
         const addBtn = document.getElementById('addGuestBtn');
         const guestMode = document.getElementById('guestModeSelection');
@@ -221,7 +218,7 @@
         guestMode.onchange = function() {
             if (this.value === 'plus-one') {
                 addBtn.style.display = 'block';
-                if (gCount === 0) createGuestInput(); // Сразу создаем одно поле
+                if (gCount === 0) createGuestInput();
             } else {
                 addBtn.style.display = 'none';
                 guestsContainer.innerHTML = '';
@@ -241,28 +238,17 @@
                     <span class="remove-guest" title="Удалить">&times;</span>
                 `;
                 guestsContainer.appendChild(wrapper);
-
-                wrapper.querySelector('.remove-guest').onclick = function() {
-                    wrapper.remove();
-                    // Мы не уменьшаем gCount, чтобы избежать дублирования имен name в форме
-                };
+                wrapper.querySelector('.remove-guest').onclick = () => { wrapper.remove(); };
             }
             if (gCount >= 9) addBtn.style.display = 'none';
         }
 
-        // Музыка
-        document.querySelectorAll('input[name="has_music"]').forEach(r => {
-            r.onchange = () => { document.getElementById('musicInput').style.display = r.value === 'yes' ? 'block' : 'none'; };
-        });
-
-        // Телефон
         document.getElementById('phoneInput').oninput = function() {
             let matrix = "+7 (___) ___-__-__", i = 0, def = matrix.replace(/\D/g, ""), val = this.value.replace(/\D/g, "");
             if (def.length >= val.length) val = def;
             this.value = matrix.replace(/./g, a => /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? "" : a);
         };
 
-        // Отправка
         document.getElementById('weddingForm').onsubmit = function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
@@ -270,11 +256,8 @@
             btn.disabled = true;
             btn.innerText = "ОТПРАВЛЯЕМ...";
 
-            const formData = new FormData(this);
-            if (formData.get('has_music') === 'no') formData.set('music', 'Пожеланий нет');
-
             const params = new URLSearchParams();
-            for (const pair of formData) { params.append(pair[0], pair[1]); }
+            for (const pair of new FormData(this)) { params.append(pair[0], pair[1]); }
 
             fetch(scriptUrl, {
                 method: 'POST',
@@ -284,16 +267,13 @@
             }).then(() => {
                 msg.innerText = "Спасибо! Ответ успешно записан.";
                 btn.innerText = "ГОТОВО ✅";
-                btn.style.background = "#5a9a5a";
                 setTimeout(() => {
                     this.reset();
                     guestsContainer.innerHTML = '';
-                    document.getElementById('musicInput').style.display = 'none';
                     gCount = 0;
                     addBtn.style.display = 'none';
                     btn.disabled = false;
-                    btn.innerText = "ОТПРАВИТЬ ЕЩЕ";
-                    btn.style.background = "var(--gold)";
+                    btn.innerText = "ОТПРАВИТЬ ЕЩЕ РАЗ";
                     msg.innerText = "";
                 }, 3000);
             }).catch(() => {
