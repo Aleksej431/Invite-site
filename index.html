@@ -4,44 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Приглашение на свадьбу | Алексей & Алина</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    
     <style>
-        :root { --gold: #b89c7d; --dark: #1a1a1a; --light-bg: #fcfaf8; --light-green: #e9f0ea; --white: #ffffff; }
+        :root {
+            --gold: #b89c7d;
+            --dark: #1a1a1a;
+            --light-bg: #fcfaf8;
+            --light-green: #e9f0ea;
+            --white: #ffffff;
+            --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
         * { box-sizing: border-box; }
         body { margin: 0; padding: 0; background-color: var(--light-bg); color: var(--dark); font-family: 'Montserrat', sans-serif; overflow-x: hidden; font-weight: 300; }
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: var(--transition); }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        header { height: 100vh; display: flex; justify-content: center; align-items: center; color: var(--white); text-align: center; position: relative; overflow: hidden; background: #000; }
-        #bgVideo { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; transform: translate(-50%, -50%); z-index: 0; object-fit: cover; filter: brightness(0.6); }
+
+        header {
+            height: 100vh; display: flex; justify-content: center; align-items: center;
+            color: var(--white); text-align: center; position: relative; overflow: hidden; background: #000;
+        }
+        #bgVideo {
+            position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%;
+            width: auto; height: auto; transform: translate(-50%, -50%); z-index: 0;
+            object-fit: cover; filter: brightness(0.6);
+        }
         .header-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1; }
         .hero-content { position: relative; z-index: 2; }
-        .hero-content h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 10vw, 6rem); margin: 0; letter-spacing: 5px; font-style: italic; font-weight: 300; }
+        .hero-content h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 10vw, 6rem); font-weight: 300; margin: 0; letter-spacing: 5px; font-style: italic; }
+        
         .countdown-container { display: flex; justify-content: center; gap: 15px; margin-top: 30px; }
         .countdown-item { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 15px; min-width: 80px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); }
         .countdown-item span { display: block; font-size: 1.5rem; }
+
         section { padding: 80px 0; }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
         .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 5vw, 3.2rem); text-align: center; margin-bottom: 50px; font-weight: 300; }
+
         .card { background: var(--white); padding: 50px 30px; border-radius: 30px; border: 1px solid rgba(184, 156, 125, 0.15); text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+
         .story-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
-        .story-photos img { width: 100%; height: 400px; object-fit: cover; border-radius: 25px; }
+        .story-photos img { width: 100%; height: 400px; object-fit: cover; border-radius: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+
         @media (max-width: 768px) { .story-photos { grid-template-columns: 1fr; } }
+
         .rsvp-form { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
-        input, select { background: #f9f9f9; border: 1px solid #eee; padding: 18px 25px; font-family: inherit; font-size: 1rem; border-radius: 25px; outline: none; }
+        input, select { 
+            background: #f9f9f9; border: 1px solid #eee; padding: 18px 25px; 
+            font-family: inherit; font-size: 1rem; border-radius: 25px; outline: none; transition: 0.3s;
+        }
+        input:focus { border-color: var(--gold); background: #fff; }
+
+        .add-guest-btn { 
+            background: none; border: 1px dashed var(--gold); color: var(--gold); 
+            padding: 15px; border-radius: 25px; cursor: pointer; font-weight: 500; margin-top: 5px;
+        }
+
         .btn-gold { background: var(--gold); color: white; border: none; padding: 22px; border-radius: 50px; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: 0.4s; font-weight: 500; margin-top: 15px; }
-        .add-guest-btn { background: none; border: 1px dashed var(--gold); color: var(--gold); padding: 15px; border-radius: 25px; cursor: pointer; margin-top: 5px; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .gallery-grid img { width: 100%; height: 300px; object-fit: cover; border-radius: 25px; }
+
+        .map-wrapper { width: 100%; border-radius: 30px; overflow: hidden; margin-top: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
+        .gallery-grid img { width: 100%; height: 300px; object-fit: cover; border-radius: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+
         footer { padding: 80px 0; text-align: center; background: var(--light-green); font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-style: italic; }
     </style>
 </head>
 <body>
+
     <header>
-        <video autoplay muted loop playsinline id="bgVideo"><source src="video/background.mp4" type="video/mp4"></video>
+        <video autoplay muted loop playsinline id="bgVideo">
+            <source src="video/background.mp4" type="video/mp4">
+        </video>
         <div class="header-overlay"></div>
         <div class="hero-content">
             <span style="text-transform: uppercase; letter-spacing: 8px; font-size: 0.9rem; margin-bottom: 20px; display: block;">Save the Date</span>
-            <h1>Алексей & Алина</h1>
+            <h1 id="heroNames">Алексей & Алина</h1>
             <div class="countdown-container">
                 <div class="countdown-item"><span id="days">00</span><small>дней</small></div>
                 <div class="countdown-item"><span id="hours">00</span><small>часов</small></div>
@@ -54,10 +95,10 @@
         <section class="reveal">
             <div class="card">
                 <h2 class="section-title">Наша история</h2>
-                <p style="line-height: 2; margin-bottom: 30px;">Мы будем очень рады видеть вас на нашей свадьбе! Этот день станет для нас особенным, и мы хотим разделить его с вами.</p>
+                <p id="welcomeText" style="line-height: 2; margin-bottom: 30px;">Мы будем очень рады видеть вас на нашей свадьбе! Этот день станет для нас особенным, и мы хотим разделить его с вами.</p>
                 <div class="story-photos">
-                    <img src="img/story1.jpg" alt="story1">
-                    <img src="img/story2.jpg" alt="story2">
+                    <img src="img/story1.jpg">
+                    <img src="img/story2.jpg">
                 </div>
             </div>
         </section>
@@ -68,16 +109,24 @@
                 <form class="rsvp-form" id="weddingForm">
                     <input type="text" name="guest_name" placeholder="Ваше Имя" required>
                     <input type="tel" name="phone" id="phoneInput" placeholder="+7 (___) ___-__-__" required>
+                    
                     <select name="status">
                         <option value="attending">Я приду</option>
                         <option value="not_attending">Не смогу прийти</option>
                     </select>
+
                     <div id="additional-guests" style="display: flex; flex-direction: column; gap: 10px;"></div>
                     <button type="button" class="add-guest-btn" id="addGuestBtn">+ Добавить гостя</button>
+
                     <div style="text-align: left; margin-top: 10px;">
-                        <label style="display:block; margin-bottom: 10px; font-size: 0.85rem; color:#666;">Пожелания по музыке?</label>
-                        <input type="text" name="music" placeholder="Исполнитель и песня">
+                        <label style="display:block; margin-bottom: 10px; font-size: 0.85rem; color:#666;">Есть ли у вас пожелания по музыке для танцпола?</label>
+                        <div style="display:flex; gap: 25px; margin-bottom: 10px;">
+                            <label style="cursor:pointer"><input type="radio" name="has_music" value="no" checked> Нет</label>
+                            <label style="cursor:pointer"><input type="radio" name="has_music" value="yes"> Да</label>
+                        </div>
+                        <input type="text" name="music" id="musicInput" placeholder="Исполнитель и название песни" style="display:none; width:100%;">
                     </div>
+
                     <button type="submit" class="btn-gold" id="submitBtn">Отправить ответ</button>
                     <div id="msg" style="margin-top: 15px; color: var(--gold); font-weight: 500;"></div>
                 </form>
@@ -88,8 +137,8 @@
             <h2 class="section-title">Место встречи</h2>
             <div class="card">
                 <p style="margin-bottom: 20px;">г. Ульяновск, ул. Гимова, 3 (ЗАГС)</p>
-                <div style="width: 100%; border-radius: 30px; overflow: hidden; height: 450px;">
-                    <iframe src="https://yandex.ru/map-widget/v1/?ll=48.404646%2C54.317105&z=17" width="100%" height="100%" frameborder="0"></iframe>
+                <div class="map-wrapper">
+                    <iframe src="https://yandex.ru/map-widget/v1/?ll=48.404646%2C54.317105&z=17" width="100%" height="450" frameborder="0"></iframe>
                 </div>
             </div>
         </section>
@@ -97,16 +146,25 @@
         <section class="reveal">
             <h2 class="section-title">Галерея</h2>
             <div class="gallery-grid">
-                <img src="gallery/1.jpg" alt="1"><img src="gallery/2.jpg" alt="2">
-                <img src="gallery/3.jpg" alt="3"><img src="gallery/4.jpg" alt="4">
+                <img src="gallery/1.jpg">
+                <img src="gallery/2.jpg">
+                <img src="gallery/3.jpg">
+                <img src="gallery/4.jpg">
             </div>
         </section>
     </div>
 
-    <footer>Ваши Алексей & Алина</footer>
+    <footer><p id="footerText">Ваши Алексей & Алина</p></footer>
 
     <script>
+        // ЗАМЕНИ ССЫЛКУ НИЖЕ НА СВОЮ ИЗ ТАБЛИЦЫ (ПОСЛЕ НОВОГО РАЗВЕРТЫВАНИЯ)
         const scriptUrl = "https://script.google.com/macros/s/AKfycbzFsWKeo5RtSd1dUNG-ROPKrwL1Q7P6VDcle4z1oyY-oC1V9FCIb6X7o9pKIyCZ6KLR/exec";
+
+        // Видео
+        const v = document.getElementById('bgVideo');
+        const playV = () => v.play().catch(() => {});
+        window.addEventListener('click', playV, {once:true});
+        window.addEventListener('scroll', playV, {once:true});
 
         // Таймер
         function timer() {
@@ -119,17 +177,32 @@
         }
         setInterval(timer, 1000); timer();
 
-        // Добавление гостей
+        // Добавление гостей (лимит 9)
         let gCount = 0;
-        document.getElementById('addGuestBtn').onclick = function() {
+        const addBtn = document.getElementById('addGuestBtn');
+        addBtn.onclick = function() {
             if (gCount < 9) {
                 gCount++;
-                let inp = document.createElement('input');
+                const inp = document.createElement('input');
                 inp.name = 'extra_guest_' + gCount;
                 inp.placeholder = 'Имя гостя №' + (gCount + 1);
                 document.getElementById('additional-guests').appendChild(inp);
             }
+            if (gCount >= 9) addBtn.style.display = 'none';
         };
+
+        // Логика музыки
+        document.querySelectorAll('input[name="has_music"]').forEach(radio => {
+            radio.onchange = () => {
+                const musicInput = document.getElementById('musicInput');
+                if (radio.value === 'yes') {
+                    musicInput.style.display = 'block';
+                } else {
+                    musicInput.style.display = 'none';
+                    musicInput.value = '';
+                }
+            };
+        });
 
         // Маска телефона
         document.getElementById('phoneInput').oninput = function() {
@@ -138,7 +211,7 @@
             this.value = matrix.replace(/./g, a => /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? "" : a);
         };
 
-        // ОТПРАВКА
+        // Отправка формы
         document.getElementById('weddingForm').onsubmit = function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
@@ -146,8 +219,13 @@
             btn.disabled = true;
             btn.innerText = "ОТПРАВЛЯЕМ...";
 
-            // Передаем данные через URLSearchParams для стабильности Google Script
             const formData = new FormData(this);
+            
+            // Если выбрано "Нет", пишем в таблицу текст
+            if (formData.get('has_music') === 'no') {
+                formData.set('music', 'Пожеланий нет');
+            }
+
             const params = new URLSearchParams();
             for (const pair of formData) { params.append(pair[0], pair[1]); }
 
@@ -157,27 +235,33 @@
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: params.toString()
             }).then(() => {
-                msg.innerText = "Спасибо! Ответ записан.";
+                msg.innerText = "Спасибо! Ваш ответ успешно записан.";
                 btn.innerText = "ГОТОВО ✅";
+                btn.style.background = "#5a9a5a";
+
                 setTimeout(() => {
                     this.reset();
                     document.getElementById('additional-guests').innerHTML = '';
+                    document.getElementById('musicInput').style.display = 'none';
                     gCount = 0;
+                    addBtn.style.display = 'block';
                     btn.disabled = false;
-                    btn.innerText = "ОТПРАВИТЬ ЕЩЕ";
+                    btn.innerText = "ОТПРАВИТЬ ЕЩЕ РАЗ";
+                    btn.style.background = "var(--gold)";
                     msg.innerText = "";
                 }, 3000);
             }).catch(() => {
-                msg.innerText = "Ошибка отправки";
+                msg.innerText = "Ошибка. Попробуйте еще раз.";
                 btn.disabled = false;
             });
         };
 
-        window.onscroll = () => {
-            document.querySelectorAll('.reveal').forEach(r => {
-                if (r.getBoundingClientRect().top < window.innerHeight - 50) r.classList.add('active');
+        function reveal() {
+            document.querySelectorAll(".reveal").forEach(r => {
+                if (r.getBoundingClientRect().top < window.innerHeight - 50) r.classList.add("active");
             });
-        };
+        }
+        window.addEventListener("scroll", reveal); reveal();
     </script>
 </body>
 </html>
