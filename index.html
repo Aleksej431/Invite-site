@@ -23,7 +23,7 @@
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Видеофон */
+        /* Шапка */
         header {
             height: 100vh; display: flex; justify-content: center; align-items: center;
             color: var(--white); text-align: center; position: relative; overflow: hidden; background: #000;
@@ -33,7 +33,7 @@
             width: auto; height: auto; transform: translate(-50%, -50%); z-index: 0;
             object-fit: cover; filter: brightness(0.6);
         }
-        .header-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.2); z-index: 1; }
+        .header-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1; }
         .hero-content { position: relative; z-index: 2; }
         .hero-content h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 10vw, 6rem); font-weight: 300; margin: 0; letter-spacing: 5px; font-style: italic; }
         .hero-subtitle { text-transform: uppercase; letter-spacing: 8px; font-size: 0.9rem; margin-bottom: 20px; display: block; }
@@ -41,8 +41,7 @@
         /* Таймер */
         .countdown-container { display: flex; justify-content: center; gap: 15px; margin-top: 30px; }
         .countdown-item { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 15px; min-width: 80px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); }
-        .countdown-item span { display: block; font-size: 1.5rem; font-weight: 400; }
-        .countdown-label { font-size: 0.6rem; text-transform: uppercase; margin-top: 5px; opacity: 0.8; }
+        .countdown-item span { display: block; font-size: 1.5rem; }
 
         section { padding: 80px 0; }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
@@ -50,34 +49,28 @@
 
         .card { background: var(--white); padding: 50px 30px; border-radius: 30px; border: 1px solid rgba(184, 156, 125, 0.15); text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
 
-        /* История: 2 фото в ряд */
         .story-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
-        .story-photos img { width: 100%; height: 400px; object-fit: cover; border-radius: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); transition: var(--transition); }
-        .story-photos img:hover { transform: scale(1.02); }
+        .story-photos img { width: 100%; height: 400px; object-fit: cover; border-radius: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
 
-        @media (max-width: 768px) { .story-photos { grid-template-columns: 1fr; } .story-photos img { height: 300px; } }
+        @media (max-width: 768px) { .story-photos { grid-template-columns: 1fr; } }
 
-        /* Форма скругленная */
-        .rsvp-form { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+        /* Форма регистрации */
+        .rsvp-form { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
         input, select { 
-            background: #fdfdfd; border: 1px solid #eee; padding: 18px 25px; 
+            background: #f9f9f9; border: 1px solid #eee; padding: 18px 25px; 
             font-family: inherit; font-size: 1rem; border-radius: 25px; outline: none; transition: 0.3s;
         }
-        input:focus, select:focus { border-color: var(--gold); background: #fff; box-shadow: 0 5px 15px rgba(184, 156, 125, 0.1); }
+        input:focus, select:focus { border-color: var(--gold); background: #fff; }
 
         .add-guest-btn { 
             background: none; border: 1px dashed var(--gold); color: var(--gold); 
-            padding: 15px; border-radius: 25px; cursor: pointer; font-weight: 500; font-size: 0.9rem; transition: 0.3s;
+            padding: 15px; border-radius: 25px; cursor: pointer; font-weight: 500; margin-top: 5px;
         }
-        .add-guest-btn:hover { background: var(--gold); color: #fff; }
 
-        .btn-gold { background: var(--gold); color: white; border: none; padding: 22px; border-radius: 50px; text-transform: uppercase; letter-spacing: 4px; cursor: pointer; transition: 0.4s; font-weight: 500; margin-top: 10px; }
-        .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(184, 156, 125, 0.3); }
+        .btn-gold { background: var(--gold); color: white; border: none; padding: 22px; border-radius: 50px; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: 0.4s; font-weight: 500; margin-top: 15px; }
 
-        /* Карта */
         .map-wrapper { width: 100%; border-radius: 30px; overflow: hidden; margin-top: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
 
-        /* Галерея */
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
         .gallery-grid img { width: 100%; height: 300px; object-fit: cover; border-radius: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
 
@@ -95,9 +88,9 @@
             <span class="hero-subtitle">Save the Date</span>
             <h1 id="heroNames">Алексей & Алина</h1>
             <div class="countdown-container" id="countdown">
-                <div class="countdown-item"><span id="days">00</span><div class="countdown-label">дней</div></div>
-                <div class="countdown-item"><span id="hours">00</span><div class="countdown-label">часов</div></div>
-                <div class="countdown-item"><span id="minutes">00</span><div class="countdown-label">мин</div></div>
+                <div class="countdown-item"><span id="days">00</span><small>дней</small></div>
+                <div class="countdown-item"><span id="hours">00</span><small>часов</small></div>
+                <div class="countdown-item"><span id="minutes">00</span><small>мин</small></div>
             </div>
         </div>
     </header>
@@ -106,13 +99,13 @@
         <section class="reveal">
             <div class="card">
                 <h2 class="section-title">Наша история</h2>
-                <p id="welcomeText" style="line-height: 2; font-size: 1.1rem; max-width: 800px; margin: 0 auto 30px;"></p>
+                <p id="welcomeText" style="line-height: 2; margin-bottom: 30px;"></p>
                 <div class="story-photos" id="storyPhotos"></div>
             </div>
         </section>
 
-        <section class="reveal">
-            <div class="card" id="rsvp">
+        <section class="reveal" id="rsvp">
+            <div class="card">
                 <h2 class="section-title">Регистрация гостей</h2>
                 <form class="rsvp-form" id="weddingForm">
                     <input type="text" name="guest_name" placeholder="Ваше Имя" required>
@@ -123,20 +116,20 @@
                         <option value="not_attending">Не смогу прийти</option>
                     </select>
 
-                    <div id="additional-guests" style="display: flex; flex-direction: column; gap: 12px;"></div>
+                    <div id="additional-guests" style="display: flex; flex-direction: column; gap: 10px;"></div>
                     <button type="button" class="add-guest-btn" id="addGuestBtn">+ Добавить гостя</button>
 
-                    <div style="text-align: left; margin-top: 15px; padding: 0 10px;">
-                        <label style="display:block; margin-bottom: 15px; font-size: 0.9rem; color: #666;">Есть ли у вас пожелания по музыке для танцпола?</label>
-                        <div style="display:flex; gap: 30px; margin-bottom: 15px;">
+                    <div style="text-align: left; margin-top: 10px;">
+                        <label style="display:block; margin-bottom: 10px; font-size: 0.85rem;">Есть ли у вас пожелания по музыке для танцпола?</label>
+                        <div style="display:flex; gap: 25px; margin-bottom: 10px;">
                             <label style="cursor:pointer"><input type="radio" name="has_music" value="no" checked> Нет</label>
                             <label style="cursor:pointer"><input type="radio" name="has_music" value="yes"> Да</label>
                         </div>
-                        <input type="text" name="music" id="musicInput" placeholder="Исполнитель и название песни" style="display:none; width:100%;">
+                        <input type="text" name="music" id="musicInput" placeholder="Исполнитель и песня" style="display:none; width:100%;">
                     </div>
 
                     <button type="submit" class="btn-gold" id="submitBtn">Отправить ответ</button>
-                    <div id="msg" style="margin-top: 20px; color: var(--gold); font-weight: 500;"></div>
+                    <div id="msg" style="margin-top: 15px; color: var(--gold); font-weight: 500;"></div>
                 </form>
             </div>
         </section>
@@ -144,9 +137,9 @@
         <section class="reveal">
             <h2 class="section-title">Место встречи</h2>
             <div class="card">
-                <p style="margin-bottom: 20px; font-size: 1.1rem;">г. Ульяновск, ул. Гимова, 3 (ЗАГС)</p>
+                <p style="margin-bottom: 20px;">г. Ульяновск, ул. Гимова, 3 (ЗАГС)</p>
                 <div class="map-wrapper">
-                    <iframe src="https://yandex.ru/map-widget/v1/?ll=48.404646%2C54.317105&mode=poi&poi%5Bpoint%5D=48.403864%2C54.317327&z=17" width="100%" height="450" frameborder="0" allowfullscreen="true"></iframe>
+                    <iframe src="https://yandex.ru/map-widget/v1/?ll=48.404646%2C54.317105&mode=poi&poi%5Bpoint%5D=48.403864%2C54.317327&z=17" width="100%" height="450" frameborder="0"></iframe>
                 </div>
             </div>
         </section>
@@ -163,20 +156,17 @@
         const weddingConfig = {
             names: "Алексей & Алина",
             date: "2026-08-07T15:10:00",
-            welcome: "Мы будем очень рады видеть вас на нашей свадьбе! Этот день станет для нас началом новой главы, и мы хотим разделить это счастье с вами.",
+            welcome: "Мы будем очень рады видеть вас на нашей свадьбе! Этот день станет для нас особенным, и мы хотим разделить его с вами.",
             storyPics: ["img/story1.jpg", "img/story2.jpg"],
             gallery: ["gallery/1.jpg", "gallery/2.jpg", "gallery/3.jpg", "gallery/4.jpg"],
-            scriptUrl: "ВСТАВЬ_СЮДА_ССЫЛКУ_ИЗ_APPS_SCRIPT"
+            scriptUrl: "ВСТАВЬ_СЮДА_НОВУЮ_ССЫЛКУ_ИЗ_APPS_SCRIPT"
         };
 
-        // Видеофикс
-        const video = document.getElementById('bgVideo');
-        if (video) {
-            video.play().catch(() => {
-                window.addEventListener('scroll', () => video.play(), {once: true});
-                window.addEventListener('click', () => video.play(), {once: true});
-            });
-        }
+        // Видео
+        const v = document.getElementById('bgVideo');
+        const playV = () => v.play().catch(() => {});
+        window.addEventListener('click', playV, {once:true});
+        window.addEventListener('scroll', playV, {once:true});
 
         // Таймер
         function updateTimer() {
@@ -189,63 +179,79 @@
         }
         setInterval(updateTimer, 1000); updateTimer();
 
-        // Наполнение контентом
+        // Контент
         document.getElementById('heroNames').innerText = weddingConfig.names;
         document.getElementById('welcomeText').innerText = weddingConfig.welcome;
         document.getElementById('footerText').innerText = "Ваши " + weddingConfig.names;
-        weddingConfig.storyPics.forEach(src => { document.getElementById('storyPhotos').innerHTML += `<img src="${src}" alt="Story">`; });
-        weddingConfig.gallery.forEach(src => { document.getElementById('galleryContainer').innerHTML += `<img src="${src}" alt="Gallery">`; });
+        weddingConfig.storyPics.forEach(src => { document.getElementById('storyPhotos').innerHTML += `<img src="${src}">`; });
+        weddingConfig.gallery.forEach(src => { document.getElementById('galleryContainer').innerHTML += `<img src="${src}">`; });
 
-        // Добавление гостей (лимит 9)
+        // Добавление гостей (до 9 человек)
         let gCount = 0;
         document.getElementById('addGuestBtn').onclick = function() {
             if (gCount < 9) {
                 gCount++;
                 const inp = document.createElement('input');
-                inp.type = 'text';
                 inp.name = 'extra_guest_' + gCount;
                 inp.placeholder = 'Имя гостя №' + (gCount + 1);
-                inp.style.opacity = '0';
                 document.getElementById('additional-guests').appendChild(inp);
-                setTimeout(() => inp.style.opacity = '1', 10);
             }
             if (gCount >= 9) this.style.display = 'none';
         };
 
-        // Логика музыки
+        // Музыка
         document.querySelectorAll('input[name="has_music"]').forEach(r => {
-            r.onchange = () => {
-                document.getElementById('musicInput').style.display = r.value === 'yes' ? 'block' : 'none';
-            };
+            r.onchange = () => { document.getElementById('musicInput').style.display = r.value === 'yes' ? 'block' : 'none'; };
         });
 
         // Маска телефона
-        const phoneInput = document.getElementById('phoneInput');
-        phoneInput.oninput = function() {
+        document.getElementById('phoneInput').oninput = function() {
             let matrix = "+7 (___) ___-__-__", i = 0, def = matrix.replace(/\D/g, ""), val = this.value.replace(/\D/g, "");
             if (def.length >= val.length) val = def;
             this.value = matrix.replace(/./g, a => /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? "" : a);
         };
 
-        // Отправка формы
+        // ОТПРАВКА ФОРМЫ (Исправленная)
         document.getElementById('weddingForm').onsubmit = function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
-            btn.disabled = true; btn.innerText = "ОТПРАВЛЯЕМ...";
-            fetch(weddingConfig.scriptUrl, { method: 'POST', body: new FormData(this) })
-            .then(() => { 
-                document.getElementById('msg').innerText = "Спасибо за ответ! Мы получили ваши данные."; 
-                btn.innerText = "ОТПРАВЛЕНО"; 
+            const msg = document.getElementById('msg');
+            const form = this;
+
+            btn.disabled = true;
+            btn.innerText = "ОТПРАВЛЯЕМ...";
+            
+            fetch(weddingConfig.scriptUrl, { method: 'POST', body: new FormData(form), mode: 'no-cors' })
+            .then(() => {
+                msg.innerText = "Спасибо! Данные успешно отправлены.";
+                btn.innerText = "ГОТОВО ✅";
+                btn.style.background = "#5a9a5a";
+
+                // Сброс для новой отправки через 3 секунды
+                setTimeout(() => {
+                    form.reset();
+                    document.getElementById('additional-guests').innerHTML = '';
+                    document.getElementById('musicInput').style.display = 'none';
+                    gCount = 0;
+                    document.getElementById('addGuestBtn').style.display = 'block';
+                    btn.disabled = false;
+                    btn.innerText = "ОТПРАВИТЬ ЕЩЕ РАЗ";
+                    btn.style.background = "var(--gold)";
+                    msg.innerText = "";
+                }, 3000);
+            })
+            .catch(() => {
+                msg.innerText = "Ошибка. Проверьте соединение или таблицу.";
+                btn.disabled = false;
+                btn.innerText = "ПОПРОБОВАТЬ СНОВА";
             });
         };
 
-        // Анимация при скролле
-        function reveal() {
-            document.querySelectorAll(".reveal").forEach(r => {
-                if (r.getBoundingClientRect().top < window.innerHeight - 50) r.classList.add("active");
+        window.onscroll = () => {
+            document.querySelectorAll('.reveal').forEach(r => {
+                if (r.getBoundingClientRect().top < window.innerHeight - 50) r.classList.add('active');
             });
-        }
-        window.addEventListener("scroll", reveal); reveal();
+        };
     </script>
 </body>
 </html>
