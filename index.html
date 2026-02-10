@@ -1234,14 +1234,25 @@
                 }
             });
             
-            // Отправка формы
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                // Валидация
-                if (!validateForm()) {
-                    return;
-                }
+            // В коде сайта отправка формы
+async function submitForm(formData) {
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwPN-HYkZaWeWn7t2EMsDsjwAO8MRIM5sF0m-vfxMux-RFCTpRhi9El1KnzoPFtX4WF1Q/exec';
+  
+  try {
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams(formData).toString()
+    });
+    
+    const result = await response.json();
+    console.log('Данные сохранены:', result);
+  } catch (error) {
+    console.error('Ошибка:', error);
+  }
+}
                 
                 // Показываем индикатор загрузки
                 btnText.style.display = 'none';
