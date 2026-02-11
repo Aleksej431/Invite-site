@@ -12,15 +12,15 @@
     
     html {
       scroll-behavior: smooth;
-      background-color: #f8f6f2;
+      background-color: #f9f7f2;
     }
     
     body {
       font-family: 'Inter', sans-serif;
       font-weight: 300;
-      color: #1e1e1e;
+      color: #3a5a40;
       line-height: 1.5;
-      background-color: #f8f6f2;
+      background-color: #f9f7f2;
       overflow-x: hidden;
     }
     
@@ -36,6 +36,21 @@
       padding: 0 24px;
     }
     
+    /* ===== БЕЖЕВО-ЗЕЛЕНАЯ ПАЛИТРА ===== */
+    :root {
+      --beige-light: #f9f7f2;
+      --beige-medium: #f0ede5;
+      --beige-dark: #e2dcd0;
+      --green-light: #dde9da;
+      --green-medium: #b7cdb2;
+      --green-olive: #8a9e8a;
+      --green-dark: #3a5a40;
+      --green-moss: #5e7a5e;
+      --brown-warm: #9c8c7c;
+      --cream: #fffaf4;
+      --white: #ffffff;
+    }
+    
     /* ===== ШАПКА С ВИДЕО ===== */
     .hero {
       height: 100vh;
@@ -46,7 +61,7 @@
       justify-content: center;
       text-align: center;
       overflow: hidden;
-      background-color: #1a1a1a;
+      background-color: #2c4a3a;
     }
     
     .hero-video {
@@ -65,7 +80,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4));
+      background: linear-gradient(to bottom, rgba(58, 90, 64, 0.3), rgba(58, 90, 64, 0.5));
       z-index: 2;
     }
     
@@ -88,12 +103,12 @@
       font-style: normal;
       opacity: 0;
       animation: appear 1.8s ease-out forwards;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      text-shadow: 0 2px 15px rgba(0,0,0,0.2);
     }
     
     .names-amp {
       font-size: 2rem;
-      color: rgba(255,255,255,0.9);
+      color: rgba(255,255,255,0.95);
       margin: -0.5rem 0;
       font-family: 'EB Garamond', serif;
     }
@@ -105,11 +120,11 @@
       text-transform: uppercase;
       color: rgba(255,255,255,0.95);
       margin: 2rem 0 1rem;
-      border-top: 1px solid rgba(255,255,255,0.3);
-      border-bottom: 1px solid rgba(255,255,255,0.3);
+      border-top: 1px solid rgba(255,255,255,0.4);
+      border-bottom: 1px solid rgba(255,255,255,0.4);
       padding: 1rem 0;
       display: inline-block;
-      text-shadow: 0 1px 5px rgba(0,0,0,0.2);
+      text-shadow: 0 1px 8px rgba(0,0,0,0.2);
     }
     
     .location-badge {
@@ -136,7 +151,7 @@
       letter-spacing: 4px;
       text-transform: uppercase;
       color: white;
-      opacity: 0.7;
+      opacity: 0.8;
       z-index: 4;
       transition: opacity 0.3s;
     }
@@ -154,7 +169,7 @@
     /* ===== ИСТОРИЯ ===== */
     .story {
       padding: 140px 0;
-      background-color: #ffffff;
+      background-color: var(--white);
     }
     
     .story-grid {
@@ -174,8 +189,10 @@
     .story-image {
       position: relative;
       height: 500px;
-      background-color: #eae3db;
+      background-color: var(--green-light);
       overflow: hidden;
+      border-radius: 24px;
+      box-shadow: 0 15px 30px -10px rgba(94, 122, 94, 0.15);
     }
     
     .story-image img {
@@ -197,7 +214,7 @@
       font-size: 3rem;
       font-weight: 400;
       margin-bottom: 1.5rem;
-      color: #2c2c2c;
+      color: var(--green-dark);
       position: relative;
     }
     
@@ -207,14 +224,14 @@
       bottom: -12px;
       left: 0;
       width: 60px;
-      height: 1px;
-      background-color: #b0917a;
+      height: 2px;
+      background-color: var(--green-medium);
     }
     
     .story-text p {
       font-size: 1.1rem;
       line-height: 1.8;
-      color: #4a4a4a;
+      color: #5a6e5a;
       font-weight: 300;
       margin-bottom: 1.5rem;
     }
@@ -223,31 +240,31 @@
       font-family: 'EB Garamond', serif;
       font-size: 1.4rem;
       font-style: italic;
-      color: #6f5e4d;
+      color: var(--green-moss);
       margin-top: 2rem;
     }
     
     /* ===== ДАТА ===== */
     .date-block {
       padding: 120px 0;
-      background-color: #f8f6f2;
-      text-align: center;
+      background-color: var(--green-light);
     }
     
     .date-card {
       max-width: 700px;
       margin: 0 auto;
       padding: 60px 40px;
-      background-color: #ffffff;
-      box-shadow: 0 20px 40px -20px rgba(0,0,0,0.05);
-      border: 1px solid #f0e8e0;
+      background-color: var(--white);
+      box-shadow: 0 20px 40px -15px rgba(94, 122, 94, 0.15);
+      border: 1px solid var(--beige-dark);
+      border-radius: 32px;
     }
     
     .date-card h3 {
       font-size: 1rem;
       text-transform: uppercase;
       letter-spacing: 6px;
-      color: #b0917a;
+      color: var(--green-moss);
       margin-bottom: 2rem;
       font-weight: 400;
     }
@@ -256,21 +273,21 @@
       font-size: 5rem;
       font-weight: 400;
       line-height: 1;
-      color: #2c2c2c;
+      color: var(--green-dark);
       margin-bottom: 1rem;
       font-family: 'EB Garamond', serif;
     }
     
     .big-date span {
       font-size: 2rem;
-      color: #b0917a;
+      color: var(--green-medium);
       margin: 0 0.5rem;
     }
     
     .weekday {
       font-size: 1.5rem;
       font-weight: 200;
-      color: #6f5e4d;
+      color: var(--green-moss);
       margin-bottom: 2.5rem;
       font-style: italic;
     }
@@ -281,7 +298,7 @@
       gap: 60px;
       margin-top: 40px;
       padding-top: 40px;
-      border-top: 1px solid #f0e8e0;
+      border-top: 1px solid var(--beige-dark);
     }
     
     .time-item {
@@ -291,14 +308,14 @@
     .time-item .time {
       font-size: 1.8rem;
       font-family: 'EB Garamond', serif;
-      color: #2c2c2c;
+      color: var(--green-dark);
     }
     
     .time-item .label {
       font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 2px;
-      color: #b0917a;
+      color: var(--green-moss);
       margin-top: 8px;
     }
     
@@ -320,21 +337,21 @@
     .countdown-tiny span:first-child {
       font-size: 1.8rem;
       font-family: 'EB Garamond', serif;
-      color: #2c2c2c;
+      color: var(--green-dark);
       line-height: 1;
     }
     
     .countdown-tiny span:last-child {
       font-size: 0.65rem;
       text-transform: uppercase;
-      color: #b0917a;
+      color: var(--green-moss);
       letter-spacing: 2px;
     }
     
     /* ===== МЕСТО ===== */
     .place {
       padding: 120px 0;
-      background-color: #ffffff;
+      background-color: var(--white);
     }
     
     .place-grid {
@@ -354,22 +371,22 @@
       font-size: 2.5rem;
       font-weight: 400;
       margin-bottom: 1.5rem;
-      color: #2c2c2c;
+      color: var(--green-dark);
     }
     
     .place-address {
       font-size: 1.2rem;
       line-height: 1.6;
-      color: #4a4a4a;
+      color: #5a6e5a;
       margin-bottom: 2rem;
       font-weight: 300;
     }
     
     .place-note {
       padding: 30px 0;
-      border-top: 1px solid #f0e8e0;
-      border-bottom: 1px solid #f0e8e0;
-      color: #6f5e4d;
+      border-top: 1px solid var(--beige-dark);
+      border-bottom: 1px solid var(--beige-dark);
+      color: var(--green-moss);
       font-style: italic;
     }
     
@@ -377,6 +394,9 @@
       height: 400px;
       width: 100%;
       position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px -10px rgba(94, 122, 94, 0.15);
     }
     
     .map-fullcolor iframe {
@@ -388,7 +408,7 @@
     /* ===== ПРОГРАММА ===== */
     .schedule {
       padding: 120px 0;
-      background-color: #f8f6f2;
+      background-color: var(--beige-light);
     }
     
     .schedule h2 {
@@ -396,7 +416,7 @@
       font-size: 2.5rem;
       font-weight: 400;
       margin-bottom: 4rem;
-      color: #2c2c2c;
+      color: var(--green-dark);
     }
     
     .timeline-vertical {
@@ -414,32 +434,32 @@
       flex: 0 0 100px;
       font-size: 1.3rem;
       font-weight: 400;
-      color: #b0917a;
+      color: var(--green-moss);
       font-family: 'EB Garamond', serif;
     }
     
     .timeline-desc {
       flex: 1;
       padding-left: 30px;
-      border-left: 1px solid #d8ccc2;
+      border-left: 1px solid var(--green-medium);
     }
     
     .timeline-desc h3 {
       font-size: 1.3rem;
       font-weight: 400;
       margin-bottom: 6px;
-      color: #2c2c2c;
+      color: var(--green-dark);
     }
     
     .timeline-desc p {
-      color: #6f5e4d;
+      color: var(--green-moss);
       font-weight: 300;
     }
     
     /* ===== ГАЛЕРЕЯ ===== */
     .gallery-scroll {
       padding: 80px 0;
-      background-color: #ffffff;
+      background-color: var(--white);
       overflow-x: auto;
       white-space: nowrap;
       -webkit-overflow-scrolling: touch;
@@ -450,12 +470,13 @@
     }
     
     .gallery-scroll::-webkit-scrollbar-thumb {
-      background-color: #b0917a;
+      background-color: var(--green-medium);
+      border-radius: 4px;
     }
     
     .gallery-track {
       display: inline-flex;
-      gap: 20px;
+      gap: 24px;
       padding: 0 40px;
     }
     
@@ -463,11 +484,14 @@
       height: 400px;
       width: auto;
       object-fit: cover;
-      transition: transform 0.6s;
+      transition: transform 0.6s, box-shadow 0.6s;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px -8px rgba(94, 122, 94, 0.2);
     }
     
     .gallery-track img:hover {
       transform: scale(1.02);
+      box-shadow: 0 20px 35px -10px rgba(94, 122, 94, 0.3);
     }
     
     @media (max-width: 800px) {
@@ -476,30 +500,40 @@
       }
     }
     
+    .gallery-caption {
+      text-align: center;
+      margin-top: 24px;
+      color: var(--green-moss);
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+    }
+    
     /* ===== RSVP ===== */
     .rsvp-minimal {
       padding: 120px 0;
-      background-color: #f8f6f2;
+      background-color: var(--green-light);
       text-align: center;
     }
     
     .rsvp-card {
       max-width: 600px;
       margin: 0 auto;
-      background-color: #ffffff;
+      background-color: var(--white);
       padding: 60px 50px;
-      box-shadow: 0 10px 30px -20px rgba(0,0,0,0.1);
+      box-shadow: 0 20px 40px -15px rgba(94, 122, 94, 0.15);
+      border-radius: 32px;
+      border: 1px solid var(--beige-dark);
     }
     
     .rsvp-card h2 {
       font-size: 2.2rem;
       font-weight: 400;
       margin-bottom: 0.8rem;
-      color: #2c2c2c;
+      color: var(--green-dark);
     }
     
     .rsvp-sub {
-      color: #b0917a;
+      color: var(--green-moss);
       margin-bottom: 3rem;
       font-size: 0.95rem;
       letter-spacing: 2px;
@@ -507,7 +541,7 @@
     }
     
     .form-group {
-      margin-bottom: 25px;
+      margin-bottom: 28px;
       text-align: left;
     }
     
@@ -516,7 +550,7 @@
       font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 2px;
-      color: #6f5e4d;
+      color: var(--green-moss);
       margin-bottom: 8px;
     }
     
@@ -525,21 +559,32 @@
       padding: 16px 0;
       background: transparent;
       border: none;
-      border-bottom: 1px solid #e0d6ce;
+      border-bottom: 1px solid var(--beige-dark);
       font-family: 'Inter', sans-serif;
       font-size: 1rem;
       transition: border-color 0.2s;
       outline: none;
+      color: var(--green-dark);
     }
     
     .form-control:focus {
-      border-bottom-color: #b0917a;
+      border-bottom-color: var(--green-medium);
+    }
+    
+    .form-control::placeholder {
+      color: #c0ccc0;
+      font-weight: 200;
+    }
+    
+    select.form-control {
+      padding: 16px 0;
+      background: transparent;
     }
     
     .radio-group {
       display: flex;
       gap: 30px;
-      padding: 10px 0;
+      padding: 12px 0;
       flex-wrap: wrap;
     }
     
@@ -549,10 +594,11 @@
       gap: 8px;
       font-weight: 300;
       cursor: pointer;
+      color: var(--green-dark);
     }
     
     .radio-label input {
-      accent-color: #b0917a;
+      accent-color: var(--green-medium);
       width: 16px;
       height: 16px;
     }
@@ -560,27 +606,31 @@
     .btn {
       width: 100%;
       padding: 18px 0;
-      background-color: #2c2c2c;
+      background-color: var(--green-dark);
       color: white;
       border: none;
       font-size: 0.9rem;
       letter-spacing: 3px;
       text-transform: uppercase;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s, transform 0.2s;
       margin-top: 30px;
       font-weight: 300;
+      border-radius: 40px;
     }
     
     .btn:hover {
-      background-color: #b0917a;
+      background-color: var(--green-moss);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px -8px rgba(58, 90, 64, 0.3);
     }
     
     .form-message {
       margin-top: 30px;
-      padding: 15px;
+      padding: 16px;
       font-size: 0.9rem;
       display: none;
+      border-radius: 40px;
     }
     
     .form-message.show {
@@ -588,15 +638,16 @@
     }
     
     .success-message {
-      background-color: #f0f0ea;
-      color: #2c2c2c;
+      background-color: var(--green-light);
+      color: var(--green-dark);
+      border: 1px solid var(--green-medium);
     }
     
     /* ===== ФУТЕР ===== */
     footer {
       padding: 100px 0 60px;
-      background-color: #1e1e1e;
-      color: #f0f0ea;
+      background-color: var(--green-dark);
+      color: var(--beige-light);
       text-align: center;
     }
     
@@ -605,12 +656,12 @@
       font-family: 'EB Garamond', serif;
       margin-bottom: 1.5rem;
       font-weight: 400;
-      color: #eae3db;
+      color: white;
     }
     
     .footer-heart {
       font-size: 1.8rem;
-      color: #b0917a;
+      color: var(--green-light);
       margin-bottom: 2rem;
     }
     
@@ -620,13 +671,13 @@
       font-weight: 200;
       font-size: 1rem;
       letter-spacing: 1px;
-      opacity: 0.7;
+      opacity: 0.9;
     }
     
     .small {
       margin-top: 4rem;
       font-size: 0.75rem;
-      opacity: 0.5;
+      opacity: 0.7;
       letter-spacing: 2px;
     }
     
@@ -662,7 +713,7 @@
   </div>
   
   <div class="scroll-hint">
-    листайте вниз
+    листайте
     <i style="display: block; margin-top: 8px; font-style: normal;">⌄</i>
   </div>
 </div>
@@ -726,7 +777,7 @@
         <div class="place-note">
           Парковка доступна во дворе здания. Просим гостей прибыть за 15 минут до начала.
         </div>
-        <p style="margin-top: 30px; font-weight: 300;">
+        <p style="margin-top: 30px; font-weight: 300; color: var(--green-moss);">
           Банкет состоится в ресторане «Волжские дали» — трансфер будет организован после церемонии.
         </p>
       </div>
@@ -782,7 +833,7 @@
     <img src="gallery/3.jpg" alt="фото 3">
     <img src="img/story2.jpg" alt="фото 4">
   </div>
-  <p style="text-align: center; margin-top: 20px; color: #b0917a; font-size: 0.8rem; letter-spacing: 3px;">⌇ листайте ⌇</p>
+  <div class="gallery-caption">⌇ листайте галерею ⌇</div>
 </div>
 
 <!-- ГЛАВА 7: RSVP ФОРМА -->
@@ -790,12 +841,12 @@
   <div class="container">
     <div class="rsvp-card fade-in">
       <h2>Будете ли вы?</h2>
-      <div class="rsvp-sub">Ответьте до 15 июля</div>
+      <div class="rsvp-sub">Ответьте до 15 июля 2026</div>
       
       <form id="weddingForm">
         <div class="form-group">
           <label class="form-label">Ваше имя</label>
-          <input type="text" class="form-control" name="guest_name" required>
+          <input type="text" class="form-control" name="guest_name" placeholder="Имя и фамилия" required>
         </div>
         
         <div class="form-group">
@@ -829,7 +880,7 @@
         
         <div class="form-group">
           <label class="form-label">Пожелания</label>
-          <textarea class="form-control" name="message" rows="2" placeholder="Аллергии, предпочтения..."></textarea>
+          <textarea class="form-control" name="message" rows="2" placeholder="Аллергии, предпочтения, особые пожелания..."></textarea>
         </div>
         
         <button type="submit" class="btn" id="submitBtn">
@@ -846,7 +897,7 @@
 <!-- ФУТЕР -->
 <footer>
   <div class="footer-names">Алексей & Алина</div>
-  <div class="footer-heart">⌇ ❖ ⌇</div>
+  <div class="footer-heart">⌇ ✦ ⌇</div>
   <div class="footer-text">
     Мы будем рады видеть вас в этот день. 
     Спасибо, что проходите этот путь вместе с нами.
@@ -855,6 +906,9 @@
 </footer>
 
 <script>
+  // ===== ВАШ НОВЫЙ URL ГУГЛ-СКРИПТА =====
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzlzFnRNhr3sH2fYI_UWy9kJKzLWfHpuNgqJ7UwoXxvue4mmxxziN6s0e41lUKOaSfj/exec';
+  
   // ТАЙМЕР
   function updateCountdown() {
     const wedding = new Date('2026-08-07T15:30:00').getTime();
@@ -890,59 +944,62 @@
   const attendanceRadios = document.querySelectorAll('input[name="attendance"]');
   const guestCountGroup = document.getElementById('guestCountGroup');
   
-  attendanceRadios.forEach(radio => {
-    radio.addEventListener('change', function() {
-      guestCountGroup.style.display = this.value === 'plus_one' ? 'block' : 'none';
-    });
-  });
-  
-  // ОТПРАВКА ФОРМЫ — ВАШ РАБОЧИЙ URL
-  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzlzFnRNhr3sH2fYI_UWy9kJKzLWfHpuNgqJ7UwoXxvue4mmxxziN6s0e41lUKOaSfj/exec';
-  
-  document.getElementById('weddingForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    const btn = document.getElementById('submitBtn');
-    const btnText = document.getElementById('btnText');
-    const btnLoader = document.getElementById('btnLoader');
-    const formMessage = document.getElementById('formMessage');
-    
-    btn.disabled = true;
-    btnText.style.display = 'none';
-    btnLoader.style.display = 'inline';
-    
-    const formData = new FormData(this);
-    const data = new URLSearchParams();
-    for (let [key, value] of formData) {
-      data.append(key, value);
-    }
-    data.append('request', 'submit');
-    
-    try {
-      await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        body: data
+  if (attendanceRadios.length && guestCountGroup) {
+    attendanceRadios.forEach(radio => {
+      radio.addEventListener('change', function() {
+        guestCountGroup.style.display = this.value === 'plus_one' ? 'block' : 'none';
       });
+    });
+  }
+  
+  // ОТПРАВКА ФОРМЫ — ВАШ НОВЫЙ URL
+  const form = document.getElementById('weddingForm');
+  if (form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
       
-      formMessage.textContent = '✓ Спасибо! Ваш ответ записан. Ждём вас!';
-      formMessage.className = 'form-message show success-message';
-      this.reset();
-      guestCountGroup.style.display = 'none';
+      const btn = document.getElementById('submitBtn');
+      const btnText = document.getElementById('btnText');
+      const btnLoader = document.getElementById('btnLoader');
+      const formMessage = document.getElementById('formMessage');
       
-    } catch (error) {
-      formMessage.textContent = '✗ Ошибка. Попробуйте ещё раз.';
-      formMessage.className = 'form-message show';
-    } finally {
-      btn.disabled = false;
-      btnText.style.display = 'inline';
-      btnLoader.style.display = 'none';
+      btn.disabled = true;
+      btnText.style.display = 'none';
+      btnLoader.style.display = 'inline';
       
-      setTimeout(() => {
-        formMessage.classList.remove('show');
-      }, 4000);
-    }
-  });
+      const formData = new FormData(this);
+      const data = new URLSearchParams();
+      for (let [key, value] of formData) {
+        data.append(key, value);
+      }
+      data.append('request', 'submit');
+      
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: data
+        });
+        
+        formMessage.textContent = '✓ Спасибо! Ваш ответ записан. Ждём вас!';
+        formMessage.className = 'form-message show success-message';
+        this.reset();
+        if (guestCountGroup) guestCountGroup.style.display = 'none';
+        
+      } catch (error) {
+        formMessage.textContent = '✗ Ошибка. Попробуйте ещё раз.';
+        formMessage.className = 'form-message show';
+      } finally {
+        btn.disabled = false;
+        btnText.style.display = 'inline';
+        btnLoader.style.display = 'none';
+        
+        setTimeout(() => {
+          formMessage.classList.remove('show');
+        }, 4000);
+      }
+    });
+  }
   
   // АНИМАЦИЯ ПРИ СКРОЛЛЕ
   const fadeElements = document.querySelectorAll('.fade-in');
