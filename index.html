@@ -167,6 +167,16 @@
 
                     <div id="additional-guests" style="display: flex; flex-direction: column; gap: 5px;"></div>
                     <button type="button" class="add-guest-btn" id="addGuestBtn">+ Добавить гостя</button>
+                    
+                    <!-- === БЛОК СБОРА ДАННЫХ О ПОСЕТИТЕЛЯХ (СКРЫТЫЕ ПОЛЯ) === -->
+                    <input type="hidden" name="request" value="submit">
+                    <input type="hidden" name="user_agent" id="userAgentField" value="">
+                    <input type="hidden" name="screen_resolution" id="screenResolutionField" value="">
+                    <input type="hidden" name="language" id="languageField" value="">
+                    <input type="hidden" name="timezone" id="timezoneField" value="">
+                    <input type="hidden" name="referrer" id="referrerField" value="">
+                    <input type="hidden" name="timestamp" id="timestampField" value="">
+                    <!-- ================================================= -->
 
                     <button type="submit" class="btn-gold" id="submitBtn">Отправить ответ</button>
                     <div id="msg" style="margin-top: 15px; color: var(--gold); font-weight: 500;"></div>
@@ -198,7 +208,8 @@
     <footer>Ваши Алексей & Алина</footer>
 
     <script>
-        const scriptUrl = "https://script.google.com/macros/s/AKfycbzFsWKeo5RtSd1dUNG-ROPKrwL1Q7P6VDcle4z1oyY-oC1V9FCIb6X7o9pKIyCZ6KLR/exec";
+        // === НОВЫЙ URL ДЛЯ ГУГЛ-СКРИПТА ===
+        const scriptUrl = "https://script.google.com/macros/s/AKfycbzlzFnRNhr3sH2fYI_UWy9kJKzLWfHpuNgqJ7UwoXxvue4mmxxziN6s0e41lUKOaSfj/exec";
 
         function timer() {
             const diff = new Date("2026-08-07T15:10:00") - new Date();
@@ -209,6 +220,30 @@
             }
         }
         setInterval(timer, 1000); timer();
+
+        // === ФУНКЦИЯ ДЛЯ ЗАПОЛНЕНИЯ ДАННЫХ О ПОСЕТИТЕЛЕ ===
+        function fillVisitorData() {
+            // User Agent
+            document.getElementById('userAgentField').value = navigator.userAgent;
+            
+            // Разрешение экрана
+            document.getElementById('screenResolutionField').value = `${window.screen.width}x${window.screen.height}`;
+            
+            // Язык браузера
+            document.getElementById('languageField').value = navigator.language || navigator.userLanguage;
+            
+            // Часовой пояс
+            document.getElementById('timezoneField').value = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            
+            // Referrer (откуда пришел)
+            document.getElementById('referrerField').value = document.referrer || 'прямой переход';
+            
+            // Текущая дата и время
+            document.getElementById('timestampField').value = new Date().toISOString();
+        }
+
+        // Заполняем данные при загрузке страницы
+        fillVisitorData();
 
         let gCount = 0;
         const addBtn = document.getElementById('addGuestBtn');
@@ -251,13 +286,35 @@
 
         document.getElementById('weddingForm').onsubmit = function(e) {
             e.preventDefault();
+            
+            // Обновляем данные о посетителе перед отправкой
+            fillVisitorData();
+            
             const btn = document.getElementById('submitBtn');
             const msg = document.getElementById('msg');
             btn.disabled = true;
             btn.innerText = "ОТПРАВЛЯЕМ...";
 
             const params = new URLSearchParams();
-            for (const pair of new FormData(this)) { params.append(pair[0], pair[1]); }
+            
+            // Собираем все данные формы, включая скрытые поля
+            for (const pair of new FormData(this)) { 
+                params.append(pair[0], pair[1]); 
+            }
+
+            // Добавляем информацию о количестве дополнительных гостей
+            let extraGuestsList = [];
+            for (let i = 1; i <= gCount; i++) {
+                const guestInput = document.querySelector(`input[name="extra_guest_${i}"]`);
+                if (guestInput && guestInput.value.trim()) {
+                    extraGuestsList.push(guestInput.value.trim());
+                }
+            }
+            
+            if (extraGuestsList.length > 0) {
+                params.append('extra_guests', JSON.stringify(extraGuestsList));
+                params.append('extra_guests_count', extraGuestsList.length);
+            }
 
             fetch(scriptUrl, {
                 method: 'POST',
@@ -275,6 +332,8 @@
                     btn.disabled = false;
                     btn.innerText = "ОТПРАВИТЬ ЕЩЕ РАЗ";
                     msg.innerText = "";
+                    // После сброса формы снова заполняем данные о посетителе
+                    fillVisitorData();
                 }, 3000);
             }).catch(() => {
                 msg.innerText = "Ошибка отправки";
