@@ -93,6 +93,102 @@
         .gallery-grid img { width: 100%; height: 300px; object-fit: cover; border-radius: 25px; }
 
         footer { padding: 80px 0; text-align: center; background: var(--light-green); font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-style: italic; }
+
+        /* === СТИЛИ ДЛЯ НОВОГО РАЗДЕЛА АЛЬБОМ === */
+        .album-section { background: var(--light-green); }
+        .album-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .album-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            transition: var(--transition);
+            aspect-ratio: 1 / 1;
+            cursor: pointer;
+        }
+        .album-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px rgba(184, 156, 125, 0.25);
+        }
+        .album-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .album-item:hover img {
+            transform: scale(1.08);
+        }
+        .album-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+            color: white;
+            padding: 20px 15px 10px;
+            font-size: 0.9rem;
+            font-weight: 300;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .album-item:hover .album-overlay {
+            opacity: 1;
+        }
+        /* Модальное окно для просмотра фото */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+            backdrop-filter: blur(8px);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255,255,255,0.1);
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 1001;
+        }
+        .close-modal:hover {
+            color: var(--gold);
+            transform: scale(1.1);
+        }
+        .modal-caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 20px 0;
+            font-size: 1.1rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        /* ==================== */
     </style>
 </head>
 <body>
@@ -173,6 +269,27 @@
                 </form>
             </div>
         </section>
+
+        <!-- ===== НОВЫЙ РАЗДЕЛ АЛЬБОМ С ФОТО ИЗ ПАПКИ ALBUM ===== -->
+        <section class="reveal album-section">
+            <div class="card" style="background: var(--light-green);">
+                <h2 class="section-title">Альбом</h2>
+                <div class="pattern-divider"></div>
+                <p style="line-height: 2; margin-bottom: 30px;">Наши самые тёплые моменты в фотографиях</p>
+                
+                <div class="album-grid" id="albumGrid">
+                    <!-- Фото 1-20 будут добавлены через JavaScript -->
+                </div>
+                
+                <!-- Модальное окно для просмотра -->
+                <div id="photoModal" class="modal">
+                    <span class="close-modal">&times;</span>
+                    <img class="modal-content" id="modalImage">
+                    <div class="modal-caption" id="modalCaption"></div>
+                </div>
+            </div>
+        </section>
+        <!-- ==================================================== -->
 
         <section class="reveal">
             <h2 class="section-title">Локация</h2>
@@ -288,6 +405,59 @@
             });
         };
         window.addEventListener('scroll', reveal); reveal();
+
+        // ===== КОД ДЛЯ НОВОГО РАЗДЕЛА АЛЬБОМ =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const albumGrid = document.getElementById('albumGrid');
+            
+            // Подписи для фото
+            const photoTitles = [
+                'Прогулка в парке', 'На закате', 'Предложение', 'Подготовка', 'С помолвкой',
+                'Вместе', 'Путешествие', 'На пляже', 'Зимняя сказка', 'Первое свидание',
+                'Горы', 'Море', 'Завтрак', 'Вечер', 'С друзьями',
+                'Танцы', 'Цветы', 'Улыбка', 'Нежность', 'Счастье'
+            ];
+            
+            // Создаем 20 фото из папки album
+            for (let i = 1; i <= 20; i++) {
+                const albumItem = document.createElement('div');
+                albumItem.className = 'album-item';
+                albumItem.innerHTML = `
+                    <img src="album/${i}.jpg" alt="Фото ${i}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x400/fcfaf8/b89c7d?text=Фото+${i}'">
+                    <div class="album-overlay">${photoTitles[i-1]}</div>
+                `;
+                
+                // Добавляем обработчик клика для открытия в модальном окне
+                albumItem.addEventListener('click', function() {
+                    const modal = document.getElementById('photoModal');
+                    const modalImg = document.getElementById('modalImage');
+                    const modalCaption = document.getElementById('modalCaption');
+                    const img = this.querySelector('img');
+                    const caption = this.querySelector('.album-overlay').textContent;
+                    
+                    modal.style.display = 'block';
+                    modalImg.src = img.src;
+                    modalCaption.textContent = caption;
+                });
+                
+                albumGrid.appendChild(albumItem);
+            }
+            
+            // Закрытие модального окна
+            const modal = document.getElementById('photoModal');
+            const closeBtn = document.querySelector('.close-modal');
+            
+            closeBtn.onclick = function() {
+                modal.style.display = 'none';
+            }
+            
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        });
+        // ==========================================
     </script>
 </body>
 </html>
