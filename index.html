@@ -34,16 +34,15 @@
             z-index: 5;
         }
 
-        /* Фоновые фото - ИСПРАВЛЕНО (убрана прозрачность) */
+        /* Фоновые фото */
         .side-photo { 
             position: absolute; 
             width: 220px; 
             z-index: 1; 
             pointer-events: none; 
-            opacity: 1; /* Установил полную непрозрачность */
+            opacity: 1; 
             display: block; 
         }
-        /* Позиции фото без изменений */
         .photo-1 { left: -140px; transform: rotate(-10deg); top: 18%; } 
         .photo-2 { right: -100px; transform: rotate(12deg); top: 32%; }
         .photo-3 { left: -160px; transform: rotate(8deg); top: 60%; } 
@@ -67,7 +66,6 @@
 
         .scroll-down { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 2; color: white; text-decoration: none; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; }
         .scroll-down::after { content: ''; display: block; width: 1px; height: 50px; background: white; margin: 15px auto 0; animation: scrollLine 2s infinite; }
-        @keyframes scrollLine { 0% { height: 0; opacity: 0; } 50% { height: 50px; opacity: 1; } 100% { height: 0; opacity: 0; transform: translateY(20px); } }
 
         .calendar { max-width: 320px; margin: 40px auto 0; background: #fff; padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
         .calendar-month { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 15px; color: var(--gold); }
@@ -77,14 +75,7 @@
         .calendar-day.active { background: var(--gold); color: white; border-radius: 50%; font-weight: bold; }
 
         .timer-grid { display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
-        .timer-item { 
-            text-align: center; 
-            min-width: 80px; 
-            padding: 15px 10px;
-            border: 1px solid rgba(184, 156, 125, 0.4);
-            border-radius: 20px;
-            background: #fff;
-        }
+        .timer-item { text-align: center; min-width: 80px; padding: 15px 10px; border: 1px solid rgba(184, 156, 125, 0.4); border-radius: 20px; background: #fff; }
         .timer-val { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--gold); display: block; line-height: 1; margin-bottom: 5px; }
         .timer-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; color: #999; }
 
@@ -104,15 +95,8 @@
         .prog-time { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--gold); min-width: 110px; text-align: left; }
         .prog-info { text-align: left; border-left: 1px solid #ddd; padding-left: 25px; }
 
-        .rsvp-form { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
-        input, select { background: #f9f9f9; border: 1px solid #eee; padding: 18px 25px; border-radius: 25px; width: 100%; outline: none; transition: 0.3s; font-size: 16px; }
-        input:focus { border-color: var(--gold); background: #fff; }
-        .btn-gold { background: var(--dark); color: white; padding: 22px; border-radius: 50px; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: 0.4s; border: none; font-weight: 400; }
-        
-        .zags-photo { width: 100%; border-radius: 25px; margin-top: 25px; object-fit: cover; height: 350px; display: block; }
-
-        #lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 1000; cursor: zoom-out; }
-        #lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; }
+        .btn-gold { background: var(--dark); color: white; padding: 22px; border-radius: 50px; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: 0.4s; border: none; font-weight: 400; width: 100%; display: block; text-decoration: none; }
+        .btn-gold:hover { background: var(--gold); }
 
         @media (max-width: 768px) {
             .side-photo { display: none; }
@@ -151,7 +135,6 @@
                 <p style="line-height: 2; max-width: 750px; margin: 0 auto 40px; color: #555; font-size: 1.1rem;">
                     В нашей истории начинается новая счастливая глава, и мы будем искренне рады открыть её вместе с вами! Приглашаем вас разделить этот важный для нас день.
                 </p>
-
                 <div class="calendar" style="margin-bottom: 60px;">
                     <div class="calendar-month">Август 2026</div>
                     <div class="calendar-grid">
@@ -164,7 +147,6 @@
                         <div class="calendar-day">31</div>
                     </div>
                 </div>
-
                 <div class="polaroid-container">
                     <div class="polaroid polaroid-left" onclick="openLightbox(this)"><img src="img/story1.jpg" loading="lazy"></div>
                     <div class="polaroid polaroid-right" onclick="openLightbox(this)"><img src="img/story2.jpg" loading="lazy"></div>
@@ -181,67 +163,6 @@
                 <div class="prog-item"><div class="prog-time">17:30</div><div class="prog-info"><h3>Банкет 🍽️</h3><p>Праздничный ужин и танцы.</p></div></div>
                 <div class="prog-item"><div class="prog-time">22:00</div><div class="prog-info"><h3>Свадебный торт 🎂</h3><p>Сладкое завершение вечера.</p></div></div>
                 <div class="prog-item"><div class="prog-time">22:30</div><div class="prog-info"><h3>Завершение вечера ✨</h3><p>Окончание праздничной программы.</p></div></div>
-            </div>
-        </section>
-
-        <section class="reveal reveal-right" id="rsvp">
-            <div class="card">
-                <h2 class="section-title">Анкета гостя ✍️</h2>
-                <p style="font-size: 0.9rem; color: #888; margin-bottom: 25px;">Будем благодарны, если вы подтвердите своё присутствие до 07.07.26</p>
-                
-                <form class="rsvp-form" id="weddingForm">
-                    <div style="text-align: left;">
-                        <label style="font-size: 0.85rem; padding-left: 10px; color: #555;">Ваше имя и фамилия</label>
-                        <input type="text" name="guest_name" placeholder="Например: Дмитрий Иванов" required style="margin-top: 5px;">
-                    </div>
-                    <input type="tel" name="phone" id="phoneInput" placeholder="+7 (___) ___-__-__" required>
-                    <div style="text-align: left; margin: 10px 0;">
-                        <label style="font-size: 0.9rem; font-weight: 500; display: block; margin-bottom: 10px;">Сможете ли вы присутствовать?</label>
-                        <label style="display: block; margin-bottom: 12px; cursor: pointer;">
-                            <input type="radio" name="attendance" value="Да" required style="width: auto; margin-right: 10px;"> Обязательно приду
-                        </label>
-                        <label style="display: block; cursor: pointer;">
-                            <input type="radio" name="attendance" value="Нет" style="width: auto; margin-right: 10px;"> К сожалению, не смогу присутствовать
-                        </label>
-                    </div>
-                    <div id="additional-guests"></div>
-                    <button type="button" id="addGuestBtn" style="background:none; border:1px dashed var(--gold); color:var(--gold); padding:15px; border-radius:25px; cursor:pointer; margin-bottom:15px;">+ Добавить гостя</button>
-                    <div style="text-align: left; margin: 10px 0;">
-                        <label style="font-size: 0.9rem; font-weight: 500; display: block; margin-bottom: 15px;">Что предпочитаете из напитков?</label>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                            <label><input type="checkbox" name="drink" value="Вино красное" style="width:auto; margin-right:5px;"> Вино красное</label>
-                            <label><input type="checkbox" name="drink" value="Вино белое" style="width:auto; margin-right:5px;"> Вино белое</label>
-                            <label><input type="checkbox" name="drink" value="Водка" style="width:auto; margin-right:5px;"> Водка</label>
-                            <label><input type="checkbox" name="drink" value="Виски" style="width:auto; margin-right:5px;"> Виски</label>
-                            <label><input type="checkbox" name="drink" value="Коньяк" style="width:auto; margin-right:5px;"> Коньяк</label>
-                            <label><input type="checkbox" name="drink" value="Не пью" style="width:auto; margin-right:5px;"> Не пью</label>
-                        </div>
-                        <label style="display: block; margin-top: 15px;">
-                            <input type="checkbox" id="ownDrinkCheck" style="width:auto; margin-right:5px;"> Свое
-                        </label>
-                        <input type="text" name="own_drink" id="ownDrinkInput" placeholder="Что именно вы предпочитаете?" style="display:none; margin-top:10px; padding: 12px 20px;">
-                    </div>
-                    <div style="text-align: left; margin-top: 10px;">
-                        <label style="font-size: 0.9rem; font-weight: 500; display: block; margin-bottom: 5px;">Какую музыку предпочитаете?</label>
-                        <input type="text" name="music" placeholder="О музыкальных вкусах...">
-                    </div>
-                    <button type="submit" class="btn-gold" id="submitBtn" style="margin-top: 20px;">Подтвердить участие</button>
-                    <div id="msg" style="margin-top: 15px; color: var(--gold); font-weight: 500;"></div>
-                </form>
-
-                <div class="polaroid-container">
-                    <div class="polaroid polaroid-left" onclick="openLightbox(this)"><img src="img/5.jpg" loading="lazy"></div>
-                    <div class="polaroid polaroid-right" onclick="openLightbox(this)"><img src="img/6.jpg" loading="lazy"></div>
-                </div>
-            </div>
-        </section>
-
-        <section class="reveal reveal-up" id="wishes">
-            <div style="text-align: center;">
-                <h2 class="section-title">Пожелания 🕊️</h2>
-                <p style="line-height: 2; color: #555; max-width: 800px; margin: 0 auto; font-size: 1.1rem;">
-                    Ваши улыбки и смех подарят нам незабываемое счастье в этот день. Если вы хотите подарить нам ценный и нужный подарок, мы будем очень благодарны вашим пожеланиям в конвертах, которые помогут осуществить наши мечты!
-                </p>
             </div>
         </section>
 
@@ -266,19 +187,18 @@
                 <div style="border-radius:30px; overflow:hidden;">
                     <iframe src="https://yandex.ru/map-widget/v1/org/otdel_zags_po_leninskomu_rayonu_g_ulyanovska/1088477357/?ll=48.404093%2C54.317406&z=17" width="100%" height="400" frameborder="0"></iframe>
                 </div>
-                <img src="https://sun9-72.userapi.com/s/v1/ig2/9kAvRSbjAp284e_nbfuRI6JwMs6IUntuDn83f5dkoxMx46470zPwsFFSOoLyV8Dw5Aa0QjuPGXAtInDNptOs3eC-.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1024x768&from=bu&cs=1024x0" class="zags-photo" alt="ЗАГС" loading="lazy">
             </div>
         </section>
 
-        <section class="reveal reveal-up" id="timer">
-            <h2 class="section-title">Таймер любви ⏳</h2>
+        <section class="reveal reveal-up" id="guest-chat">
+            <h2 class="section-title">Чат для гостей 💬</h2>
             <div class="card">
-                <div class="timer-grid" id="weddingTimer">
-                    <div class="timer-item"><span class="timer-val" id="days">00</span><span class="timer-label">Дней</span></div>
-                    <div class="timer-item"><span class="timer-val" id="hours">00</span><span class="timer-label">Часов</span></div>
-                    <div class="timer-item"><span class="timer-val" id="minutes">00</span><span class="timer-label">Минут</span></div>
-                    <div class="timer-item"><span class="timer-val" id="seconds">00</span><span class="timer-label">Секунд</span></div>
-                </div>
+                <p style="line-height: 1.8; color: #555; margin-bottom: 30px;">
+                    Вступайте в тг-группу, будем знакомиться, а после свадьбы поделимся фото и видео с мероприятия!
+                </p>
+                <a href="javascript:void(0)" class="btn-gold" style="font-size: 0.85rem; line-height: 1.4;">
+                    Я не придумал какой чат там будет, поэтому тыкай сколько влезет, она не работает 😏
+                </a>
             </div>
         </section>
 
@@ -303,21 +223,6 @@
     <footer>Алексей & Алина ❤️ 07.08.2026</footer>
 
     <script>
-        const scriptUrl = "https://script.google.com/macros/s/AKfycbzFsWKeo5RtSd1dUNG-ROPKrwL1Q7P6VDcle4z1oyY-oC1V9FCIb6X7o9pKIyCZ6KLR/exec";
-
-        function updateTimer() {
-            const target = new Date("August 7, 2026 15:00:00").getTime();
-            const now = new Date().getTime();
-            const diff = target - now;
-            if (diff > 0) {
-                document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-                document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                document.getElementById('minutes').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                document.getElementById('seconds').innerText = Math.floor((diff % (1000 * 60)) / 1000);
-            }
-        }
-        setInterval(updateTimer, 1000); updateTimer();
-
         function openLightbox(el) {
             const src = el.querySelector('img').src;
             const lb = document.getElementById('lightbox');
@@ -337,38 +242,6 @@
             if (!isScrolling) { window.requestAnimationFrame(reveal); isScrolling = true; }
         });
         reveal();
-
-        document.getElementById('ownDrinkCheck').onchange = function() {
-            document.getElementById('ownDrinkInput').style.display = this.checked ? 'block' : 'none';
-        };
-
-        let gCount = 0;
-        const addBtn = document.getElementById('addGuestBtn');
-        const guestsContainer = document.getElementById('additional-guests');
-        addBtn.onclick = function() {
-            if (guestsContainer.children.length < 9) {
-                gCount++;
-                const wrapper = document.createElement('div');
-                wrapper.style.display = "flex"; wrapper.style.gap = "10px"; wrapper.style.marginBottom = "10px"; wrapper.style.alignItems = "center";
-                wrapper.innerHTML = `<input type="text" name="extra_guest_${gCount}" placeholder="Имя и фамилия гостя" required style="margin:0;"><button type="button" style="background:none; border:none; color:red; cursor:pointer; font-size:1.5rem;" onclick="this.parentElement.remove()">×</button>`;
-                guestsContainer.appendChild(wrapper);
-            }
-        };
-
-        document.getElementById('phoneInput').oninput = function() {
-            let matrix = "+7 (___) ___-__-__", i = 0, def = matrix.replace(/\D/g, ""), val = this.value.replace(/\D/g, "");
-            if (def.length >= val.length) val = def;
-            this.value = matrix.replace(/./g, a => /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? "" : a);
-        };
-
-        document.getElementById('weddingForm').onsubmit = function(e) {
-            e.preventDefault();
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.disabled = true; submitBtn.innerText = "ОТПРАВЛЯЕМ...";
-            fetch(scriptUrl, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(new FormData(this)) })
-            .then(() => { document.getElementById('msg').innerText = "Спасибо! Ответ получен."; submitBtn.innerText = "ГОТОВО"; })
-            .catch(() => { submitBtn.disabled = false; submitBtn.innerText = "ОШИБКА"; });
-        };
     </script>
 </body>
 </html>
