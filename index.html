@@ -28,11 +28,12 @@
         .reveal-up { transform: translateY(50px); filter: blur(5px); }
         .reveal-zoom { transform: scale(0.95); filter: blur(5px); }
 
-        /* --- HEADER (ТЕПЕРЬ ФОТО) --- */
+        /* --- HEADER (ПУТЬ К ПАПКЕ background) --- */
         header {
             height: 100vh; display: flex; justify-content: center; align-items: center;
             color: var(--white); text-align: center; position: relative; overflow: hidden;
-            background: url('background.jpg') center center / cover no-repeat;
+            /* ВАЖНО: Код ищет файл background.jpg внутри папки background */
+            background: url('background/background.jpg') center center / cover no-repeat;
         }
         .header-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1; }
         .hero-content { position: relative; z-index: 2; }
@@ -80,15 +81,18 @@
         .map-wrapper { border-radius: 30px; overflow: hidden; border: 1px solid #eee; margin-top: 20px; }
         .map-wrapper iframe { width: 100% !important; height: 400px !important; border: none !important; }
 
-        /* ГАЛЕРЕЯ */
-        .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
-        .gallery-grid img { width: 100%; height: 350px; object-fit: cover; border-radius: 25px; }
+        /* ГАЛЕРЕЯ (ОБНОВЛЕННЫЙ СТИЛЬ НА 3 КОЛОНКИ) */
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 30px; }
+        .gallery-grid img { width: 100%; height: 300px; object-fit: cover; border-radius: 20px; transition: 0.5s; }
+        .gallery-grid img:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
 
         @media (max-width: 768px) {
             .prog-item { flex-direction: column; text-align: center; }
             .prog-time { text-align: center; min-width: 0; margin-bottom: 10px; }
             .prog-info { border-left: none; border-top: 1px solid #eee; padding-left: 0; padding-top: 15px; text-align: center; }
+            /* На телефонах галерея в одну колонку */
             .gallery-grid { grid-template-columns: 1fr; }
+            .gallery-grid img { height: 350px; }
         }
 
         footer { padding: 60px 0; text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-style: italic; opacity: 0.5; }
@@ -140,7 +144,7 @@
                         <option value="not_attending">Не смогу прийти ❌</option>
                     </select>
 
-                    <label style="font-size: 0.8rem; color:#999; margin-bottom: -5px; padding-left: 15px;">Планируете быть с кем-то? 👨‍👩‍👧‍ boy</label>
+                    <label style="font-size: 0.8rem; color:#999; margin-bottom: -5px; padding-left: 15px;">Планируете быть с кем-то? 👨‍👩‍👧‍boy</label>
                     <select id="guestModeSelection">
                         <option value="single">Буду один / одна</option>
                         <option value="plus-one">Буду с компанией</option>
@@ -231,9 +235,11 @@
         <section class="reveal reveal-zoom">
             <h2 class="section-title">Наша галерея 📸</h2>
             <div class="gallery-grid">
-                <img src="gallery/1.jpg"><img src="gallery/2.jpg">
-                <img src="gallery/3.jpg"><img src="gallery/4.jpg">
-            </div>
+                <img src="gallery/1.jpg">
+                <img src="gallery/2.jpg">
+                <img src="gallery/3.jpg">
+                <img src="gallery/4.jpg">
+                <img src="gallery/5.jpg"> <img src="gallery/6.jpg"> </div>
         </section>
 
     </div>
@@ -254,7 +260,7 @@
         }
         setInterval(timer, 1000); timer();
 
-        // ЛОГИКА РЕГИСТРАЦИИ (ТВОЯ РОДНАЯ)
+        // ЛОГИКА РЕГИСТРАЦИИ (ТВОЯ РОДНАЯ - БЕЗ ИЗМЕНЕНИЙ)
         let gCount = 0;
         const addBtn = document.getElementById('addGuestBtn');
         const guestMode = document.getElementById('guestModeSelection');
