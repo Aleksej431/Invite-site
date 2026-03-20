@@ -28,16 +28,13 @@
         .reveal-up { transform: translateY(50px); filter: blur(5px); }
         .reveal-zoom { transform: scale(0.95); filter: blur(5px); }
 
-        /* --- HEADER --- */
+        /* --- HEADER (ТЕПЕРЬ ФОТО) --- */
         header {
             height: 100vh; display: flex; justify-content: center; align-items: center;
-            color: var(--white); text-align: center; position: relative; overflow: hidden; background: #000;
+            color: var(--white); text-align: center; position: relative; overflow: hidden;
+            background: url('background.jpg') center center / cover no-repeat;
         }
-        #bgVideo {
-            position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%;
-            transform: translate(-50%, -50%); z-index: 0; object-fit: cover; filter: brightness(0.6);
-        }
-        .header-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.2); z-index: 1; }
+        .header-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1; }
         .hero-content { position: relative; z-index: 2; }
         .hero-content h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 10vw, 6rem); font-weight: 300; margin: 0; letter-spacing: 5px; font-style: italic; }
         
@@ -57,7 +54,7 @@
         
         .card { background: var(--white); padding: 50px 30px; border-radius: 40px; border: 1px solid rgba(184, 156, 125, 0.15); text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.03); position: relative; overflow: hidden; }
 
-        /* ГРАФИК (БЛОК КОТОРЫЙ ТЕБЕ ПОНРАВИЛСЯ) */
+        /* ПРОГРАММА */
         .prog-grid { display: grid; gap: 20px; max-width: 700px; margin: 0 auto; }
         .prog-item { display: flex; align-items: center; padding: 25px; background: #fafafa; border-radius: 30px; transition: 0.3s; }
         .prog-item:hover { background: #fff; transform: scale(1.02); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
@@ -66,7 +63,7 @@
         .prog-info h3 { margin: 0; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 400; }
         .prog-info p { margin: 5px 0 0; font-size: 0.85rem; color: #888; }
 
-        /* ДРЕСС-КОД (ТЕПЕРЬ БЕЗ ПАЛИТРЫ) */
+        /* ДРЕСС-КОД */
         .dress-code-box { padding: 30px; border-radius: 30px; background: #fdfcfb; border: 1px dashed var(--gold); margin-top: 10px; }
 
         /* RSVP ФОРМА */
@@ -78,6 +75,10 @@
         .add-guest-btn { background: none; border: 1px dashed var(--gold); color: var(--gold); padding: 15px; border-radius: 25px; cursor: pointer; font-weight: 500; display: none; margin-bottom: 10px; }
         .btn-gold { background: var(--dark); color: white; border: none; padding: 22px; border-radius: 50px; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: 0.4s; font-weight: 500; margin-top: 10px; }
         .btn-gold:hover { background: var(--gold); transform: translateY(-3px); }
+
+        /* КАРТА */
+        .map-wrapper { border-radius: 30px; overflow: hidden; border: 1px solid #eee; margin-top: 20px; }
+        .map-wrapper iframe { width: 100% !important; height: 400px !important; border: none !important; }
 
         /* ГАЛЕРЕЯ */
         .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
@@ -96,7 +97,6 @@
 <body>
 
     <header>
-        <video autoplay muted loop playsinline id="bgVideo"><source src="video/background.mp4" type="video/mp4"></video>
         <div class="header-overlay"></div>
         <div class="hero-content">
             <h1>Алексей & Алина</h1>
@@ -113,8 +113,11 @@
         
         <section class="reveal reveal-left">
             <div class="card">
-                <h2 class="section-title">Наша история</h2>
-                <p style="line-height: 2.2; max-width: 700px; margin: 0 auto; color: #555;">Мы решили, что 07.08.2026 — идеальный день, чтобы сказать друг другу «Да». И нам очень не хватает вас, чтобы сделать этот момент по-настоящему громким и душевным!</p>
+                <h2 class="section-title">Наша история ✨</h2>
+                <p style="line-height: 2; max-width: 750px; margin: 0 auto; color: #555; font-size: 1.05rem;">
+                    Есть встречи, которые меняют всё. Однажды мы просто посмотрели друг другу в глаза и поняли, что больше не хотим идти по этой жизни поодиночке. <br><br>
+                    За это время мы стали друг для друга целым миром, домом и тихой гаванью. 07.08.2026 мы произнесем самые важные слова, и нам бесконечно важно, чтобы в этот момент вы были рядом. Поделите с нами эту радость, ведь счастье становится полным только тогда, когда его есть с кем разделить. ❤️
+                </p>
                 <div class="gallery-grid" style="grid-template-columns: 1fr 1fr; margin-top: 40px;">
                     <img src="img/story1.jpg" style="height: 400px;">
                     <img src="img/story2.jpg" style="height: 400px;">
@@ -124,17 +127,20 @@
 
         <section class="reveal reveal-right" id="rsvp">
             <div class="card">
-                <h2 class="section-title">Регистрация гостей</h2>
+                <h2 class="section-title">Регистрация гостей ✍️</h2>
+                <p style="margin-bottom: 30px; color: #888; font-size: 0.95rem;">
+                    Пожалуйста, подтвердите ваше присутствие и заполните форму регистрации **до 01 мая 2026 года**. Это очень поможет нам в подготовке! 🙏
+                </p>
                 <form class="rsvp-form" id="weddingForm">
                     <input type="text" name="guest_name" placeholder="Ваше Имя" required>
                     <input type="tel" name="phone" id="phoneInput" placeholder="+7 (___) ___-__-__" required>
 
                     <select name="status">
-                        <option value="attending">Я приду</option>
-                        <option value="not_attending">Не смогу прийти</option>
+                        <option value="attending">Я приду ✅</option>
+                        <option value="not_attending">Не смогу прийти ❌</option>
                     </select>
 
-                    <label style="font-size: 0.8rem; color:#999; margin-bottom: -5px; padding-left: 15px;">Планируете быть с кем-то?</label>
+                    <label style="font-size: 0.8rem; color:#999; margin-bottom: -5px; padding-left: 15px;">Планируете быть с кем-то? 👨‍👩‍👧‍ boy</label>
                     <select id="guestModeSelection">
                         <option value="single">Буду один / одна</option>
                         <option value="plus-one">Буду с компанией</option>
@@ -150,48 +156,48 @@
         </section>
 
         <section class="reveal reveal-up">
-            <h2 class="section-title">План дня</h2>
+            <h2 class="section-title">План дня 📅</h2>
             <div class="prog-grid">
                 <div class="prog-item">
                     <div class="prog-time">14:30</div>
                     <div class="prog-info">
-                        <h3>Сбор гостей</h3>
-                        <p>Встречаемся, обнимаемся и готовимся к торжеству.</p>
+                        <h3>Сбор гостей 🥂</h3>
+                        <p>Встречаемся у входа, обнимаемся и настраиваемся на праздник.</p>
                     </div>
                 </div>
                 <div class="prog-item">
                     <div class="prog-time">15:10</div>
                     <div class="prog-info">
-                        <h3>Церемония</h3>
-                        <p>Начинаем главную часть нашей истории. Самый важный момент.</p>
+                        <h3>Церемония 💍</h3>
+                        <p>Тот самый момент, когда мы станем одной семьей.</p>
                     </div>
                 </div>
                 <div class="prog-item">
                     <div class="prog-time">16:30</div>
                     <div class="prog-info">
-                        <h3>Welcome-встреча</h3>
-                        <p>Легкие закуски, напитки и первые поздравления.</p>
+                        <h3>Welcome-встреча 🍹</h3>
+                        <p>Фуршет, легкая музыка и теплые разговоры.</p>
                     </div>
                 </div>
                 <div class="prog-item">
                     <div class="prog-time">17:30</div>
                     <div class="prog-info">
-                        <h3>Банкет</h3>
-                        <p>Время вкусной еды, душевных тостов и танцев.</p>
+                        <h3>Банкет 🍽️</h3>
+                        <p>Праздничный ужин и танцы до упаду.</p>
                     </div>
                 </div>
                 <div class="prog-item">
                     <div class="prog-time">21:30</div>
                     <div class="prog-info">
-                        <h3>Букет невесты</h3>
-                        <p>Момент истины для незамужних подруг.</p>
+                        <h3>Букет невесты 💐</h3>
+                        <p>Узнаем, кто следующий отправится под венец!</p>
                     </div>
                 </div>
                 <div class="prog-item">
                     <div class="prog-time">22:00</div>
                     <div class="prog-info">
-                        <h3>Свадебный торт</h3>
-                        <p>Сладкий финал официальной части вечера.</p>
+                        <h3>Свадебный торт 🎂</h3>
+                        <p>Сладкое завершение официальной части.</p>
                     </div>
                 </div>
             </div>
@@ -199,26 +205,31 @@
 
         <section class="reveal reveal-zoom">
             <div class="card">
-                <h2 class="section-title">Как нужно выглядеть</h2>
+                <h2 class="section-title">Как нужно выглядеть 👗</h2>
                 <div class="dress-code-box">
-                    <p style="font-size: 1.1rem; line-height: 1.8;">Строгого дресс-кода у нас нет — мы рады видеть вас в любом наряде!</p>
-                    <p style="margin-top: 15px; font-style: italic; color: #888;">Но если вы решите сменить любимые спортивные кроссовки на что-то праздничное, мы это обязательно оценим. Главное — ваше хорошее настроение!</p>
+                    <p style="font-size: 1.1rem; line-height: 1.8;">У нас нет строгого дресс-кода, главное — чтобы вам было комфортно! 😊</p>
+                    <p style="margin-top: 15px; font-style: italic; color: #888;">Но если вы захотите надеть свои лучшие наряды и оставить кроссовки для пробежек, мы будем очень признательны! 👞👠</p>
                 </div>
             </div>
         </section>
 
         <section class="reveal reveal-up">
-            <h2 class="section-title">Место церемонии</h2>
+            <h2 class="section-title">Место церемонии 📍</h2>
             <div class="card">
-                <p style="margin-bottom: 25px; line-height: 1.6;">Церемония бракосочетания пройдет в отделе ЗАГС по Ленинскому району по адресу:<br><strong>г. Ульяновск, ул. Гимова, д. 3</strong></p>
-                <div style="border-radius: 30px; overflow: hidden; height: 400px; border: 1px solid #eee;">
-                    <iframe src="https://yandex.ru/map-widget/v1/?ll=48.403864%2C54.317327&z=17" width="100%" height="100%" frameborder="0"></iframe>
+                <p style="margin-bottom: 25px; line-height: 1.6;">Церемония бракосочетания пройдет в отделе ЗАГС по Ленинскому району по адресу:<br><strong>г. Ульяновск, ул. Гимова, д. 3</strong> 🏛️</p>
+                
+                <div class="map-wrapper">
+                    <div style="position:relative;overflow:hidden;">
+                        <a href="https://yandex.ru/maps/org/otdel_zags_po_leninskomu_rayonu_g_ulyanovska/1088477357/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Отдел ЗАГС по Ленинскому району г. Ульяновска</a>
+                        <a href="https://yandex.ru/maps/195/ulyanovsk/category/registery_office/184107242/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:14px;">ЗАГС в Ульяновске</a>
+                        <iframe src="https://yandex.ru/map-widget/v1/org/otdel_zags_po_leninskomu_rayonu_g_ulyanovska/1088477357/?indoorLevel=1&ll=48.404093%2C54.317406&z=17" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section class="reveal reveal-zoom">
-            <h2 class="section-title">Галерея</h2>
+            <h2 class="section-title">Наша галерея 📸</h2>
             <div class="gallery-grid">
                 <img src="gallery/1.jpg"><img src="gallery/2.jpg">
                 <img src="gallery/3.jpg"><img src="gallery/4.jpg">
@@ -227,7 +238,7 @@
 
     </div>
 
-    <footer>С любовью, Алексей и Алина</footer>
+    <footer>С любовью, Алексей и Алина ❤️</footer>
 
     <script>
         const scriptUrl = "https://script.google.com/macros/s/AKfycbzFsWKeo5RtSd1dUNG-ROPKrwL1Q7P6VDcle4z1oyY-oC1V9FCIb6X7o9pKIyCZ6KLR/exec";
@@ -243,7 +254,7 @@
         }
         setInterval(timer, 1000); timer();
 
-        // ЛОГИКА РЕГИСТРАЦИИ
+        // ЛОГИКА РЕГИСТРАЦИИ (ТВОЯ РОДНАЯ)
         let gCount = 0;
         const addBtn = document.getElementById('addGuestBtn');
         const guestMode = document.getElementById('guestModeSelection');
@@ -288,14 +299,14 @@
         document.getElementById('weddingForm').onsubmit = function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
-            btn.disabled = true; btn.innerText = "СЕКУНДУ...";
+            btn.disabled = true; btn.innerText = "ОТПРАВЛЯЕМ...";
 
             fetch(scriptUrl, {
                 method: 'POST',
                 mode: 'no-cors',
                 body: new URLSearchParams(new FormData(this))
             }).then(() => {
-                document.getElementById('msg').innerText = "Супер! Мы получили ваш ответ.";
+                document.getElementById('msg').innerText = "Спасибо! Мы получили ваш ответ.";
                 btn.innerText = "ОТПРАВЛЕНО";
             }).catch(() => {
                 document.getElementById('msg').innerText = "Ошибка. Попробуйте еще раз.";
