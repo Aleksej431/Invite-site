@@ -43,15 +43,11 @@
             text-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
 
-        /* ТАЙМЕР (ИСПРАВЛЕНА ЧИТАЕМОСТЬ) */
+        /* ТАЙМЕР */
         .countdown-container { display: flex; justify-content: center; gap: 10px; }
         .countdown-item { 
-            background: rgba(0, 0, 0, 0.4); /* Темная подложка */
-            backdrop-filter: blur(8px); /* Размытие фона за таймером */
-            padding: 15px 10px; 
-            min-width: 85px; 
-            border-radius: 20px; 
-            border: 1px solid rgba(255,255,255,0.1); 
+            background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px); padding: 15px 10px; 
+            min-width: 85px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); 
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         .countdown-item span { display: block; font-size: 1.6rem; font-family: 'Cormorant Garamond', serif; color: var(--gold); font-weight: 500; }
@@ -63,12 +59,17 @@
         .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 3.5rem); text-align: center; margin-bottom: 40px; font-weight: 300; font-style: italic; }
         .card { background: var(--white); padding: 50px 30px; border-radius: 40px; border: 1px solid rgba(184, 156, 125, 0.15); text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.03); position: relative; }
 
+        /* НАША ИСТОРИЯ (ПОДДЕРЖКА ВЕРТИКАЛЬНЫХ ФОТО) */
+        .story-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+        .story-photos img { width: 100%; height: auto; max-height: 600px; object-fit: contain; border-radius: 20px; }
+
         /* ПРОГРАММА */
         .prog-grid { display: grid; gap: 20px; max-width: 700px; margin: 0 auto; }
         .prog-item { display: flex; align-items: center; padding: 25px; background: #fafafa; border-radius: 30px; transition: 0.3s; }
         .prog-time { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--gold); min-width: 110px; text-align: left; }
         .prog-info { text-align: left; border-left: 1px solid #ddd; padding-left: 25px; }
-        .prog-info h3 { margin: 0; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; }
+        .prog-info h3 { margin: 0; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 400; }
+        .prog-info p { margin: 5px 0 0; font-size: 0.85rem; color: #888; }
 
         /* RSVP ФОРМА */
         .rsvp-form { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; text-align: left; }
@@ -76,13 +77,13 @@
         .btn-gold { background: var(--dark); color: white; border: none; padding: 22px; border-radius: 50px; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: 0.4s; font-weight: 500; }
         .btn-gold:hover { background: var(--gold); transform: translateY(-3px); }
 
-        /* ГАЛЕРЕЯ (ФИКС КАЧЕСТВА И ОТКРЫТИЕ) */
+        /* ГАЛЕРЕЯ (ПОДДЕРЖКА ВЕРТИКАЛЬНЫХ ФОТО) */
         .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 30px; }
         .gallery-item { position: relative; overflow: hidden; border-radius: 20px; cursor: pointer; background: #eee; }
-        .gallery-item img { width: 100%; height: 300px; object-fit: cover; transition: 0.6s; display: block; }
+        .gallery-item img { width: 100%; height: auto; max-height: 400px; object-fit: contain; transition: 0.6s; display: block; }
         .gallery-item:hover img { transform: scale(1.08); filter: brightness(0.9); }
 
-        /* LIGHTBOX (ПОЛНОЭКРАННОЕ ФОТО) */
+        /* LIGHTBOX */
         #lightbox {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9);
             display: none; justify-content: center; align-items: center; z-index: 1000; cursor: zoom-out;
@@ -91,10 +92,11 @@
         #lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; border-radius: 5px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
 
         @media (max-width: 768px) {
+            .story-photos { grid-template-columns: 1fr; }
             .prog-item { flex-direction: column; text-align: center; }
-            .prog-time { text-align: center; min-width: 0; }
-            .prog-info { border-left: none; border-top: 1px solid #eee; padding-left: 0; padding-top: 15px; }
-            .gallery-grid { grid-template-columns: 1fr 1fr; }
+            .prog-time { text-align: center; min-width: 0; margin-bottom: 10px; }
+            .prog-info { border-left: none; border-top: 1px solid #eee; padding-left: 0; padding-top: 15px; text-align: center; }
+            .gallery-grid { grid-template-columns: 1fr; }
         }
 
         footer { padding: 60px 0; text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-style: italic; opacity: 0.5; }
@@ -122,8 +124,11 @@
         <section class="reveal reveal-left">
             <div class="card">
                 <h2 class="section-title">Наша история ✨</h2>
-                <p style="line-height: 2; max-width: 750px; margin: 0 auto; color: #555;">Есть встречи, которые меняют всё... ❤️</p>
-                <div class="gallery-grid" style="grid-template-columns: 1fr 1fr; margin-top: 40px;">
+                <p style="line-height: 2; max-width: 750px; margin: 0 auto; color: #555; font-size: 1.05rem;">
+                    Есть встречи, которые меняют всё. Однажды мы просто посмотрели друг другу в глаза и поняли, что больше не хотим идти по этой жизни поодиночке. <br><br>
+                    За это время мы стали друг для друга целым миром, домом и тихой гаванью. 07.08.2026 мы произнесем самые важные слова, и нам бесконечно важно, чтобы в этот момент вы были рядом. Поделите с нами эту радость, ведь счастье становится полным только тогда, когда его есть с кем разделить. ❤️
+                </p>
+                <div class="story-photos">
                     <div class="gallery-item" onclick="openLightbox(this)"><img src="img/story1.jpg"></div>
                     <div class="gallery-item" onclick="openLightbox(this)"><img src="img/story2.jpg"></div>
                 </div>
@@ -133,16 +138,28 @@
         <section class="reveal reveal-right" id="rsvp">
             <div class="card">
                 <h2 class="section-title">Регистрация гостей ✍️</h2>
-                <p style="margin-bottom: 30px; color: #888;">Пожалуйста, подтвердите участие **до 01 мая 2026 года**. 🙏</p>
+                <p style="margin-bottom: 30px; color: #888; font-size: 0.95rem;">
+                    Пожалуйста, подтвердите ваше присутствие и заполните форму регистрации **до 01 мая 2026 года**. Это очень поможет нам в подготовке! 🙏
+                </p>
                 <form class="rsvp-form" id="weddingForm">
                     <input type="text" name="guest_name" placeholder="Ваше Имя" required>
                     <input type="tel" name="phone" id="phoneInput" placeholder="+7 (___) ___-__-__" required>
-                    <select name="status"><option value="attending">Я приду ✅</option><option value="not_attending">Не смогу ❌</option></select>
-                    <label style="font-size: 0.8rem; color:#999; padding-left: 15px;">Будете с кем-то?</label>
-                    <select id="guestModeSelection"><option value="single">Один / Одна</option><option value="plus-one">С компанией</option></select>
+
+                    <select name="status">
+                        <option value="attending">Я приду ✅</option>
+                        <option value="not_attending">Не смогу прийти ❌</option>
+                    </select>
+
+                    <label style="font-size: 0.8rem; color:#999; margin-bottom: -5px; padding-left: 15px;">Планируете быть с кем-то? 👨‍👩‍👧‍👦</label>
+                    <select id="guestModeSelection">
+                        <option value="single">Буду один / одна</option>
+                        <option value="plus-one">Буду с компанией</option>
+                    </select>
+
                     <div id="additional-guests"></div>
-                    <button type="button" class="add-guest-btn" id="addGuestBtn" style="display:none; background:none; border:1px dashed var(--gold); color:var(--gold); padding:15px; border-radius:25px; margin-bottom:10px; cursor:pointer; width:100%;">+ Добавить гостя</button>
-                    <button type="submit" class="btn-gold" id="submitBtn">Подтвердить</button>
+                    <button type="button" class="add-guest-btn" id="addGuestBtn" style="display:none; background:none; border:1px dashed var(--gold); color:var(--gold); padding:15px; border-radius:25px; cursor:pointer; width:100%; margin-bottom:10px;">+ Добавить гостя</button>
+
+                    <button type="submit" class="btn-gold" id="submitBtn">Подтвердить участие</button>
                     <div id="msg" style="margin-top: 15px; color: var(--gold); text-align: center;"></div>
                 </form>
             </div>
@@ -151,9 +168,58 @@
         <section class="reveal reveal-up">
             <h2 class="section-title">План дня 📅</h2>
             <div class="prog-grid">
-                <div class="prog-item"><div class="prog-time">14:30</div><div class="prog-info"><h3>Сбор гостей 🥂</h3><p>Встречаемся и настраиваемся на праздник.</p></div></div>
-                <div class="prog-item"><div class="prog-time">15:10</div><div class="prog-info"><h3>Церемония 💍</h3><p>Самый важный момент.</p></div></div>
-                <div class="prog-item"><div class="prog-time">17:30</div><div class="prog-info"><h3>Банкет 🍽️</h3><p>Праздничный ужин и танцы.</p></div></div>
+                <div class="prog-item">
+                    <div class="prog-time">14:30</div>
+                    <div class="prog-info">
+                        <h3>Сбор гостей 🥂</h3>
+                        <p>Встречаемся у входа, обнимаемся и настраиваемся на праздник.</p>
+                    </div>
+                </div>
+                <div class="prog-item">
+                    <div class="prog-time">15:10</div>
+                    <div class="prog-info">
+                        <h3>Церемония 💍</h3>
+                        <p>Тот самый момент, когда мы станем одной семьей.</p>
+                    </div>
+                </div>
+                <div class="prog-item">
+                    <div class="prog-time">16:30</div>
+                    <div class="prog-info">
+                        <h3>Welcome-встреча 🍹</h3>
+                        <p>Фуршет, легкая музыка и теплые разговоры.</p>
+                    </div>
+                </div>
+                <div class="prog-item">
+                    <div class="prog-time">17:30</div>
+                    <div class="prog-info">
+                        <h3>Банкет 🍽️</h3>
+                        <p>Праздничный ужин и танцы до упаду.</p>
+                    </div>
+                </div>
+                <div class="prog-item">
+                    <div class="prog-time">21:30</div>
+                    <div class="prog-info">
+                        <h3>Букет невесты 💐</h3>
+                        <p>Узнаем, кто следующий отправится под венец!</p>
+                    </div>
+                </div>
+                <div class="prog-item">
+                    <div class="prog-time">22:00</div>
+                    <div class="prog-info">
+                        <h3>Свадебный торт 🎂</h3>
+                        <p>Сладкое завершение официальной части.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal reveal-zoom">
+            <div class="card">
+                <h2 class="section-title">Как нужно выглядеть 👗</h2>
+                <div style="padding: 30px; border-radius: 30px; background: #fdfcfb; border: 1px dashed var(--gold); margin-top: 10px;">
+                    <p style="font-size: 1.1rem; line-height: 1.8;">У нас нет строгого дресс-кода, главное — чтобы вам было комфортно! 😊</p>
+                    <p style="margin-top: 15px; font-style: italic; color: #888;">Но если вы захотите надеть свои лучшие наряды и оставить кроссовки для пробежек, мы будем очень признательны! 👞👠</p>
+                </div>
             </div>
         </section>
 
@@ -161,8 +227,8 @@
             <h2 class="section-title">Место церемонии 📍</h2>
             <div class="card">
                 <p style="margin-bottom: 25px;">ЗАГС по Ленинскому району: <strong>ул. Гимова, д. 3</strong> 🏛️</p>
-                <div class="map-wrapper" style="border-radius:30px; overflow:hidden;">
-                    <iframe src="https://yandex.ru/map-widget/v1/org/otdel_zags_po_leninskomu_rayonu_g_ulyanovska/1088477357/?indoorLevel=1&ll=48.404093%2C54.317406&z=17" width="100%" height="400" frameborder="0"></iframe>
+                <div style="border-radius:30px; overflow:hidden;">
+                    <div style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps/org/otdel_zags_po_leninskomu_rayonu_g_ulyanovska/1088477357/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Отдел ЗАГС по Ленинскому району г. Ульяновска</a><a href="https://yandex.ru/maps/195/ulyanovsk/category/registery_office/184107242/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:14px;">ЗАГС в Ульяновске</a><iframe src="https://yandex.ru/map-widget/v1/org/otdel_zags_po_leninskomu_rayonu_g_ulyanovska/1088477357/?indoorLevel=1&ll=48.404093%2C54.317406&z=17" width="100%" height="400" frameborder="0" allowfullscreen="true" style="position:relative;"></iframe></div>
                 </div>
             </div>
         </section>
@@ -186,7 +252,6 @@
     <script>
         const scriptUrl = "https://script.google.com/macros/s/AKfycbzFsWKeo5RtSd1dUNG-ROPKrwL1Q7P6VDcle4z1oyY-oC1V9FCIb6X7o9pKIyCZ6KLR/exec";
 
-        // ОТКРЫТИЕ ФОТО
         function openLightbox(el) {
             const src = el.querySelector('img').src;
             const lb = document.getElementById('lightbox');
@@ -194,7 +259,6 @@
             lb.style.display = 'flex';
         }
 
-        // ТАЙМЕР
         function timer() {
             const diff = new Date("2026-08-07T14:30:00") - new Date();
             if (diff > 0) {
@@ -205,7 +269,6 @@
         }
         setInterval(timer, 1000); timer();
 
-        // РЕГИСТРАЦИЯ (ТВОЯ ЛОГИКА)
         let gCount = 0;
         const addBtn = document.getElementById('addGuestBtn');
         const guestMode = document.getElementById('guestModeSelection');
@@ -224,7 +287,6 @@
             }
         }
 
-        // МАСКА И ОТПРАВКА
         document.getElementById('phoneInput').oninput = function() {
             let matrix = "+7 (___) ___-__-__", i = 0, def = matrix.replace(/\D/g, ""), val = this.value.replace(/\D/g, "");
             if (def.length >= val.length) val = def;
