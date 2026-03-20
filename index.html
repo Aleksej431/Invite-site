@@ -16,33 +16,20 @@
             --white: #ffffff;
         }
 
-        /* Исправление центрирования и запрет вылетов за край */
         * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         
         html, body { 
-            margin: 0; 
-            padding: 0; 
-            width: 100%; 
-            overflow-x: hidden; /* Самое важное от "съезда" влево */
-            background-color: var(--light-bg); 
-            color: var(--dark); 
-            font-family: 'Montserrat', sans-serif; 
-            font-weight: 300;
+            margin: 0; padding: 0; width: 100%; overflow-x: hidden;
+            background-color: var(--light-bg); color: var(--dark); 
+            font-family: 'Montserrat', sans-serif; font-weight: 300;
         }
 
-        .container { 
-            max-width: 1000px; 
-            margin: 0 auto; /* Центрирует весь контент */
-            padding: 0 20px; 
-            width: 100%;
-            position: relative;
-        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; width: 100%; position: relative; }
 
         .reveal { opacity: 0; transition: opacity 0.8s ease-out, transform 0.8s ease-out; will-change: transform, opacity; }
         .reveal.active { opacity: 1; transform: translate(0, 0) !important; }
-        .reveal-left { transform: translateX(-30px); }
-        .reveal-right { transform: translateX(30px); }
         .reveal-up { transform: translateY(30px); }
+        .reveal-right { transform: translateX(30px); }
 
         header {
             height: 100vh; display: flex; justify-content: center; align-items: center;
@@ -66,10 +53,19 @@
         .calendar-day { padding: 8px 0; position: relative; }
         .calendar-day.active { background: var(--gold); color: white; border-radius: 50%; font-weight: bold; }
 
-        .timer-grid { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
-        .timer-item { text-align: center; min-width: 60px; }
-        .timer-val { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--gold); display: block; }
-        .timer-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; color: #888; }
+        /* Новый стиль таймера */
+        .timer-grid { display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
+        .timer-item { 
+            text-align: center; 
+            min-width: 80px; 
+            padding: 15px 10px;
+            border: 1px solid rgba(184, 156, 125, 0.3);
+            border-radius: 20px;
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+        .timer-val { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--gold); display: block; line-height: 1; margin-bottom: 5px; }
+        .timer-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; color: #999; }
 
         .polaroid-container { display: flex; justify-content: center; gap: 40px; padding: 20px 0; perspective: 1000px; margin-top: 40px; }
         .polaroid { background: white; padding: 15px 15px 45px 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #f0f0f0; transition: transform 0.4s ease; cursor: pointer; max-width: 280px; width: 100%; }
@@ -86,21 +82,20 @@
 
         section { padding: 80px 0; position: relative; width: 100%; }
         .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 3.5rem); text-align: center; margin-bottom: 40px; font-weight: 300; font-style: italic; }
-        .card { background: var(--white); padding: 50px 30px; border-radius: 40px; border: 1px solid rgba(184, 156, 125, 0.15); text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.03); position: relative; width: 100%; }
+        .card { background: var(--white); padding: 50px 30px; border-radius: 40px; border: 1px solid rgba(184, 156, 125, 0.15); text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.03); position: relative; width: 100%; overflow: hidden; }
 
         .prog-grid { display: grid; gap: 20px; max-width: 700px; margin: 0 auto; }
         .prog-item { display: flex; align-items: center; padding: 25px; background: #fafafa; border-radius: 30px; }
         .prog-time { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--gold); min-width: 110px; text-align: left; }
         .prog-info { text-align: left; border-left: 1px solid #ddd; padding-left: 25px; }
 
-        .dress-code-colors { display: flex; justify-content: center; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
-        .color-circle { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.05); }
-
         .rsvp-form { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
-        input, select { background: #f9f9f9; border: 1px solid #eee; padding: 18px 25px; border-radius: 25px; width: 100%; outline: none; transition: 0.3s; font-size: 16px; /* Предотвращает зум в iOS */ }
+        input, select { background: #f9f9f9; border: 1px solid #eee; padding: 18px 25px; border-radius: 25px; width: 100%; outline: none; transition: 0.3s; font-size: 16px; }
         input:focus { border-color: var(--gold); background: #fff; }
         .btn-gold { background: var(--dark); color: white; padding: 22px; border-radius: 50px; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: 0.4s; border: none; font-weight: 400; }
         
+        .zags-photo { width: 100%; border-radius: 25px; margin-top: 25px; object-fit: cover; height: 300px; display: block; }
+
         #lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 1000; cursor: zoom-out; }
         #lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; }
 
@@ -184,9 +179,7 @@
                         <label style="font-size: 0.85rem; padding-left: 10px; color: #555;">Ваше имя и фамилия</label>
                         <input type="text" name="guest_name" placeholder="Например: Дмитрий Иванов" required style="margin-top: 5px;">
                     </div>
-
                     <input type="tel" name="phone" id="phoneInput" placeholder="+7 (___) ___-__-__" required>
-
                     <div style="text-align: left; margin: 10px 0;">
                         <label style="font-size: 0.9rem; font-weight: 500; display: block; margin-bottom: 10px;">Сможете ли вы присутствовать?</label>
                         <label style="display: block; margin-bottom: 12px; cursor: pointer;">
@@ -196,10 +189,8 @@
                             <input type="radio" name="attendance" value="Нет" style="width: auto; margin-right: 10px;"> К сожалению, не смогу присутствовать
                         </label>
                     </div>
-
                     <div id="additional-guests"></div>
                     <button type="button" id="addGuestBtn" style="background:none; border:1px dashed var(--gold); color:var(--gold); padding:15px; border-radius:25px; cursor:pointer; margin-bottom:15px;">+ Добавить гостя</button>
-
                     <div style="text-align: left; margin: 10px 0;">
                         <label style="font-size: 0.9rem; font-weight: 500; display: block; margin-bottom: 15px;">Что предпочитаете из напитков?</label>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
@@ -215,12 +206,10 @@
                         </label>
                         <input type="text" name="own_drink" id="ownDrinkInput" placeholder="Что именно вы предпочитаете?" style="display:none; margin-top:10px; padding: 12px 20px;">
                     </div>
-
                     <div style="text-align: left; margin-top: 10px;">
                         <label style="font-size: 0.9rem; font-weight: 500; display: block; margin-bottom: 5px;">Какую музыку предпочитаете?</label>
                         <input type="text" name="music" placeholder="О музыкальных вкусах...">
                     </div>
-
                     <button type="submit" class="btn-gold" id="submitBtn" style="margin-top: 20px;">Подтвердить участие</button>
                     <div id="msg" style="margin-top: 15px; color: var(--gold); font-weight: 500;"></div>
                 </form>
@@ -247,13 +236,6 @@
                 <p style="line-height: 1.8; color: #555; max-width: 700px; margin: 0 auto;">
                     У нас нет строгого дресс-кода, но если вы вдруг решите сменить свои любимые кроссовки на что-то другое — мы будем не против. Велком!
                 </p>
-                <div class="dress-code-colors">
-                    <div class="color-circle" style="background-color: #E6D5C7;"></div>
-                    <div class="color-circle" style="background-color: #C5B4A3;"></div>
-                    <div class="color-circle" style="background-color: #A39382;"></div>
-                    <div class="color-circle" style="background-color: #D8C3A5;"></div>
-                    <div class="color-circle" style="background-color: #EAE7E2;"></div>
-                </div>
             </div>
         </section>
 
