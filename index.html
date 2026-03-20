@@ -6,7 +6,6 @@
     <title>Алексей & Алина | 07.08.2026</title>
 
     <link rel="preload" as="image" href="img/background.jpg">
-
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300;1,500&family=Montserrat:wght@100;200;300;400;500&display=swap" rel="stylesheet">
 
     <style>
@@ -21,11 +20,7 @@
         * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         body { margin: 0; padding: 0; background-color: var(--light-bg); color: var(--dark); font-family: 'Montserrat', sans-serif; overflow-x: hidden; font-weight: 300; }
 
-        .reveal { 
-            opacity: 0; 
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
-            will-change: transform, opacity; 
-        }
+        .reveal { opacity: 0; transition: opacity 0.8s ease-out, transform 0.8s ease-out; will-change: transform, opacity; }
         .reveal.active { opacity: 1; transform: translate(0, 0) !important; }
         .reveal-left { transform: translateX(-30px); }
         .reveal-right { transform: translateX(30px); }
@@ -82,14 +77,13 @@
         .prog-info { text-align: left; border-left: 1px solid #ddd; padding-left: 25px; }
 
         .dress-code-colors { display: flex; justify-content: center; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
-        .color-circle { width: 50px; height: 50px; border-radius: 50%; border: 2px solid rgba(0,0,0,0.05); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .color-circle { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.05); }
 
         .rsvp-form { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
-        input, select { background: #f9f9f9; border: 1px solid #eee; padding: 18px 25px; border-radius: 25px; width: 100%; outline: none; }
+        input, select { background: #f9f9f9; border: 1px solid #eee; padding: 18px 25px; border-radius: 25px; width: 100%; outline: none; transition: 0.3s; }
+        input:focus { border-color: var(--gold); background: #fff; }
         .btn-gold { background: var(--dark); color: white; padding: 22px; border-radius: 50px; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: 0.4s; border: none; }
         
-        .zags-photo { width: 100%; border-radius: 30px; margin-top: 20px; object-fit: cover; height: 300px; }
-
         #lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 1000; cursor: zoom-out; }
         #lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; }
 
@@ -97,7 +91,6 @@
             .polaroid-container { flex-direction: column; align-items: center; gap: 30px; }
             .prog-item { flex-direction: column; text-align: center; }
             .prog-info { border-left: none; border-top: 1px solid #eee; padding-top: 15px; padding-left: 0; }
-            .side-photo { display: none; }
         }
         footer { padding: 60px 0; text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; opacity: 0.5; }
     </style>
@@ -164,23 +157,53 @@
 
         <section class="reveal reveal-right" id="rsvp">
             <div class="card">
-                <h2 class="section-title">Регистрация ✍️</h2>
+                <h2 class="section-title">Анкета гостя ✍️</h2>
+                <p style="font-size: 0.9rem; color: #888; margin-bottom: 25px;">Будем благодарны, если вы подтвердите своё присутствие до 07.07.26</p>
+                
                 <form class="rsvp-form" id="weddingForm">
-                    <input type="text" name="guest_name" placeholder="Ваше Имя" required>
+                    <div style="text-align: left;">
+                        <label style="font-size: 0.85rem; padding-left: 10px; color: #555;">Ваше имя и фамилия</label>
+                        <input type="text" name="guest_name" placeholder="Например: Дмитрий Иванов" required style="margin-top: 5px;">
+                    </div>
+
                     <input type="tel" name="phone" id="phoneInput" placeholder="+7 (___) ___-__-__" required>
-                    <select name="status">
-                        <option value="attending">Я приду ✅</option>
-                        <option value="not_attending">Не смогу прийти ❌</option>
-                    </select>
-                    <label style="font-size: 0.8rem; color:#999; text-align: left; padding-left: 15px;">Будете с кем-то?</label>
-                    <select id="guestModeSelection">
-                        <option value="single">Буду один / одна</option>
-                        <option value="plus-one">Буду с компанией</option>
-                    </select>
+
+                    <div style="text-align: left; margin: 10px 0;">
+                        <label style="font-size: 0.9rem; font-weight: 500; display: block; margin-bottom: 10px;">Сможете ли вы присутствовать?</label>
+                        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                            <input type="radio" name="attendance" value="Да" required style="width: auto; margin-right: 10px;"> Обязательно приду
+                        </label>
+                        <label style="display: block; cursor: pointer;">
+                            <input type="radio" name="attendance" value="Нет" style="width: auto; margin-right: 10px;"> К сожалению, не смогу присутствовать
+                        </label>
+                    </div>
+
                     <div id="additional-guests"></div>
-                    <button type="button" id="addGuestBtn" style="display:none; background:none; border:1px dashed var(--gold); color:var(--gold); padding:15px; border-radius:25px; cursor:pointer; margin-bottom:10px;">+ Добавить гостя</button>
-                    <button type="submit" class="btn-gold" id="submitBtn">Подтвердить участие</button>
-                    <div id="msg" style="margin-top: 15px; color: var(--gold);"></div>
+                    <button type="button" id="addGuestBtn" style="background:none; border:1px dashed var(--gold); color:var(--gold); padding:15px; border-radius:25px; cursor:pointer; margin-bottom:15px;">+ Добавить гостя</button>
+
+                    <div style="text-align: left; margin: 10px 0;">
+                        <label style="font-size: 0.9rem; font-weight: 500; display: block; margin-bottom: 10px;">Что предпочитаете из напитков?</label>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <label><input type="checkbox" name="drink" value="Вино красное" style="width:auto;"> Вино красное</label>
+                            <label><input type="checkbox" name="drink" value="Вино белое" style="width:auto;"> Вино белое</label>
+                            <label><input type="checkbox" name="drink" value="Водка" style="width:auto;"> Водка</label>
+                            <label><input type="checkbox" name="drink" value="Виски" style="width:auto;"> Виски</label>
+                            <label><input type="checkbox" name="drink" value="Коньяк" style="width:auto;"> Коньяк</label>
+                            <label><input type="checkbox" name="drink" value="Не пью" style="width:auto;"> Не пью</label>
+                        </div>
+                        <label style="display: block; margin-top: 10px;">
+                            <input type="checkbox" id="ownDrinkCheck" style="width:auto;"> Свое
+                        </label>
+                        <input type="text" name="own_drink" id="ownDrinkInput" placeholder="Что именно вы предпочитаете?" style="display:none; margin-top:10px; padding: 12px 20px;">
+                    </div>
+
+                    <div style="text-align: left; margin-top: 10px;">
+                        <label style="font-size: 0.9rem; font-weight: 500; display: block; margin-bottom: 5px;">Какую музыку предпочитаете?</label>
+                        <input type="text" name="music" placeholder="О музыкальных вкусах...">
+                    </div>
+
+                    <button type="submit" class="btn-gold" id="submitBtn" style="margin-top: 20px;">Подтвердить участие</button>
+                    <div id="msg" style="margin-top: 15px; color: var(--gold); font-weight: 500;"></div>
                 </form>
 
                 <div class="polaroid-container">
@@ -194,7 +217,7 @@
             <div class="container" style="text-align: center;">
                 <h2 class="section-title">Пожелания 🕊️</h2>
                 <p style="line-height: 2; color: #555; max-width: 800px; margin: 0 auto; font-size: 1.1rem;">
-                    Ваши улыбки и смех подарят нам незабываемое счастье в этот день. Если вы хотите подарить нам ценный и нужный подарок, мы будем очень благодарны вашим пожеланиям в конвертах, которые помогут осуществить наши мечты!
+                    Ваши улыбки и смех подарят нам незабываемое счастье в этот день. если вы хотите подарить нам ценный и нужный подарок, мы будем очень благодарны вашим пожеланиям в конвертах, которые помогут осуществить наши мечты!
                 </p>
             </div>
         </section>
@@ -298,28 +321,24 @@
         });
         reveal();
 
-        let gCount = 0;
-        const addBtn = document.getElementById('addGuestBtn');
-        const guestMode = document.getElementById('guestModeSelection');
-        const guestsContainer = document.getElementById('additional-guests');
-        const form = document.getElementById('weddingForm');
-        const submitBtn = document.getElementById('submitBtn');
-
-        guestMode.onchange = function() {
-            if (this.value === 'plus-one') { addBtn.style.display = 'block'; if (guestsContainer.children.length === 0) createGuestInput(); }
-            else { addBtn.style.display = 'none'; guestsContainer.innerHTML = ''; }
+        // Показать/скрыть поле "Свое"
+        document.getElementById('ownDrinkCheck').onchange = function() {
+            document.getElementById('ownDrinkInput').style.display = this.checked ? 'block' : 'none';
         };
 
-        addBtn.onclick = createGuestInput;
-        function createGuestInput() {
+        // Добавление гостей
+        let gCount = 0;
+        const addBtn = document.getElementById('addGuestBtn');
+        const guestsContainer = document.getElementById('additional-guests');
+        addBtn.onclick = function() {
             if (guestsContainer.children.length < 9) {
                 gCount++;
                 const wrapper = document.createElement('div');
-                wrapper.style.display = "flex"; wrapper.style.gap = "10px"; wrapper.style.marginBottom = "10px";
-                wrapper.innerHTML = `<input type="text" name="extra_guest_${gCount}" placeholder="Имя гостя" required><button type="button" style="background:none; border:none; color:red; cursor:pointer;" onclick="this.parentElement.remove()">×</button>`;
+                wrapper.style.display = "flex"; wrapper.style.gap = "10px"; wrapper.style.marginBottom = "10px"; wrapper.style.alignItems = "center";
+                wrapper.innerHTML = `<input type="text" name="extra_guest_${gCount}" placeholder="Имя и фамилия гостя" required style="margin:0;"><button type="button" style="background:none; border:none; color:red; cursor:pointer; font-size:1.5rem;" onclick="this.parentElement.remove()">×</button>`;
                 guestsContainer.appendChild(wrapper);
             }
-        }
+        };
 
         document.getElementById('phoneInput').oninput = function() {
             let matrix = "+7 (___) ___-__-__", i = 0, def = matrix.replace(/\D/g, ""), val = this.value.replace(/\D/g, "");
@@ -327,8 +346,9 @@
             this.value = matrix.replace(/./g, a => /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? "" : a);
         };
 
-        form.onsubmit = function(e) {
+        document.getElementById('weddingForm').onsubmit = function(e) {
             e.preventDefault();
+            const submitBtn = document.getElementById('submitBtn');
             submitBtn.disabled = true; submitBtn.innerText = "ОТПРАВЛЯЕМ...";
             fetch(scriptUrl, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(new FormData(this)) })
             .then(() => { document.getElementById('msg').innerText = "Спасибо! Ответ получен."; submitBtn.innerText = "ГОТОВО"; })
