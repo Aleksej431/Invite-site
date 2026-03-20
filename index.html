@@ -16,15 +16,39 @@
             --white: #ffffff;
         }
 
+        /* Глобальные фиксы центрирования */
         * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         
         html, body { 
-            margin: 0; padding: 0; width: 100%; overflow-x: hidden;
+            margin: 0; padding: 0; width: 100%; 
+            overflow-x: hidden; /* Запрет бокового скролла */
             background-color: var(--light-bg); color: var(--dark); 
             font-family: 'Montserrat', sans-serif; font-weight: 300;
         }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; width: 100%; position: relative; }
+        .container { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+            width: 100%; 
+            position: relative; 
+            z-index: 5;
+        }
+
+        /* Фоновые фото (возвращаем видимость) */
+        .side-photo { 
+            position: absolute; 
+            width: 220px; 
+            z-index: 1; 
+            pointer-events: none; 
+            opacity: 0.8; 
+            display: block; 
+        }
+        /* Расставляем их по высоте страницы */
+        .photo-1 { left: -100px; transform: rotate(-10deg); top: 10%; }
+        .photo-2 { right: -100px; transform: rotate(12deg); top: 30%; }
+        .photo-3 { left: -120px; transform: rotate(8deg); top: 60%; }
+        .photo-4 { right: -120px; transform: rotate(-15deg); top: 85%; }
 
         .reveal { opacity: 0; transition: opacity 0.8s ease-out, transform 0.8s ease-out; will-change: transform, opacity; }
         .reveal.active { opacity: 1; transform: translate(0, 0) !important; }
@@ -53,16 +77,15 @@
         .calendar-day { padding: 8px 0; position: relative; }
         .calendar-day.active { background: var(--gold); color: white; border-radius: 50%; font-weight: bold; }
 
-        /* Новый стиль таймера */
+        /* Стиль таймера с обводкой */
         .timer-grid { display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
         .timer-item { 
             text-align: center; 
             min-width: 80px; 
             padding: 15px 10px;
-            border: 1px solid rgba(184, 156, 125, 0.3);
+            border: 1px solid rgba(184, 156, 125, 0.4);
             border-radius: 20px;
             background: #fff;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
         }
         .timer-val { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--gold); display: block; line-height: 1; margin-bottom: 5px; }
         .timer-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; color: #999; }
@@ -73,12 +96,6 @@
         .polaroid-left { transform: rotate(-5deg) translateY(10px); }
         .polaroid-right { transform: rotate(5deg) translateY(-10px); }
         .polaroid:hover { transform: rotate(0) scale(1.05) translateY(-20px); z-index: 10; }
-
-        .side-photo { position: absolute; width: 200px; z-index: -1; pointer-events: none; opacity: 0.8; }
-        .photo-1 { left: -50px; transform: rotate(-10deg); top: 1200px; }
-        .photo-2 { right: -50px; transform: rotate(12deg); top: 1800px; }
-        .photo-3 { left: -60px; transform: rotate(8deg); top: 2800px; }
-        .photo-4 { right: -60px; transform: rotate(-15deg); top: 3500px; }
 
         section { padding: 80px 0; position: relative; width: 100%; }
         .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 3.5rem); text-align: center; margin-bottom: 40px; font-weight: 300; font-style: italic; }
@@ -94,27 +111,22 @@
         input:focus { border-color: var(--gold); background: #fff; }
         .btn-gold { background: var(--dark); color: white; padding: 22px; border-radius: 50px; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: 0.4s; border: none; font-weight: 400; }
         
-        .zags-photo { width: 100%; border-radius: 25px; margin-top: 25px; object-fit: cover; height: 300px; display: block; }
+        .zags-photo { width: 100%; border-radius: 25px; margin-top: 25px; object-fit: cover; height: 350px; display: block; }
 
         #lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 1000; cursor: zoom-out; }
         #lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; }
 
         @media (max-width: 768px) {
+            .side-photo { display: none; } /* На телефонах убираем декор, чтобы не мешал */
             .polaroid-container { flex-direction: column; align-items: center; gap: 30px; }
             .prog-item { flex-direction: column; text-align: center; }
             .prog-info { border-left: none; border-top: 1px solid #eee; padding-top: 15px; padding-left: 0; }
-            .side-photo { display: none; }
             .card { padding: 40px 20px; }
         }
         footer { padding: 60px 0; text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; opacity: 0.5; }
     </style>
 </head>
 <body>
-
-    <div class="polaroid side-photo photo-1"><img src="img/1.jpg" loading="lazy"></div>
-    <div class="polaroid side-photo photo-2"><img src="img/2.jpg" loading="lazy"></div>
-    <div class="polaroid side-photo photo-3"><img src="img/3.jpg" loading="lazy"></div>
-    <div class="polaroid side-photo photo-4"><img src="img/4.jpg" loading="lazy"></div>
 
     <div id="lightbox" onclick="this.style.display='none'"><img src="" alt=""></div>
 
@@ -129,6 +141,10 @@
     </header>
 
     <div class="container">
+        <div class="polaroid side-photo photo-1"><img src="img/1.jpg" loading="lazy"></div>
+        <div class="polaroid side-photo photo-2"><img src="img/2.jpg" loading="lazy"></div>
+        <div class="polaroid side-photo photo-3"><img src="img/3.jpg" loading="lazy"></div>
+        <div class="polaroid side-photo photo-4"><img src="img/4.jpg" loading="lazy"></div>
         
         <section class="reveal reveal-up" id="welcome">
             <div class="card">
@@ -222,10 +238,10 @@
         </section>
 
         <section class="reveal reveal-up">
-            <div class="container" style="text-align: center; padding:0;">
+            <div style="text-align: center;">
                 <h2 class="section-title">Пожелания 🕊️</h2>
                 <p style="line-height: 2; color: #555; max-width: 800px; margin: 0 auto; font-size: 1.1rem;">
-                    Ваши улыбки и смех подарят нам незабываемое счастье в этот день. если вы хотите подарить нам ценный и нужный подарок, мы будем очень благодарны вашим пожеланиям в конвертах, которые помогут осуществить наши мечты!
+                    Ваши улыбки и смех подарят нам незабываемое счастье в этот день. Если вы хотите подарить нам ценный и нужный подарок, мы будем очень благодарны вашим пожеланиям в конвертах, которые помогут осуществить наши мечты!
                 </p>
             </div>
         </section>
@@ -269,8 +285,8 @@
         <section class="reveal reveal-up">
             <h2 class="section-title">Контакты</h2>
             <div class="card">
-                <div class="contacts-grid">
-                    <div style="text-align:center; margin-bottom: 25px;">
+                <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px;">
+                    <div style="text-align:center;">
                         <div style="color: var(--gold); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 500;">Алина</div>
                         <a href="tel:+79374577054" style="text-decoration:none; color:var(--dark); font-size:1.15rem; display:block; margin-top:5px;">+7 (937) 457-70-54</a>
                     </div>
