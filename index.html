@@ -11,209 +11,112 @@
         :root {
             --gold: #b89c7d;
             --dark: #1a1a1a;
-            --bg: #fdfdfd;
+            --bg: #fdfcfb;
             --white: #ffffff;
-            --line: rgba(58, 53, 48, 0.1);
-            --transition: all 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition: all 1.2s cubic-bezier(0.2, 1, 0.3, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        body { 
-            margin: 0; padding: 0; 
-            background-color: var(--bg); 
-            color: var(--dark); 
-            font-family: 'Montserrat', sans-serif; 
-            overflow-x: hidden; 
-        }
+        body { background-color: var(--bg); color: var(--dark); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
 
-        /* --- КРАСИВЫЙ СКРОЛЛБАР --- */
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+        /* --- УНИКАЛЬНЫЕ АНИМАЦИИ --- */
+        .reveal { opacity: 0; transition: var(--transition); }
+        .reveal.active { opacity: 1; transform: translate(0) scale(1) !important; filter: blur(0) !important; }
 
-        /* --- ДЕКОРАТИВНЫЕ ВЕТОЧКИ (Pin to blocks) --- */
-        .branch-decor {
+        .reveal-left { transform: translateX(-80px); filter: blur(10px); }
+        .reveal-right { transform: translateX(80px); filter: blur(10px); }
+        .reveal-up { transform: translateY(80px); filter: blur(10px); }
+        .reveal-zoom { transform: scale(0.9); filter: blur(10px); }
+
+        /* --- ДЕКОРАТИВНЫЕ ВЕТОЧКИ ПО БОКАМ КАРТОЧЕК --- */
+        .card-decor {
             position: absolute;
-            z-index: 10;
+            width: 150px;
             pointer-events: none;
-            opacity: 0.6;
-            transition: transform 0.2s ease-out;
+            opacity: 0.4;
+            z-index: 1;
         }
-
-        /* --- УНИКАЛЬНЫЕ АНИМАЦИИ ПОЯВЛЕНИЯ СЕКЦИЙ --- */
-        .reveal { opacity: 0; transition: var(--transition); filter: blur(15px); }
-        
-        .reveal.active { opacity: 1; filter: blur(0); }
-        
-        /* Slide in from left with rotate */
-        .reveal.reveal-left { transform: translateX(-150px) rotate(-10deg) scale(0.9); }
-        .reveal.reveal-left.active { transform: translateX(0) rotate(0) scale(1); }
-        
-        /* Slide in from right with rotate */
-        .reveal.reveal-right { transform: translateX(150px) rotate(10deg) scale(0.9); }
-        .reveal.reveal-right.active { transform: translateX(0) rotate(0) scale(1); }
-
-        /* Flip in vertically */
-        .reveal.reveal-flip { transform: rotateY(180deg) scale(0.8); }
-        .reveal.reveal-flip.active { transform: rotateY(0) scale(1); }
-
-        /* Slide up with scale */
-        .reveal.reveal-up { transform: translateY(-100px) scale(0.9) rotateX(-20deg); }
-        .reveal.reveal-up.active { transform: translateY(0) scale(1) rotateX(0); }
-
-        /* Slide down with scale */
-        .reveal.reveal-down { transform: translateY(100px) scale(0.9) rotateX(20deg); }
-        .reveal.reveal-down.active { transform: translateY(0) scale(1) rotateX(0); }
-
-        /* Rotate and scale from 0 */
-        .reveal.reveal-rotate { transform: rotate(180deg) scale(0); }
-        .reveal.reveal-rotate.active { transform: rotate(0) scale(1); }
-
+        .decor-left { left: -60px; top: 20%; transform: rotate(-10deg); }
+        .decor-right { right: -60px; bottom: 20%; transform: rotate(170deg); }
 
         /* --- HEADER --- */
         header {
             height: 100vh; display: flex; justify-content: center; align-items: center;
-            color: var(--white); text-align: center; position: relative; overflow: hidden;
+            color: var(--white); text-align: center; position: relative; overflow: hidden; background: #000;
         }
         #bgVideo {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; z-index: 0; filter: brightness(0.5) contrast(1.1);
+            object-fit: cover; filter: brightness(0.5);
         }
-        .hero-content { position: relative; z-index: 5; padding: 0 20px; }
-        
+        .hero-content { position: relative; z-index: 2; padding: 0 20px; }
         .hero-content h1 { 
-            font-family: 'Cormorant Garamond', serif; 
-            font-size: clamp(3.5rem, 15vw, 8rem); 
-            font-weight: 300; margin: 0; 
-            font-style: italic; line-height: 1;
-            background: linear-gradient(to bottom, var(--white), var(--gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 12vw, 7rem); 
+            font-weight: 300; font-style: italic; line-height: 1.1; margin-bottom: 10px;
         }
-
         .hero-date {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(1rem, 3vw, 1.5rem);
-            margin: 25px 0 35px;
-            letter-spacing: 5px;
-            font-weight: 300;
-            color: var(--gold-light);
-            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            font-family: 'Montserrat', sans-serif; font-size: clamp(1rem, 4vw, 1.4rem);
+            letter-spacing: 6px; font-weight: 200; color: rgba(255,255,255,0.9); margin-bottom: 30px;
         }
 
         /* ТАЙМЕР */
-        .timer-grid { 
-            display: flex; justify-content: center; gap: 15px; margin-top: 30px; 
+        .timer { display: flex; justify-content: center; gap: 15px; }
+        .t-item { 
+            background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); 
+            padding: 15px; min-width: 80px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.2); 
         }
-        .timer-unit { 
-            background: rgba(255,255,255,0.1); 
-            backdrop-filter: blur(15px); 
-            padding: 20px 10px; min-width: 90px; 
-            border-radius: 20px; 
-            border: 1px solid rgba(255,255,255,0.2); 
-            transition: 0.3s;
-        }
-        .timer-unit:hover { transform: scale(1.05); background: rgba(255,255,255,0.2); }
-        .timer-unit span { display: block; font-size: 2.2rem; font-family: 'Cormorant Garamond', serif; font-weight: 400; color: var(--gold); }
-        .timer-unit small { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; }
+        .t-item span { display: block; font-size: 1.8rem; font-family: 'Cormorant Garamond', serif; color: var(--gold); }
+        .t-item small { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- CONTENT --- */
-        section { padding: 150px 0; position: relative; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 25px; z-index: 2; position: relative; }
+        /* --- СЕКЦИИ --- */
+        section { padding: 100px 0; position: relative; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 25px; }
         
-        /* --- КАРТОЧКА --- */
-        .card { 
-            background: var(--white); 
-            padding: 80px 50px; 
-            border-radius: 50px; 
-            border: 1px solid rgba(184, 156, 125, 0.15); 
-            text-align: center; 
-            box-shadow: 0 30px 100px rgba(0,0,0,0.05); 
-            position: relative;
-            overflow: hidden;
-            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"%3E%3Cpath d="M10 10c10-10 30-10 40 0s30 10 40 0" fill="none" stroke="%23b89c7d" stroke-width="0.3" opacity="0.1"/%3E%3C/svg%3E');
-        }
-
         .section-title { 
-            font-family: 'Cormorant Garamond', serif; 
-            font-size: clamp(2.5rem, 8vw, 4.5rem); 
-            font-style: italic; font-weight: 300; margin-bottom: 50px;
-            color: var(--dark);
+            font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 7vw, 3.8rem); 
+            text-align: center; margin-bottom: 40px; font-weight: 300; font-style: italic;
         }
 
-        /* --- ФОТО СЕТКА И АНИМАЦИЯ --- */
-        .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 60px; position: relative; }
-        .animate-png { 
-            width: 100%; height: 500px; object-fit: cover; 
-            border-radius: 40px; box-shadow: 0 25px 60px rgba(0,0,0,0.15);
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-            animation: float 5s ease-in-out infinite; /* Анимация PNG картинок */
+        .card { 
+            background: var(--white); padding: 60px 40px; border-radius: 40px; 
+            border: 1px solid rgba(184, 156, 125, 0.1); text-align: center; 
+            box-shadow: 0 20px 60px rgba(0,0,0,0.03); position: relative;
         }
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0); }
-        }
-        .story-grid img:hover { transform: translateY(-20px) scale(1.03); filter: brightness(1.1); }
 
-        /* --- ПРОГРАММА (Luxury Timeline) --- */
-        .timeline-box { position: relative; display: flex; flex-direction: column; gap: 70px; margin-top: 70px; }
-        .event { display: flex; align-items: center; gap: 50px; position: relative; }
-        .event-time { 
-            font-family: 'Cormorant Garamond', serif; 
-            font-size: 3.5rem; color: var(--gold); line-height: 1; min-width: 130px;
+        /* ИСТОРИЯ И ГАЛЕРЕЯ */
+        .story-grid, .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 40px; }
+        .img-anim { 
+            width: 100%; height: 400px; object-fit: cover; border-radius: 30px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); transition: 0.5s;
+            animation: float 6s ease-in-out infinite;
         }
-        .event-info { border-left: 2px solid var(--gold); padding-left: 30px; }
-        .event-title { 
-            text-transform: uppercase; letter-spacing: 5px; 
-            font-size: 1rem; margin: 10px 0 5px; font-weight: 400; 
-        }
-        .event-desc { color: #888; font-size: 0.9rem; font-weight: 300; }
+        .gallery-grid img { height: 300px; }
+        @keyframes float { 0%, 100% {transform: translateY(0);} 50% {transform: translateY(-10px);} }
 
-        /* --- RSVP FORM --- */
-        .rsvp-form { max-width: 500px; margin: 0 auto; text-align: left; background: rgba(0,0,0,0.01); padding: 40px; border-radius: 30px; border: 1px solid var(--line); }
-        .input-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 3px; color: var(--gold); margin-bottom: 10px; display: block; font-weight: 400; }
-        
+        /* ПРОГРАММА */
+        .timeline { max-width: 600px; margin: 0 auto; text-align: left; }
+        .event { padding: 25px 0; border-bottom: 1px solid #f0f0f0; display: flex; align-items: baseline; gap: 20px; }
+        .event:last-child { border: none; }
+        .event-time { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--gold); min-width: 80px; }
+        .event-title { font-weight: 400; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; }
+
+        /* RSVP FORM */
+        .rsvp-form { max-width: 450px; margin: 0 auto; text-align: left; }
         input, select { 
-            width: 100%; background: #fff; 
-            border: 1px solid #eee; padding: 22px; 
-            font-family: inherit; font-size: 1rem; 
-            border-radius: 20px; outline: none; 
-            margin-bottom: 25px; transition: 0.3s;
+            width: 100%; background: #f9f9f9; border: 1px solid #eee; 
+            padding: 20px; border-radius: 20px; font-family: inherit; margin-bottom: 15px; outline: none;
         }
-        input:focus { border-color: var(--gold); box-shadow: 0 10px 30px rgba(184, 156, 125, 0.1); }
-
         .btn-gold { 
-            background: linear-gradient(45deg, var(--gold), #c09c73);
-            color: white; border: none; padding: 25px; width: 100%; border-radius: 50px; 
-            text-transform: uppercase; letter-spacing: 5px; 
-            cursor: pointer; transition: 0.5s; font-weight: 600; font-size: 0.85rem;
-            box-shadow: 0 10px 30px rgba(184, 156, 125, 0.2);
+            width: 100%; padding: 22px; background: var(--dark); color: #fff; border: none; 
+            border-radius: 50px; text-transform: uppercase; letter-spacing: 4px; cursor: pointer; transition: 0.4s;
         }
-        .btn-gold:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(184, 156, 125, 0.4); }
+        .btn-gold:hover { background: var(--gold); transform: translateY(-3px); }
 
-        .guest-row { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; animation: slideIn 0.5s ease; }
-        @keyframes slideIn { from {opacity: 0; transform: scale(0.9);} to {opacity: 1; transform: scale(1);} }
-        .remove-x { color: var(--gold); cursor: pointer; font-size: 2.2rem; line-height: 1; transition: 0.3s; }
-        .remove-x:hover { color: #cc0000; }
+        footer { padding: 80px 0; text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-style: italic; opacity: 0.5; }
 
-        /* --- ЛОКАЦИЯ --- */
-        .location-card { height: 550px; padding: 15px; background: rgba(255,255,255,0.02); }
-        .location-desc { padding: 40px; font-weight: 300; }
-        .map-wrap { border-radius: 35px; overflow: hidden; height: 100%; filter: contrast(1.1); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-
-        footer { padding: 120px 0; text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-style: italic; background: #fafaf9; color: var(--gold); }
-
-        @media (max-width: 900px) {
-            .story-grid { grid-template-columns: 1fr; }
-            .event { flex-direction: column; text-align: center; gap: 10px; }
-            .event-time { min-width: 0; font-size: 3rem; }
-            .event-info { border-left: none; padding-left: 0; border-top: 2px solid var(--gold); padding-top: 15px; }
-            section { padding: 90px 0; }
-            .card { padding: 60px 20px; border-radius: 40px; }
-            .hero-content h1 { font-size: 5rem; }
-            .timer-unit { min-width: 75px; padding: 15px; }
+        @media (max-width: 768px) {
+            .story-grid, .gallery-grid { grid-template-columns: 1fr; }
+            .card-decor { display: none; }
+            section { padding: 60px 0; }
         }
     </style>
 </head>
@@ -221,13 +124,13 @@
 
     <header>
         <video autoplay muted loop playsinline id="bgVideo"><source src="video/background.mp4" type="video/mp4"></video>
-        <div class="header-overlay"></div>
         <div class="hero-content">
             <h1>Алексей & Алина</h1>
-            <div class="hero-date">07 августа 2026</div> <div class="timer-grid">
-                <div class="timer-unit"><span id="days">00</span><small>дней</small></div>
-                <div class="timer-unit"><span id="hours">00</span><small>часов</small></div>
-                <div class="timer-unit"><span id="minutes">00</span><small>мин</small></div>
+            <div class="hero-date">07 августа 2026</div>
+            <div class="timer">
+                <div class="t-item"><span id="days">00</span><small>дней</small></div>
+                <div class="t-item"><span id="hours">00</span><small>часов</small></div>
+                <div class="t-item"><span id="minutes">00</span><small>мин</small></div>
             </div>
         </div>
     </header>
@@ -237,107 +140,70 @@
         <section class="reveal reveal-left">
             <h2 class="section-title">Наша история</h2>
             <div class="card">
-                <svg id="story-branch" class="branch-decor" style="top:-60px; left:-60px; width:220px;" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 90C10 90 30 70 50 70C70 70 90 50 90 30" stroke="#b89c7d" stroke-width="0.3" stroke-dasharray="2 2"/>
-                    <circle cx="50" cy="70" r="1.5" fill="#b89c7d" opacity="0.6"/>
-                    <circle cx="90" cy="30" r="2" fill="#b89c7d" opacity="0.4"/>
-                    <path d="M50 70C50 70 60 80 70 80C80 80 90 90 100 90" stroke="#b89c7d" stroke-width="0.3"/>
-                </svg>
-
-                <p style="line-height: 2.4; font-size: 1.1rem; color: #555; max-width: 650px; margin: 0 auto 50px;">Один день в нашей жизни будет особенным, и мы хотим провести его в кругу самых близких людей. Мы приглашаем вас разделить нашу радость!</p>
+                <svg class="card-decor decor-left" viewBox="0 0 100 100" fill="none"><path d="M10 90C10 90 30 70 50 70C70 70 90 50 90 30" stroke="#b89c7d" stroke-width="0.5" stroke-dasharray="3 3"/></svg>
+                
+                <p style="line-height: 2; color: #666;">Этот день — начало нашей новой главы. Мы будем счастливы видеть вас рядом в этот особенный момент.</p>
                 <div class="story-grid">
-                    <img src="img/story1.jpg" class="animate-png"> <img src="img/story2.jpg" class="animate-png"> </div>
+                    <img src="img/story1.jpg" class="img-anim">
+                    <img src="img/story2.jpg" class="img-anim" style="animation-delay: 1s;">
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal reveal-zoom">
+            <h2 class="section-title">Галерея</h2>
+            <div class="card">
+                <div class="gallery-grid">
+                    <img src="gallery/1.jpg" class="img-anim">
+                    <img src="gallery/2.jpg" class="img-anim" style="animation-delay: 0.5s;">
+                    <img src="gallery/3.jpg" class="img-anim" style="animation-delay: 1s;">
+                    <img src="gallery/4.jpg" class="img-anim" style="animation-delay: 1.5s;">
+                </div>
             </div>
         </section>
 
         <section class="reveal reveal-right">
             <h2 class="section-title">Свадебный день</h2>
             <div class="card">
-                <svg id="timeline-branch" class="branch-decor" style="bottom:-60px; right:-60px; width:200px; transform:rotate(150deg);" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 90C10 90 30 70 50 70C70 70 90 50 90 30" stroke="#b89c7d" stroke-width="0.3" />
-                    <circle cx="50" cy="70" r="1.5" fill="#b89c7d" opacity="0.6"/>
-                </svg>
-
-                <div class="timeline-box">
+                <svg class="card-decor decor-right" viewBox="0 0 100 100" fill="none"><path d="M10 90C10 90 30 70 50 70C70 70 90 50 90 30" stroke="#b89c7d" stroke-width="0.5"/></svg>
+                
+                <div class="timeline">
                     <div class="event">
                         <div class="event-time">15:10</div>
-                        <div class="event-info">
-                            <h3 class="event-title">Сбор гостей</h3>
-                            <p class="event-desc">Дворец бракосочетания (ул. Гимова, 3)</p>
-                        </div>
+                        <div><div class="event-title">Сбор гостей</div><p style="font-size: 0.8rem; color: #888;">ул. Гимова, 3</p></div>
                     </div>
                     <div class="event">
                         <div class="event-time">15:30</div>
-                        <div class="event-info">
-                            <h3 class="event-title">Церемония</h3>
-                            <p class="event-desc">Самый торжественный момент</p>
-                        </div>
+                        <div><div class="event-title">Регистрация</div><p style="font-size: 0.8rem; color: #888;">Дворец бракосочетания</p></div>
                     </div>
-                    <div class="event" style="margin-bottom: 0;">
+                    <div class="event">
                         <div class="event-time">17:00</div>
-                        <div class="event-info">
-                            <h3 class="event-title">Ужин</h3>
-                            <p class="event-desc">Праздничный банкет в кругу близких</p>
-                        </div>
+                        <div><div class="event-title">Ужин</div><p style="font-size: 0.8rem; color: #888;">Праздничный банкет</p></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="reveal reveal-flip" id="rsvp">
+        <section class="reveal reveal-up" id="rsvp">
             <h2 class="section-title">Регистрация</h2>
             <div class="card">
-                <svg id="rsvp-branch" class="branch-decor" style="top:-40px; right:-40px; width:180px; transform:rotate(-60deg);" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 90C10 90 30 70 50 70C70 70 90 50 90 30" stroke="#b89c7d" stroke-width="0.2" stroke-dasharray="1 1"/>
-                    <circle cx="90" cy="30" r="1" fill="#b89c7d" opacity="0.3"/>
-                </svg>
-                
                 <form class="rsvp-form" id="weddingForm">
-                    <div class="input-group">
-                        <label class="input-label">Ваше Имя и Фамилия</label>
-                        <input type="text" name="guest_name" placeholder="Введите ваше имя" required>
-                    </div>
-
-                    <div class="input-group">
-                        <label class="input-label">Контактный телефон</label>
-                        <input type="tel" name="phone" id="phoneInput" placeholder="+7 (___) ___-__-__" required>
-                    </div>
-
-                    <div class="input-group">
-                        <label class="input-label">Вы будете?</label>
-                        <select name="status">
-                            <option value="attending">Я приду</option>
-                            <option value="not_attending">К сожалению, не смогу</option>
-                        </select>
-                    </div>
-
-                    <div style="margin-bottom: 30px;">
-                        <label class="input-label">С кем вы будете?</label>
-                        <select id="guestMode" style="margin-bottom: 10px;">
-                            <option value="single">Приду один / одна</option>
-                            <option value="plus-one">Приду с кем-то</option>
-                        </select>
-                        <div id="additional-guests"></div>
-                        <button type="button" id="addBtn" style="display:none; background:none; border:1px dashed var(--gold); color:var(--gold); padding:12px; border-radius:15px; width:100%; cursor:pointer; font-size: 0.8rem; letter-spacing: 2px;">+ ДОБАВИТЬ ГОСТЯ</button>
-                    </div>
-
-                    <button type="submit" class="btn-gold" id="submitBtn">Подтвердить участие</button>
-                    <div id="msg" style="margin-top: 20px; text-align: center; color: var(--gold); font-size: 0.9rem;"></div>
+                    <input type="text" name="guest_name" placeholder="Ваше Имя и Фамилия" required>
+                    <input type="tel" name="phone" id="phoneInput" placeholder="+7 (___) ___-__-__" required>
+                    <select name="status">
+                        <option value="attending">Я приду</option>
+                        <option value="not_attending">Не смогу прийти</option>
+                    </select>
+                    <button type="submit" class="btn-gold" id="submitBtn">Отправить ответ</button>
+                    <div id="msg" style="margin-top: 15px; color: var(--gold); font-size: 0.9rem;"></div>
                 </form>
             </div>
         </section>
 
-        <section class="reveal reveal-down">
-            <h2 class="section-title">Место встречи</h2>
-            <div class="pattern-divider"></div>
-            <div class="card location-card">
-                <div class="location-desc">
-                    <p style="margin-bottom: 10px; font-weight: 400;">Дворец бракосочетания</p>
-                    <p style="font-size: 0.9rem; color: #888;">г. Ульяновск, ул. Гимова, д. 3</p>
-                </div>
-                <div class="map-wrap">
-                    <iframe src="https://yandex.ru/map-widget/v1/?ll=48.403864%2C54.317327&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1NjI2MDExMxIy0KDQvtGB0YHQuNGPLCDQo9C70YzRj9C90L7QstGB0LosINGD0LvQuNGG0LAg0JPQuNC80L7QstCwLCAzIgoNWh0WRhXfSllC&z=17" width="100%" height="100%" frameborder="0"></iframe>
-                </div>
+        <section class="reveal reveal-zoom">
+            <h2 class="section-title">Локация</h2>
+            <div class="card" style="padding: 10px; height: 450px; overflow: hidden;">
+                <iframe src="https://yandex.ru/map-widget/v1/?ll=48.403864%2C54.317327&z=17" width="100%" height="100%" frameborder="0"></iframe>
             </div>
         </section>
 
@@ -349,7 +215,7 @@
         const scriptUrl = "https://script.google.com/macros/s/AKfycbzFsWKeo5RtSd1dUNG-ROPKrwL1Q7P6VDcle4z1oyY-oC1V9FCIb6X7o9pKIyCZ6KLR/exec";
 
         // ТАЙМЕР
-        function updateTimer() {
+        function timer() {
             const diff = new Date("2026-08-07T15:10:00") - new Date();
             if (diff > 0) {
                 document.getElementById('days').innerText = Math.floor(diff / 864e5).toString().padStart(2, '0');
@@ -357,55 +223,7 @@
                 document.getElementById('minutes').innerText = Math.floor((diff % 36e5) / 6e4).toString().padStart(2, '0');
             }
         }
-        setInterval(updateTimer, 1000); updateTimer();
-
-        // ПАРАЛЛАКС ВЕТОЧЕК ПРИ СКРОЛЛЕ
-        const revealSections = document.querySelectorAll('.reveal');
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            revealSections.forEach(r => {
-                const speed = 0.05; // На сколько сильно будет двигаться
-                const offset = (r.getBoundingClientRect().top + scrolled) * speed;
-                r.querySelectorAll('.branch-decor').forEach(b => {
-                    // Разное направление движения в зависимости от расположения
-                    const dir = b.id.includes('timeline') ? 1 : -1;
-                    b.style.transform = `translateY(${offset * dir}px) rotate(${b.style.transform.match(/rotate\(([^)]+)\)/)?.[0] || '0deg'})`;
-                });
-            });
-        });
-
-        // ЛОГИКА ГОСТЕЙ
-        let gCount = 0;
-        const addBtn = document.getElementById('addBtn');
-        const guestMode = document.getElementById('guestMode');
-        const container = document.getElementById('additional-guests');
-
-        guestMode.onchange = function() {
-            if(this.value === 'plus-one') {
-                addBtn.style.display = 'block';
-                if(gCount === 0) addInput();
-            } else {
-                addBtn.style.display = 'none';
-                container.innerHTML = ''; gCount = 0;
-            }
-        };
-
-        addBtn.onclick = addInput;
-
-        function addInput() {
-            if(gCount < 5) {
-                gCount++;
-                const div = document.createElement('div');
-                div.className = 'guest-row';
-                div.innerHTML = `<input type="text" name="extra_${gCount}" placeholder="Имя гостя" style="margin-bottom:0; flex:1"> <span class="remove-x">&times;</span>`;
-                container.appendChild(div);
-                div.querySelector('.remove-x').onclick = () => { 
-                    div.remove(); 
-                    gCount--; 
-                    if(gCount===0) guestMode.value = 'single';
-                };
-            }
-        }
+        setInterval(timer, 1000); timer();
 
         // МАСКА ТЕЛЕФОНА
         document.getElementById('phoneInput').oninput = function() {
@@ -419,31 +237,20 @@
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
             btn.disabled = true; btn.innerText = "ОТПРАВЛЯЕМ...";
-
-            fetch(scriptUrl, {
-                method: 'POST',
-                mode: 'no-cors',
-                body: new URLSearchParams(new FormData(this))
-            }).then(() => {
-                document.getElementById('msg').innerText = "СПАСИБО! ВАШ ОТВЕТ УСПЕШНО ПРИНЯТ.";
-                btn.innerText = "ГОТОВО ✅";
-                setTimeout(() => {
-                    this.reset(); container.innerHTML = ''; gCount = 0;
-                    addBtn.style.display = 'none'; btn.disabled = false;
-                    btn.innerText = "Подтвердить участие";
-                    document.getElementById('msg').innerText = "";
-                }, 4000);
+            fetch(scriptUrl, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(new FormData(this)) })
+            .then(() => {
+                document.getElementById('msg').innerText = "Спасибо за ответ!";
+                btn.innerText = "ГОТОВО";
             }).catch(() => {
-                document.getElementById('msg').innerText = "ОШИБКА ОТПРАВКИ.";
+                document.getElementById('msg').innerText = "Ошибка отправки";
                 btn.disabled = false;
             });
         };
 
         // АНИМАЦИЯ ПРИ СКРОЛЛЕ
         const reveal = () => {
-            revealSections.forEach(r => {
-                const top = r.getBoundingClientRect().top;
-                if (top < window.innerHeight - 100) r.classList.add('active');
+            document.querySelectorAll('.reveal').forEach(r => {
+                if (r.getBoundingClientRect().top < window.innerHeight - 100) r.classList.add('active');
             });
         };
         window.addEventListener('scroll', reveal); reveal();
