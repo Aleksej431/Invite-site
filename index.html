@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Алексей & Алина | 07.08.2026</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300;1,500&family=Montserrat:wght@100;200;300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght=0,300;0,500;1,300;1,500&family=Montserrat:wght=100;200;300;400;500&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -59,9 +59,10 @@
         .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 3.5rem); text-align: center; margin-bottom: 40px; font-weight: 300; font-style: italic; }
         .card { background: var(--white); padding: 50px 30px; border-radius: 40px; border: 1px solid rgba(184, 156, 125, 0.15); text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.03); position: relative; }
 
-        /* НАША ИСТОРИЯ (ПОДДЕРЖКА ВЕРТИКАЛЬНЫХ ФОТО) */
+        /* НАША ИСТОРИЯ (ИСПРАВЛЕНО: ЗАПОЛНЕНИЕ) */
         .story-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
-        .story-photos img { width: 100%; height: auto; max-height: 600px; object-fit: contain; border-radius: 20px; }
+        /* Изменил на cover (заполнение) и увеличил высоту до 500px */
+        .story-photos img { width: 100%; height: 500px; object-fit: cover; border-radius: 20px; }
 
         /* ПРОГРАММА */
         .prog-grid { display: grid; gap: 20px; max-width: 700px; margin: 0 auto; }
@@ -77,10 +78,11 @@
         .btn-gold { background: var(--dark); color: white; border: none; padding: 22px; border-radius: 50px; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: 0.4s; font-weight: 500; }
         .btn-gold:hover { background: var(--gold); transform: translateY(-3px); }
 
-        /* ГАЛЕРЕЯ (ПОДДЕРЖКА ВЕРТИКАЛЬНЫХ ФОТО) */
+        /* ГАЛЕРЕЯ (ИСПРАВЛЕНО: ЗАПОЛНЕНИЕ) */
         .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 30px; }
         .gallery-item { position: relative; overflow: hidden; border-radius: 20px; cursor: pointer; background: #eee; }
-        .gallery-item img { width: 100%; height: auto; max-height: 400px; object-fit: contain; transition: 0.6s; display: block; }
+        /* Изменил на cover (заполнение) */
+        .gallery-item img { width: 100%; height: 400px; object-fit: cover; transition: 0.6s; display: block; }
         .gallery-item:hover img { transform: scale(1.08); filter: brightness(0.9); }
 
         /* LIGHTBOX */
@@ -179,21 +181,21 @@
                     <div class="prog-time">15:10</div>
                     <div class="prog-info">
                         <h3>Церемония 💍</h3>
-                        <p>Тот самый момент, когда мы станем одной семьей.</p>
+                        <p>Начинаем главную часть нашей истории. Самый важный момент.</p>
                     </div>
                 </div>
                 <div class="prog-item">
                     <div class="prog-time">16:30</div>
                     <div class="prog-info">
                         <h3>Welcome-встреча 🍹</h3>
-                        <p>Фуршет, легкая музыка и теплые разговоры.</p>
+                        <p>Легкие закуски, напитки и первые поздравления.</p>
                     </div>
                 </div>
                 <div class="prog-item">
                     <div class="prog-time">17:30</div>
                     <div class="prog-info">
                         <h3>Банкет 🍽️</h3>
-                        <p>Праздничный ужин и танцы до упаду.</p>
+                        <p>Время вкусной еды, душевных тостов и танцев.</p>
                     </div>
                 </div>
                 <div class="prog-item">
