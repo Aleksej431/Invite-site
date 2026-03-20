@@ -16,7 +16,6 @@
             --white: #ffffff;
         }
 
-        /* Глобальные фиксы центрирования */
         * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         
         html, body { 
@@ -44,8 +43,9 @@
             opacity: 0.8; 
             display: block; 
         }
-        .photo-1 { left: -140px; transform: rotate(-10deg); top: 10%; } 
-        .photo-2 { right: -100px; transform: rotate(12deg); top: 30%; }
+        /* Корректировка позиций фото */
+        .photo-1 { left: -140px; transform: rotate(-10deg); top: 18%; } /* Сдвинул ниже, чтобы было над планом дня */
+        .photo-2 { right: -100px; transform: rotate(12deg); top: 32%; }
         .photo-3 { left: -160px; transform: rotate(8deg); top: 60%; } 
         .photo-4 { right: -120px; transform: rotate(-15deg); top: 85%; }
 
@@ -114,29 +114,12 @@
         #lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 1000; cursor: zoom-out; }
         #lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; }
 
-        /* Адаптация под мобильные */
         @media (max-width: 768px) {
             .side-photo { display: none; }
             .polaroid-container { flex-direction: column; align-items: center; gap: 30px; }
-            
-            /* Исправленный План дня для мобилок */
-            .prog-item { 
-                flex-direction: column; 
-                text-align: center; 
-                padding: 20px;
-            }
-            .prog-time { 
-                text-align: center; 
-                min-width: auto; 
-                margin-bottom: 10px;
-            }
-            .prog-info { 
-                border-left: none; 
-                border-top: 1px solid #eee; 
-                padding-top: 15px; 
-                padding-left: 0;
-                text-align: center;
-            }
+            .prog-item { flex-direction: column; text-align: center; padding: 20px; }
+            .prog-time { text-align: center; min-width: auto; margin-bottom: 10px; }
+            .prog-info { border-left: none; border-top: 1px solid #eee; padding-top: 15px; padding-left: 0; text-align: center; }
             .card { padding: 40px 20px; }
         }
         footer { padding: 60px 0; text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; opacity: 0.5; }
@@ -189,7 +172,7 @@
             </div>
         </section>
 
-        <section class="reveal reveal-up">
+        <section class="reveal reveal-up" id="timeline">
             <h2 class="section-title">План дня 📅</h2>
             <div class="prog-grid">
                 <div class="prog-item"><div class="prog-time">14:30</div><div class="prog-info"><h3>Сбор гостей 🥂</h3><p>Встречаемся у входа, настраиваемся на праздник.</p></div></div>
@@ -253,7 +236,7 @@
             </div>
         </section>
 
-        <section class="reveal reveal-up">
+        <section class="reveal reveal-up" id="wishes">
             <div style="text-align: center;">
                 <h2 class="section-title">Пожелания 🕊️</h2>
                 <p style="line-height: 2; color: #555; max-width: 800px; margin: 0 auto; font-size: 1.1rem;">
@@ -262,16 +245,17 @@
             </div>
         </section>
 
-        <section class="reveal reveal-up">
+        <section class="reveal reveal-up" id="dresscode">
             <div class="card">
                 <h2 class="section-title">Дресс-код</h2>
                 <p style="line-height: 1.8; color: #555; max-width: 700px; margin: 0 auto;">
-                    У нас нет строгого дресс-кода, но если вы вдруг решите сменить свои любимые кроссовки на что-то другое — мы будем не против. Велком!
+                    Мы будем рады видеть вас в любом наряде, в котором вы чувствуете себя счастливыми! Главное — это ваше присутствие. <br>
+                    Но если вы вдруг решите поддержать атмосферу праздника и сменить любимую пижаму или домашние тапочки на вечерний образ — мы будем не против. 😉
                 </p>
             </div>
         </section>
 
-        <section class="reveal reveal-up">
+        <section class="reveal reveal-up" id="location">
             <h2 class="section-title">Место церемонии 📍</h2>
             <div class="card">
                 <p style="margin-bottom: 25px; line-height: 1.8;">
@@ -286,7 +270,7 @@
             </div>
         </section>
 
-        <section class="reveal reveal-up">
+        <section class="reveal reveal-up" id="timer">
             <h2 class="section-title">Таймер любви ⏳</h2>
             <div class="card">
                 <div class="timer-grid" id="weddingTimer">
@@ -298,7 +282,7 @@
             </div>
         </section>
 
-        <section class="reveal reveal-up">
+        <section class="reveal reveal-up" id="contacts">
             <h2 class="section-title">Контакты</h2>
             <div class="card">
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 30px;">
