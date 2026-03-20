@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Алексей & Алина | 07.08.2026</title>
 
+    <link rel="preload" as="image" href="img/background.jpg">
+
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300;1,500&family=Montserrat:wght@100;200;300;400;500&display=swap" rel="stylesheet">
 
     <style>
@@ -28,7 +30,7 @@
         header {
             height: 100vh; display: flex; justify-content: center; align-items: center;
             color: var(--white); text-align: center; position: relative; overflow: hidden;
-            background: url('https://www.dropbox.com/scl/fi/ikb8t78te1c3gl3ax6c12/background.jpg?rlkey=dfvd2u1voj0g1pxq2fjwp4hmp&st=2dtjfiae&raw=1') center center / cover no-repeat;
+            background: url('img/background.jpg') center center / cover no-repeat;
         }
         .header-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.25); z-index: 1; }
         .hero-content { position: relative; z-index: 2; width: 90%; }
@@ -103,10 +105,10 @@
 </head>
 <body>
 
-    <div class="polaroid side-photo photo-1"><img src="https://www.dropbox.com/scl/fi/vwexu4aeavv5zu0kp33p0/1.jpg?rlkey=wqxqht2ngc2lphmpctk5elw89&st=lmhkxpj5&raw=1"></div>
-    <div class="polaroid side-photo photo-2"><img src="https://www.dropbox.com/scl/fi/sl97zpkx3mrm7kzi06inh/2.jpg?rlkey=x61eaemubth19uxbzoc2wswbx&st=5cvvhm2s&raw=1"></div>
-    <div class="polaroid side-photo photo-3"><img src="https://www.dropbox.com/scl/fi/lhcsrxf9okgrcgxry92rt/3.jpg?rlkey=0slthlk9k787e16zd330gug4j&st=a05rndif&raw=1"></div>
-    <div class="polaroid side-photo photo-4"><img src="https://www.dropbox.com/scl/fi/uvi6gvht335sx2g9p4vhg/4.jpg?rlkey=assk9g35hgfc2banwwam99ocp&st=px7arssk&raw=1"></div>
+    <div class="polaroid side-photo photo-1"><img src="img/1.jpg" loading="lazy"></div>
+    <div class="polaroid side-photo photo-2"><img src="img/2.jpg" loading="lazy"></div>
+    <div class="polaroid side-photo photo-3"><img src="img/3.jpg" loading="lazy"></div>
+    <div class="polaroid side-photo photo-4"><img src="img/4.jpg" loading="lazy"></div>
 
     <div id="lightbox" onclick="this.style.display='none'"><img src="" alt=""></div>
 
@@ -143,8 +145,8 @@
                 </div>
 
                 <div class="polaroid-container">
-                    <div class="polaroid polaroid-left" onclick="openLightbox(this)"><img src="https://www.dropbox.com/scl/fi/4nj1kr1sgq6dogwrojy7u/story1.jpg?rlkey=px1nl6s1vkr9vj4y069v9ryby&st=r9kjy8kt&raw=1"></div>
-                    <div class="polaroid polaroid-right" onclick="openLightbox(this)"><img src="https://www.dropbox.com/scl/fi/xpfbbdlxl1nboncnhdkao/story2.jpg?rlkey=z3i307u08dqty0lu3r0hjh5bv&st=ixcqr4ag&raw=1"></div>
+                    <div class="polaroid polaroid-left" onclick="openLightbox(this)"><img src="img/story1.jpg" loading="lazy"></div>
+                    <div class="polaroid polaroid-right" onclick="openLightbox(this)"><img src="img/story2.jpg" loading="lazy"></div>
                 </div>
             </div>
         </section>
@@ -183,8 +185,8 @@
                 </form>
 
                 <div class="polaroid-container">
-                    <div class="polaroid polaroid-left" onclick="openLightbox(this)"><img src="https://www.dropbox.com/scl/fi/j3facu3qmv171e1lkrmzc/5.jpg?rlkey=v9ovbrtgo2w02feokedhwq44l&st=v4oy69d3&raw=1"></div>
-                    <div class="polaroid polaroid-right" onclick="openLightbox(this)"><img src="https://www.dropbox.com/scl/fi/5dy92ubmdlrlawy808lud/6.jpg?rlkey=v3djhv34qe9ap0vwxinge9sii&st=ohgmwsp9&raw=1"></div>
+                    <div class="polaroid polaroid-left" onclick="openLightbox(this)"><img src="img/5.jpg" loading="lazy"></div>
+                    <div class="polaroid polaroid-right" onclick="openLightbox(this)"><img src="img/6.jpg" loading="lazy"></div>
                 </div>
             </div>
         </section>
@@ -209,7 +211,7 @@
                 <div style="border-radius:30px; overflow:hidden;">
                     <iframe src="https://yandex.ru/map-widget/v1/org/otdel_zags_po_leninskomu_rayonu_g_ulyanovska/1088477357/?ll=48.404093%2C54.317406&z=17" width="100%" height="400" frameborder="0"></iframe>
                 </div>
-                <img src="https://sun9-72.userapi.com/s/v1/ig2/9kAvRSbjAp284e_nbfuRI6JwMs6IUntuDn83f5dkoxMx46470zPwsFFSOoLyV8Dw5Aa0QjuPGXAtInDNptOs3eC-.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1024x768&from=bu&cs=1024x0" class="zags-photo" alt="ЗАГС">
+                <img src="https://sun9-72.userapi.com/s/v1/ig2/9kAvRSbjAp284e_nbfuRI6JwMs6IUntuDn83f5dkoxMx46470zPwsFFSOoLyV8Dw5Aa0QjuPGXAtInDNptOs3eC-.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1024x768&from=bu&cs=1024x0" class="zags-photo" alt="ЗАГС" loading="lazy">
             </div>
         </section>
 
