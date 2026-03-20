@@ -34,17 +34,17 @@
             z-index: 5;
         }
 
-        /* Фоновые фото */
+        /* Фоновые фото - ИСПРАВЛЕНО (убрана прозрачность) */
         .side-photo { 
             position: absolute; 
             width: 220px; 
             z-index: 1; 
             pointer-events: none; 
-            opacity: 0.8; 
+            opacity: 1; /* Установил полную непрозрачность */
             display: block; 
         }
-        /* Корректировка позиций фото */
-        .photo-1 { left: -140px; transform: rotate(-10deg); top: 18%; } /* Сдвинул ниже, чтобы было над планом дня */
+        /* Позиции фото без изменений */
+        .photo-1 { left: -140px; transform: rotate(-10deg); top: 18%; } 
         .photo-2 { right: -100px; transform: rotate(12deg); top: 32%; }
         .photo-3 { left: -160px; transform: rotate(8deg); top: 60%; } 
         .photo-4 { right: -120px; transform: rotate(-15deg); top: 85%; }
