@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Приглашение на свадьбу | Алексей & Алина</title>
+    <title>Алексей & Алина | 07.08.2026</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300;1,500&family=Montserrat:wght@100;200;300;400;500&display=swap" rel="stylesheet">
 
@@ -37,7 +37,7 @@
             position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%;
             transform: translate(-50%, -50%); z-index: 0; object-fit: cover; filter: brightness(0.6);
         }
-        .header-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1; }
+        .header-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.2); z-index: 1; }
         .hero-content { position: relative; z-index: 2; }
         .hero-content h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 10vw, 6rem); font-weight: 300; margin: 0; letter-spacing: 5px; font-style: italic; }
         
@@ -57,7 +57,7 @@
         
         .card { background: var(--white); padding: 50px 30px; border-radius: 40px; border: 1px solid rgba(184, 156, 125, 0.15); text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.03); position: relative; overflow: hidden; }
 
-        /* ГРАФИК (НОВЫЙ ДИЗАЙН) */
+        /* ГРАФИК (БЛОК КОТОРЫЙ ТЕБЕ ПОНРАВИЛСЯ) */
         .prog-grid { display: grid; gap: 20px; max-width: 700px; margin: 0 auto; }
         .prog-item { display: flex; align-items: center; padding: 25px; background: #fafafa; border-radius: 30px; transition: 0.3s; }
         .prog-item:hover { background: #fff; transform: scale(1.02); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
@@ -66,12 +66,10 @@
         .prog-info h3 { margin: 0; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 400; }
         .prog-info p { margin: 5px 0 0; font-size: 0.85rem; color: #888; }
 
-        /* ДРЕСС-КОД (ЮМОР) */
-        .dress-code-box { padding: 40px; border-radius: 30px; background: #f4f1ee; margin-top: 30px; border: 1px dashed var(--gold); }
-        .palette { display: flex; justify-content: center; gap: 15px; margin-top: 25px; }
-        .color-circle { width: 45px; height: 45px; border-radius: 50%; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        /* ДРЕСС-КОД (ТЕПЕРЬ БЕЗ ПАЛИТРЫ) */
+        .dress-code-box { padding: 30px; border-radius: 30px; background: #fdfcfb; border: 1px dashed var(--gold); margin-top: 10px; }
 
-        /* RSVP ФОРМА (ТВОЯ РОДНАЯ ЛОГИКА) */
+        /* RSVP ФОРМА */
         .rsvp-form { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; text-align: left; }
         input, select { background: #f9f9f9; border: 1px solid #eee; padding: 18px 25px; font-family: inherit; font-size: 1rem; border-radius: 25px; outline: none; transition: 0.3s; width: 100%; }
         input:focus { border-color: var(--gold); background: #fff; }
@@ -83,8 +81,7 @@
 
         /* ГАЛЕРЕЯ */
         .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
-        .gallery-grid img { width: 100%; height: 350px; object-fit: cover; border-radius: 25px; transition: 0.5s; }
-        .gallery-grid img:hover { transform: scale(1.03); }
+        .gallery-grid img { width: 100%; height: 350px; object-fit: cover; border-radius: 25px; }
 
         @media (max-width: 768px) {
             .prog-item { flex-direction: column; text-align: center; }
@@ -119,8 +116,8 @@
                 <h2 class="section-title">Наша история</h2>
                 <p style="line-height: 2.2; max-width: 700px; margin: 0 auto; color: #555;">Мы решили, что 07.08.2026 — идеальный день, чтобы сказать друг другу «Да». И нам очень не хватает вас, чтобы сделать этот момент по-настоящему громким и душевным!</p>
                 <div class="gallery-grid" style="grid-template-columns: 1fr 1fr; margin-top: 40px;">
-                    <img src="img/story1.jpg" style="height: 450px;">
-                    <img src="img/story2.jpg" style="height: 450px;">
+                    <img src="img/story1.jpg" style="height: 400px;">
+                    <img src="img/story2.jpg" style="height: 400px;">
                 </div>
             </div>
         </section>
@@ -156,10 +153,17 @@
             <h2 class="section-title">План дня</h2>
             <div class="prog-grid">
                 <div class="prog-item">
+                    <div class="prog-time">14:30</div>
+                    <div class="prog-info">
+                        <h3>Сбор гостей</h3>
+                        <p>Встречаемся, обнимаемся и готовимся к торжеству.</p>
+                    </div>
+                </div>
+                <div class="prog-item">
                     <div class="prog-time">15:10</div>
                     <div class="prog-info">
                         <h3>Церемония</h3>
-                        <p>Начинаем главную часть нашей истории. Не опаздывайте!</p>
+                        <p>Начинаем главную часть нашей истории. Самый важный момент.</p>
                     </div>
                 </div>
                 <div class="prog-item">
@@ -195,24 +199,18 @@
 
         <section class="reveal reveal-zoom">
             <div class="card">
-                <h2 class="section-title">Dress Code</h2>
+                <h2 class="section-title">Как нужно выглядеть</h2>
                 <div class="dress-code-box">
-                    <p style="font-size: 1.1rem; line-height: 1.8;">Мы будем очень признательны, если вы поддержите цветовую гамму нашей свадьбы. <br><strong>Стиль: Black Tie Optional.</strong></p>
-                    <p style="margin-top: 15px; font-style: italic; color: #888;">P.S. Пожалуйста, оставьте любимые спортивные костюмы для спортзала, а шлепанцы — для пляжа. Мы верим в ваше чувство стиля!</p>
-                    <div class="palette">
-                        <div class="color-circle" style="background: #E8DACC;"></div>
-                        <div class="color-circle" style="background: #C4A484;"></div>
-                        <div class="color-circle" style="background: #5C4033;"></div>
-                        <div class="color-circle" style="background: #1A1A1A;"></div>
-                    </div>
+                    <p style="font-size: 1.1rem; line-height: 1.8;">Строгого дресс-кода у нас нет — мы рады видеть вас в любом наряде!</p>
+                    <p style="margin-top: 15px; font-style: italic; color: #888;">Но если вы решите сменить любимые спортивные кроссовки на что-то праздничное, мы это обязательно оценим. Главное — ваше хорошее настроение!</p>
                 </div>
             </div>
         </section>
 
         <section class="reveal reveal-up">
-            <h2 class="section-title">Как добраться</h2>
+            <h2 class="section-title">Место церемонии</h2>
             <div class="card">
-                <p style="margin-bottom: 25px;">Ждем вас по адресу: <strong>г. Ульяновск, ул. Гимова, д. 3</strong></p>
+                <p style="margin-bottom: 25px; line-height: 1.6;">Церемония бракосочетания пройдет в отделе ЗАГС по Ленинскому району по адресу:<br><strong>г. Ульяновск, ул. Гимова, д. 3</strong></p>
                 <div style="border-radius: 30px; overflow: hidden; height: 400px; border: 1px solid #eee;">
                     <iframe src="https://yandex.ru/map-widget/v1/?ll=48.403864%2C54.317327&z=17" width="100%" height="100%" frameborder="0"></iframe>
                 </div>
@@ -236,7 +234,7 @@
 
         // ТАЙМЕР
         function timer() {
-            const diff = new Date("2026-08-07T15:10:00") - new Date();
+            const diff = new Date("2026-08-07T14:30:00") - new Date();
             if (diff > 0) {
                 document.getElementById('days').innerText = Math.floor(diff / 864e5).toString().padStart(2, '0');
                 document.getElementById('hours').innerText = Math.floor((diff % 864e5) / 36e5).toString().padStart(2, '0');
@@ -245,7 +243,7 @@
         }
         setInterval(timer, 1000); timer();
 
-        // ЛОГИКА РЕГИСТРАЦИИ (БЕЗ ИЗМЕНЕНИЙ)
+        // ЛОГИКА РЕГИСТРАЦИИ
         let gCount = 0;
         const addBtn = document.getElementById('addGuestBtn');
         const guestMode = document.getElementById('guestModeSelection');
@@ -300,7 +298,7 @@
                 document.getElementById('msg').innerText = "Супер! Мы получили ваш ответ.";
                 btn.innerText = "ОТПРАВЛЕНО";
             }).catch(() => {
-                document.getElementById('msg').innerText = "Что-то пошло не так. Попробуйте еще раз.";
+                document.getElementById('msg').innerText = "Ошибка. Попробуйте еще раз.";
                 btn.disabled = false;
             });
         };
