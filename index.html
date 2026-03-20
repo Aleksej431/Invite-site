@@ -114,11 +114,29 @@
         #lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 1000; cursor: zoom-out; }
         #lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; }
 
+        /* Адаптация под мобильные */
         @media (max-width: 768px) {
             .side-photo { display: none; }
             .polaroid-container { flex-direction: column; align-items: center; gap: 30px; }
-            .prog-item { flex-direction: column; text-align: center; }
-            .prog-info { border-left: none; border-top: 1px solid #eee; padding-top: 15px; padding-left: 0; }
+            
+            /* Исправленный План дня для мобилок */
+            .prog-item { 
+                flex-direction: column; 
+                text-align: center; 
+                padding: 20px;
+            }
+            .prog-time { 
+                text-align: center; 
+                min-width: auto; 
+                margin-bottom: 10px;
+            }
+            .prog-info { 
+                border-left: none; 
+                border-top: 1px solid #eee; 
+                padding-top: 15px; 
+                padding-left: 0;
+                text-align: center;
+            }
             .card { padding: 40px 20px; }
         }
         footer { padding: 60px 0; text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; opacity: 0.5; }
