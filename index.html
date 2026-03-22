@@ -13,7 +13,6 @@
             --gold: #b89c7d;
             --dark: #1a1a1a;
             --light-bg: #fdfcfb;
-            --grey-bg: #f4f4f4; 
             --white: #ffffff;
         }
 
@@ -36,54 +35,18 @@
             z-index: 5;
         }
 
-        /* ПОЛНОШИРИННЫЕ СЕКЦИИ С ВОЛНАМИ */
-        section { padding: 100px 0; position: relative; width: 100%; }
-
-        section:nth-of-type(even) { 
-            background-color: var(--grey-bg); 
-            width: 100%;
-        }
-
-        /* ВОЛНЫ НА ВСЮ ШИРИНУ */
-        section:nth-of-type(even)::before,
-        section:nth-of-type(even)::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            width: 100%;
-            height: 60px; 
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
-            z-index: 1;
-        }
-
-        section:nth-of-type(even)::before {
-            top: -59px; 
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60' preserveAspectRatio='none'%3E%3Cpath d='M0,60 C300,45 900,45 1200,60 L1200,60 L0,60 Z' fill='%23f4f4f4'/%3E%3C/svg%3E");
-        }
-
-        section:nth-of-type(even)::after {
-            bottom: -59px; 
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C300,15 900,15 1200,0 L1200,0 L0,0 Z' fill='%23f4f4f4'/%3E%3C/svg%3E");
-        }
-
-        /* ИСПРАВЛЕННОЕ ПОЗИЦИОНИРОВАНИЕ БОКОВЫХ ФОТО */
         .side-photo { 
             position: absolute; 
             width: 220px; 
-            z-index: 10; /* Поверх волн и фона */
+            z-index: 1; 
             pointer-events: none; 
             opacity: 1; 
             display: block; 
         }
-        
-        /* Привязка к первой секции (Белой) */
-        #welcome_section .photo-1 { left: -140px; transform: rotate(-10deg); top: 15%; } 
-        #welcome_section .photo-2 { right: -100px; transform: rotate(12deg); top: 35%; }
-        
-        /* Привязка к третьей секции (Белой) */
-        #rsvp .photo-3 { left: -160px; transform: rotate(8deg); top: 15%; } 
-        #rsvp .photo-4 { right: -120px; transform: rotate(-15deg); top: 35%; }
+        .photo-1 { left: -140px; transform: rotate(-10deg); top: 18%; } 
+        .photo-2 { right: -100px; transform: rotate(12deg); top: 32%; }
+        .photo-3 { left: -160px; transform: rotate(8deg); top: 60%; } 
+        .photo-4 { right: -120px; transform: rotate(-15deg); top: 85%; }
 
         .reveal { opacity: 0; transition: opacity 0.8s ease-out, transform 0.8s ease-out; will-change: transform, opacity; }
         .reveal.active { opacity: 1; transform: translate(0, 0) !important; }
@@ -124,6 +87,7 @@
         .polaroid-right { transform: rotate(5deg) translateY(-10px); }
         .polaroid:hover { transform: rotate(0) scale(1.05) translateY(-20px); z-index: 10; }
 
+        section { padding: 80px 0; position: relative; width: 100%; }
         .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 3.5rem); text-align: center; margin-bottom: 40px; font-weight: 300; font-style: italic; }
         .card { background: var(--white); padding: 50px 30px; border-radius: 40px; border: 1px solid rgba(184, 156, 125, 0.15); text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.03); position: relative; width: 100%; overflow: hidden; }
 
@@ -167,11 +131,13 @@
         <a href="#welcome_section" class="scroll-down">Листать вниз</a>
     </header>
 
-    <section class="reveal reveal-up" id="welcome_section">
-        <div class="container">
-            <div class="polaroid side-photo photo-1"><img src="img/1.jpg" loading="lazy"></div>
-            <div class="polaroid side-photo photo-2"><img src="img/2.jpg" loading="lazy"></div>
-            
+    <div class="container">
+        <div class="polaroid side-photo photo-1"><img src="img/1.jpg" loading="lazy"></div>
+        <div class="polaroid side-photo photo-2"><img src="img/2.jpg" loading="lazy"></div>
+        <div class="polaroid side-photo photo-3"><img src="img/3.jpg" loading="lazy"></div>
+        <div class="polaroid side-photo photo-4"><img src="img/4.jpg" loading="lazy"></div>
+        
+        <section class="reveal reveal-up" id="welcome_section">
             <div class="card">
                 <h2 class="section-title">Дорогие друзья и родные</h2>
                 <p style="line-height: 2; max-width: 750px; margin: 0 auto 40px; color: #555; font-size: 1.1rem;">
@@ -196,26 +162,21 @@
                     <div class="polaroid polaroid-right" onclick="openLightbox(this)"><img src="img/story2.jpg" loading="lazy"></div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="reveal reveal-up" id="timeline">
-        <div class="container">
-            <h2 class="section-title">Тайминги</h2>
+        <section class="reveal reveal-up" id="timeline">
+            <h2 class="section-title">План дня</h2>
             <div class="prog-grid">
                 <div class="prog-item"><div class="prog-time">14:30</div><div class="prog-info"><h3>Сбор гостей</h3><p>Встречаемся у входа, настраиваемся на праздник.</p></div></div>
                 <div class="prog-item"><div class="prog-time">15:10</div><div class="prog-info"><h3>Церемония</h3><p>Тот самый момент, когда мы станем одной семьей.</p></div></div>
+                <div class="prog-item"><div class="prog-time">16:30</div><div class="prog-info"><h3>Welcome-встреча</h3><p>Фуршет и легкая музыка.</p></div></div>
                 <div class="prog-item"><div class="prog-time">17:30</div><div class="prog-info"><h3>Банкет</h3><p>Праздничный ужин и танцы.</p></div></div>
+                <div class="prog-item"><div class="prog-time">22:00</div><div class="prog-info"><h3>Свадебный торт</h3><p>Сладкое завершение вечера.</p></div></div>
                 <div class="prog-item"><div class="prog-time">22:30</div><div class="prog-info"><h3>Завершение вечера</h3><p>Окончание праздничной программы.</p></div></div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="reveal reveal-right" id="rsvp">
-        <div class="container">
-            <div class="polaroid side-photo photo-3"><img src="img/3.jpg" loading="lazy"></div>
-            <div class="polaroid side-photo photo-4"><img src="img/4.jpg" loading="lazy"></div>
-            
+        <section class="reveal reveal-right" id="rsvp">
             <div class="card">
                 <h2 class="section-title">Анкета гостя</h2>
                 <p style="font-size: 0.9rem; color: #888; margin-bottom: 25px;">Будем благодарны, если вы подтвердите своё присутствие до 07.07.26</p>
@@ -270,11 +231,28 @@
                     <div class="polaroid polaroid-right" onclick="openLightbox(this)"><img src="img/6.jpg" loading="lazy"></div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="reveal reveal-up" id="location">
-        <div class="container">
+        <section class="reveal reveal-up" id="wishes">
+            <div style="text-align: center;">
+                <h2 class="section-title">Пожелания</h2>
+                <p style="line-height: 2; color: #555; max-width: 800px; margin: 0 auto; font-size: 1.1rem;">
+                    Ваши улыбки и смех подарят нам незабываемое счастье в этот день. Если вы хотите подарить нам ценный и нужный подарок, мы будем очень благодарны вашим пожеланиям в конвертах, которые помогут осуществить наши мечты!
+                </p>
+            </div>
+        </section>
+
+        <section class="reveal reveal-up" id="dresscode">
+            <div class="card">
+                <h2 class="section-title">Дресс-код</h2>
+                <p style="line-height: 1.8; color: #555; max-width: 700px; margin: 0 auto;">
+                    Мы будем рады видеть вас в любом наряде, в котором вы чувствуете себя счастливыми! Главное — это ваше присутствие. <br>
+                    Но если вы вдруг решите поддержать атмосферу праздника и сменить любимую пижаму или домашние тапочки на вечерний образ — мы будем не против. 😉
+                </p>
+            </div>
+        </section>
+
+        <section class="reveal reveal-up" id="location">
             <h2 class="section-title">Место церемонии</h2>
             <div class="card">
                 <p style="margin-bottom: 25px; line-height: 1.8;">
@@ -285,24 +263,23 @@
                 <div style="border-radius:30px; overflow:hidden;">
                     <iframe src="https://yandex.ru/map-widget/v1/org/otdel_zags_po_leninskomu_rayonu_g_ulyanovska/1088477357/?ll=48.404093%2C54.317406&z=17" width="100%" height="400" frameborder="0"></iframe>
                 </div>
-                <img src="img/dash.jpg" class="zags-photo" alt="ЗАГС" loading="lazy">
+                <img src="https://sun9-72.userapi.com/s/v1/ig2/9kAvRSbjAp284e_nbfuRI6JwMs6IUntuDn83f5dkoxMx46470zPwsFFSOoLyV8Dw5Aa0QjuPGXAtInDNptOs3eC-.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1024x768&from=bu&cs=1024x0" class="zags-photo" alt="ЗАГС" loading="lazy">
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="reveal reveal-up" id="wishes">
-        <div class="container">
-            <div style="text-align: center;">
-                <h2 class="section-title">Пожелания</h2>
-                <p style="line-height: 2; color: #555; max-width: 800px; margin: 0 auto; font-size: 1.1rem;">
-                    Ваши улыбки и смех подарят нам незабываемое счастье в этот день. Если вы хотите подарить нам ценный и нужный подарок, мы будем очень благодарны вашим пожеланиям в конвертах, которые помогут осуществить наши мечты!
+        <section class="reveal reveal-up" id="chat">
+            <h2 class="section-title">Чат для гостей</h2>
+            <div class="card">
+                <p style="line-height: 1.8; color: #555; margin-bottom: 25px;">
+                    Вступайте в тг-группу, будем знакомиться,<br>а после свадьбы поделимся фото и видео с мероприятия!
                 </p>
+                <a href="javascript:void(0)" class="btn-gold" style="padding: 15px 10px; line-height: 1.3;">
+                    Я не придумал какой чат там будет,<br>поэтому тыкай сколько влезет, она не работает 😏
+                </a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="reveal reveal-up" id="timer">
-        <div class="container">
+        <section class="reveal reveal-up" id="timer">
             <h2 class="section-title">До события осталось</h2>
             <div class="card">
                 <div class="timer-grid" id="weddingTimer">
@@ -312,23 +289,9 @@
                     <div class="timer-item"><span class="timer-val" id="seconds">00</span><span class="timer-label">Секунд</span></div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="reveal reveal-up" id="dresscode">
-        <div class="container">
-            <div class="card">
-                <h2 class="section-title">Дресс-код</h2>
-                <p style="line-height: 1.8; color: #555; max-width: 700px; margin: 0 auto;">
-                    Мы будем рады видеть вас в любом наряде, в котором вы чувствуете себя счастливыми! Главное — это ваше присутствие. <br>
-                    Но если вы вдруг решите поддержать атмосферу праздника и сменить любимую пижаму или домашние тапочки на вечерний образ — мы будем не против. 😉
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section class="reveal reveal-up" id="contacts">
-        <div class="container">
+        <section class="reveal reveal-up" id="contacts">
             <h2 class="section-title">Контакты</h2>
             <div class="card">
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 30px;">
@@ -342,8 +305,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+    </div>
 
     <footer>Алексей & Алина ❤️ 07.08.2026</footer>
 
