@@ -12,8 +12,8 @@
         :root {
             --gold: #b89c7d;
             --dark: #1a1a1a;
-            --light-bg: #fdfcfb;
-            --blue-bg: #e6f7ff; /* Нежный голубой для чередования */
+            --light-bg: #fdfcfb; /* Крафтовый белый */
+            --grey-bg: #f4f4f4;  /* Светло-серый крафтовый для чередования */
             --white: #ffffff;
         }
 
@@ -36,12 +36,16 @@
             z-index: 5;
         }
 
-        /* Анимация появления для текста */
-        .reveal { opacity: 0; transition: opacity 0.8s ease-out, transform 0.8s ease-out; will-change: transform, opacity; }
+        /* Анимация появления - СДЕЛАНА БОЛЕЕ ЗАМЕТНОЙ */
+        .reveal { opacity: 0; transition: opacity 1.2s ease-out, transform 1.2s ease-out; will-change: transform, opacity; }
         .reveal.active { opacity: 1; transform: translate(0, 0) !important; }
-        .reveal-up { transform: translateY(30px); }
+        .reveal-up { transform: translateY(40px); } /* Чуть больше пролёт */
 
-        /* Фоновые фото */
+        /* Эффект проявления (Fade In) для бэкграунд-текста */
+        .fade-in { opacity: 0; animation: fadeInEffect 2s ease-out forwards; }
+        @keyframes fadeInEffect { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Фоновые фото - ВОССТАНОВЛЕНЫ ПОЗИЦИИ */
         .side-photo { 
             position: absolute; 
             width: 220px; 
@@ -70,21 +74,20 @@
         .scroll-down::after { content: ''; display: block; width: 1px; height: 50px; background: white; margin: 15px auto 0; animation: scrollLine 2s infinite; }
         @keyframes scrollLine { 0% { height: 0; opacity: 0; } 50% { height: 50px; opacity: 1; } 100% { height: 0; opacity: 0; transform: translateY(20px); } }
 
-        /* Эффект рваной бумаги и Чередование цветов */
+        /* Эффект рваной бумаги и Чередование цветов (СЕРЫЙ ВМЕСТО ГОЛУБОГО) */
         section { 
-            padding: 100px 0; /* Увеличил отступы для эффекта */
+            padding: 100px 0; 
             position: relative; 
             width: 100%; 
-            background-color: var(--light-bg); /* Дефолтный белый */
+            background-color: var(--light-bg); 
         }
-        section:nth-of-type(even) { background-color: var(--blue-bg); } /* Чередование: четные - голубые */
+        section:nth-of-type(even) { background-color: var(--grey-bg); } /* Чередование: четные - серые */
 
-        /* SVG для рваного края */
         .paper-edge {
             position: absolute;
             left: 0;
             width: 100%;
-            height: 40px; /* Высота рваного края */
+            height: 40px; 
             background-size: 100% 100%;
             z-index: 2;
         }
@@ -96,16 +99,15 @@
             bottom: -20px;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 40' preserveAspectRatio='none'%3E%3Cpath d='M0,25 L30,15 L60,30 L90,20 L120,35 L150,25 L180,40 L210,30 L240,40 L270,25 L300,35 L330,25 L360,40 L390,30 L420,40 L450,25 L480,35 L510,25 L540,40 L570,30 L600,40 L630,25 L660,35 L690,25 L720,40 L750,30 L780,40 L810,25 L840,35 L870,25 L900,40 L930,30 L960,40 L990,25 L1000,30 V0 H0 Z' fill='%23fdfcfb'/%3E%3C/svg%3E");
         }
-        /* Корректировка цветов для SVG в голубых секциях */
+        /* Корректировка цветов для SVG в серых секциях */
         section:nth-of-type(even) .paper-edge-top {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 40' preserveAspectRatio='none'%3E%3Cpath d='M0,15 L30,25 L60,10 L90,20 L120,5 L150,15 L180,0 L210,10 L240,0 L270,15 L300,5 L330,15 L360,0 L390,10 L420,0 L450,15 L480,5 L510,15 L540,0 L570,10 L600,0 L630,15 L660,5 L690,15 L720,0 L750,10 L780,0 L810,15 L840,5 L870,15 L900,0 L930,10 L960,0 L990,15 L1000,10 V40 H0 Z' fill='%23e6f7ff'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 40' preserveAspectRatio='none'%3E%3Cpath d='M0,15 L30,25 L60,10 L90,20 L120,5 L150,15 L180,0 L210,10 L240,0 L270,15 L300,5 L330,15 L360,0 L390,10 L420,0 L450,15 L480,5 L510,15 L540,0 L570,10 L600,0 L630,15 L660,5 L690,15 L720,0 L750,10 L780,0 L810,15 L840,5 L870,15 L900,0 L930,10 L960,0 L990,15 L1000,10 V40 H0 Z' fill='%23f4f4f4'/%3E%3C/svg%3E");
         }
         section:nth-of-type(even) .paper-edge-bottom {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 40' preserveAspectRatio='none'%3E%3Cpath d='M0,25 L30,15 L60,30 L90,20 L120,35 L150,25 L180,40 L210,30 L240,40 L270,25 L300,35 L330,25 L360,40 L390,30 L420,40 L450,25 L480,35 L510,25 L540,40 L570,30 L600,40 L630,25 L660,35 L690,25 L720,40 L750,30 L780,40 L810,25 L840,35 L870,25 L900,40 L930,30 L960,40 L990,25 L1000,30 V0 H0 Z' fill='%23e6f7ff'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 40' preserveAspectRatio='none'%3E%3Cpath d='M0,25 L30,15 L60,30 L90,20 L120,35 L150,25 L180,40 L210,30 L240,40 L270,25 L300,35 L330,25 L360,40 L390,30 L420,40 L450,25 L480,35 L510,25 L540,40 L570,30 L600,40 L630,25 L660,35 L690,25 L720,40 L750,30 L780,40 L810,25 L840,35 L870,25 L900,40 L930,30 L960,40 L990,25 L1000,30 V0 H0 Z' fill='%23f4f4f4'/%3E%3C/svg%3E");
         }
 
         .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 3.5rem); text-align: center; margin-bottom: 40px; font-weight: 300; font-style: italic; }
-        /* Убрал сплошную рамку .card, теперь это просто контейнер текста */
         .card { text-align: center; position: relative; width: 100%; max-width: 800px; margin: 0 auto; }
 
         .calendar { max-width: 320px; margin: 40px auto 0; background: #fff; padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
@@ -150,10 +152,9 @@
             .prog-info { border-left: none; border-top: 1px solid #eee; padding-top: 15px; padding-left: 0; text-align: center; }
             .card { padding: 40px 20px; }
             
-            /* Кнопка Листать ниже в центре на телефоне */
             .scroll-down {
                 bottom: auto;
-                top: 80%; /* Ставим под датой */
+                top: 80%; 
                 left: 50%;
                 transform: translateX(-50%);
                 font-size: 0.8rem;
@@ -170,9 +171,9 @@
     <header id="hero">
         <div class="header-overlay"></div>
         <div class="hero-content">
-            <div class="hero-wedding-day">Wedding Day</div>
-            <h1>Алексей & Алина</h1>
-            <div class="hero-date">07 августа 2026</div>
+            <div class="hero-wedding-day fade-in">Wedding Day</div>
+            <h1 class="fade-in">Алексей & Алина</h1>
+            <div class="hero-date fade-in">07 августа 2026</div>
         </div>
         <a href="#welcome_section" class="scroll-down">Листать вниз</a>
     </header>
@@ -185,7 +186,8 @@
     </div>
 
     <section id="welcome_section">
-        <div class="paper-edge paper-edge-bottom"></div> <div class="container">
+        <div class="paper-edge paper-edge-bottom"></div>
+        <div class="container">
             <div class="card">
                 <h2 class="section-title reveal reveal-up">Дорогие друзья и родные</h2>
                 <p class="reveal reveal-up" style="line-height: 2; max-width: 750px; margin: 0 auto 40px; color: #555; font-size: 1.1rem;">
@@ -214,7 +216,9 @@
     </section>
 
     <section id="timeline">
-        <div class="paper-edge paper-edge-top"></div> <div class="paper-edge paper-edge-bottom"></div> <div class="container">
+        <div class="paper-edge paper-edge-top"></div>
+        <div class="paper-edge paper-edge-bottom"></div>
+        <div class="container">
             <h2 class="section-title reveal reveal-up">План дня</h2>
             <div class="prog-grid">
                 <div class="prog-item reveal reveal-up"><div class="prog-time">14:30</div><div class="prog-info"><h3>Сбор гостей</h3><p>Встречаемся у входа, настраиваемся на праздник.</p></div></div>
@@ -228,7 +232,9 @@
     </section>
 
     <section id="rsvp">
-        <div class="paper-edge paper-edge-top"></div> <div class="paper-edge paper-edge-bottom"></div> <div class="container">
+        <div class="paper-edge paper-edge-top"></div>
+        <div class="paper-edge paper-edge-bottom"></div>
+        <div class="container">
             <div class="card">
                 <h2 class="section-title reveal reveal-up">Анкета гостя</h2>
                 <p class="reveal reveal-up" style="font-size: 0.9rem; color: #888; margin-bottom: 25px;">Будем благодарны, если вы подтвердите своё присутствие до 01.06.26</p>
@@ -287,7 +293,9 @@
     </section>
 
     <section id="wishes">
-        <div class="paper-edge paper-edge-top"></div> <div class="paper-edge paper-edge-bottom"></div> <div class="container">
+        <div class="paper-edge paper-edge-top"></div>
+        <div class="paper-edge paper-edge-bottom"></div>
+        <div class="container">
             <div style="text-align: center;">
                 <h2 class="section-title reveal reveal-up">Пожелания</h2>
                 <p class="reveal reveal-up" style="line-height: 2; color: #555; max-width: 800px; margin: 0 auto; font-size: 1.1rem;">
@@ -298,7 +306,9 @@
     </section>
 
     <section id="dresscode">
-        <div class="paper-edge paper-edge-top"></div> <div class="paper-edge paper-edge-bottom"></div> <div class="container">
+        <div class="paper-edge paper-edge-top"></div>
+        <div class="paper-edge paper-edge-bottom"></div>
+        <div class="container">
             <div class="card">
                 <h2 class="section-title reveal reveal-up">Дресс-код</h2>
                 <p class="reveal reveal-up" style="line-height: 1.8; color: #555; max-width: 700px; margin: 0 auto;">
@@ -310,7 +320,9 @@
     </section>
 
     <section id="location">
-        <div class="paper-edge paper-edge-top"></div> <div class="paper-edge paper-edge-bottom"></div> <div class="container">
+        <div class="paper-edge paper-edge-top"></div>
+        <div class="paper-edge paper-edge-bottom"></div>
+        <div class="container">
             <h2 class="section-title reveal reveal-up">Место церемонии</h2>
             <div class="card">
                 <p class="reveal reveal-up" style="margin-bottom: 25px; line-height: 1.8;">
@@ -327,7 +339,9 @@
     </section>
 
     <section id="chat">
-        <div class="paper-edge paper-edge-top"></div> <div class="paper-edge paper-edge-bottom"></div> <div class="container">
+        <div class="paper-edge paper-edge-top"></div>
+        <div class="paper-edge paper-edge-bottom"></div>
+        <div class="container">
             <h2 class="section-title reveal reveal-up">Чат для гостей</h2>
             <div class="card">
                 <p class="reveal reveal-up" style="line-height: 1.8; color: #555; margin-bottom: 25px;">
@@ -341,7 +355,9 @@
     </section>
 
     <section id="timer">
-        <div class="paper-edge paper-edge-top"></div> <div class="paper-edge paper-edge-bottom"></div> <div class="container">
+        <div class="paper-edge paper-edge-top"></div>
+        <div class="paper-edge paper-edge-bottom"></div>
+        <div class="container">
             <h2 class="section-title reveal reveal-up">До события осталось</h2>
             <div class="card reveal reveal-up">
                 <div class="timer-grid" id="weddingTimer">
@@ -354,7 +370,9 @@
         </div>
     </section>
 
-    <section id="contacts" style="padding-bottom: 40px;"> <div class="paper-edge paper-edge-top"></div> <div class="container">
+    <section id="contacts" style="padding-bottom: 40px;">
+        <div class="paper-edge paper-edge-top"></div>
+        <div class="container">
             <h2 class="section-title reveal reveal-up">Контакты</h2>
             <div class="card">
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 30px;">
@@ -370,6 +388,8 @@
             </div>
         </div>
     </section>
+
+    </div>
 
     <footer>Алексей & Алина ❤️ 07.08.2026</footer>
 
