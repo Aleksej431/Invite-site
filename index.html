@@ -23,6 +23,7 @@
             overflow-x: hidden; 
             background-color: var(--light-bg); color: var(--dark); 
             font-family: 'Montserrat', sans-serif; font-weight: 300;
+            scroll-behavior: smooth;
         }
 
         .container { 
@@ -34,16 +35,14 @@
             z-index: 5;
         }
 
-        /* Фоновые фото - ИСПРАВЛЕНО (убрана прозрачность) */
         .side-photo { 
             position: absolute; 
             width: 220px; 
             z-index: 1; 
             pointer-events: none; 
-            opacity: 1; /* Установил полную непрозрачность */
+            opacity: 1; 
             display: block; 
         }
-        /* Позиции фото без изменений */
         .photo-1 { left: -140px; transform: rotate(-10deg); top: 18%; } 
         .photo-2 { right: -100px; transform: rotate(12deg); top: 32%; }
         .photo-3 { left: -160px; transform: rotate(8deg); top: 60%; } 
@@ -77,14 +76,7 @@
         .calendar-day.active { background: var(--gold); color: white; border-radius: 50%; font-weight: bold; }
 
         .timer-grid { display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
-        .timer-item { 
-            text-align: center; 
-            min-width: 80px; 
-            padding: 15px 10px;
-            border: 1px solid rgba(184, 156, 125, 0.4);
-            border-radius: 20px;
-            background: #fff;
-        }
+        .timer-item { text-align: center; min-width: 80px; padding: 15px 10px; border: 1px solid rgba(184, 156, 125, 0.4); border-radius: 20px; background: #fff; }
         .timer-val { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--gold); display: block; line-height: 1; margin-bottom: 5px; }
         .timer-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; color: #999; }
 
@@ -129,14 +121,14 @@
 
     <div id="lightbox" onclick="this.style.display='none'"><img src="" alt=""></div>
 
-    <header>
+    <header id="hero">
         <div class="header-overlay"></div>
         <div class="hero-content">
             <div class="hero-wedding-day">Wedding Day</div>
             <h1>Алексей & Алина</h1>
             <div class="hero-date">07 августа 2026</div>
         </div>
-        <a href="#welcome" class="scroll-down">Листать вниз</a>
+        <a href="#welcome_section" class="scroll-down">Листать вниз</a>
     </header>
 
     <div class="container">
@@ -145,9 +137,9 @@
         <div class="polaroid side-photo photo-3"><img src="img/3.jpg" loading="lazy"></div>
         <div class="polaroid side-photo photo-4"><img src="img/4.jpg" loading="lazy"></div>
         
-        <section class="reveal reveal-up" id="welcome">
+        <section class="reveal reveal-up" id="welcome_section">
             <div class="card">
-                <h2 class="section-title">Дорогие друзья и родные!</h2>
+                <h2 class="section-title">Дорогие друзья и родные</h2>
                 <p style="line-height: 2; max-width: 750px; margin: 0 auto 40px; color: #555; font-size: 1.1rem;">
                     В нашей истории начинается новая счастливая глава, и мы будем искренне рады открыть её вместе с вами! Приглашаем вас разделить этот важный для нас день.
                 </p>
@@ -173,20 +165,20 @@
         </section>
 
         <section class="reveal reveal-up" id="timeline">
-            <h2 class="section-title">План дня 📅</h2>
+            <h2 class="section-title">План дня</h2>
             <div class="prog-grid">
-                <div class="prog-item"><div class="prog-time">14:30</div><div class="prog-info"><h3>Сбор гостей 🥂</h3><p>Встречаемся у входа, настраиваемся на праздник.</p></div></div>
-                <div class="prog-item"><div class="prog-time">15:10</div><div class="prog-info"><h3>Церемония 💍</h3><p>Тот самый момент, когда мы станем одной семьей.</p></div></div>
-                <div class="prog-item"><div class="prog-time">16:30</div><div class="prog-info"><h3>Welcome-встреча 🍹</h3><p>Фуршет и легкая музыка.</p></div></div>
-                <div class="prog-item"><div class="prog-time">17:30</div><div class="prog-info"><h3>Банкет 🍽️</h3><p>Праздничный ужин и танцы.</p></div></div>
-                <div class="prog-item"><div class="prog-time">22:00</div><div class="prog-info"><h3>Свадебный торт 🎂</h3><p>Сладкое завершение вечера.</p></div></div>
-                <div class="prog-item"><div class="prog-time">22:30</div><div class="prog-info"><h3>Завершение вечера ✨</h3><p>Окончание праздничной программы.</p></div></div>
+                <div class="prog-item"><div class="prog-time">14:30</div><div class="prog-info"><h3>Сбор гостей</h3><p>Встречаемся у входа, настраиваемся на праздник.</p></div></div>
+                <div class="prog-item"><div class="prog-time">15:10</div><div class="prog-info"><h3>Церемония</h3><p>Тот самый момент, когда мы станем одной семьей.</p></div></div>
+                <div class="prog-item"><div class="prog-time">16:30</div><div class="prog-info"><h3>Welcome-встреча</h3><p>Фуршет и легкая музыка.</p></div></div>
+                <div class="prog-item"><div class="prog-time">17:30</div><div class="prog-info"><h3>Банкет</h3><p>Праздничный ужин и танцы.</p></div></div>
+                <div class="prog-item"><div class="prog-time">22:00</div><div class="prog-info"><h3>Свадебный торт</h3><p>Сладкое завершение вечера.</p></div></div>
+                <div class="prog-item"><div class="prog-time">22:30</div><div class="prog-info"><h3>Завершение вечера</h3><p>Окончание праздничной программы.</p></div></div>
             </div>
         </section>
 
         <section class="reveal reveal-right" id="rsvp">
             <div class="card">
-                <h2 class="section-title">Анкета гостя ✍️</h2>
+                <h2 class="section-title">Анкета гостя</h2>
                 <p style="font-size: 0.9rem; color: #888; margin-bottom: 25px;">Будем благодарны, если вы подтвердите своё присутствие до 07.07.26</p>
                 
                 <form class="rsvp-form" id="weddingForm">
@@ -238,7 +230,7 @@
 
         <section class="reveal reveal-up" id="wishes">
             <div style="text-align: center;">
-                <h2 class="section-title">Пожелания 🕊️</h2>
+                <h2 class="section-title">Пожелания</h2>
                 <p style="line-height: 2; color: #555; max-width: 800px; margin: 0 auto; font-size: 1.1rem;">
                     Ваши улыбки и смех подарят нам незабываемое счастье в этот день. Если вы хотите подарить нам ценный и нужный подарок, мы будем очень благодарны вашим пожеланиям в конвертах, которые помогут осуществить наши мечты!
                 </p>
@@ -256,7 +248,7 @@
         </section>
 
         <section class="reveal reveal-up" id="location">
-            <h2 class="section-title">Место церемонии 📍</h2>
+            <h2 class="section-title">Место церемонии</h2>
             <div class="card">
                 <p style="margin-bottom: 25px; line-height: 1.8;">
                     Церемония бракосочетания пройдет в <br>
@@ -271,7 +263,7 @@
         </section>
 
         <section class="reveal reveal-up" id="timer">
-            <h2 class="section-title">Таймер любви ⏳</h2>
+            <h2 class="section-title">Таймер любви</h2>
             <div class="card">
                 <div class="timer-grid" id="weddingTimer">
                     <div class="timer-item"><span class="timer-val" id="days">00</span><span class="timer-label">Дней</span></div>
@@ -283,7 +275,7 @@
         </section>
 
         <section class="reveal reveal-up" id="chat">
-            <h2 class="section-title">Чат для гостей 💬</h2>
+            <h2 class="section-title">Чат для гостей</h2>
             <div class="card">
                 <p style="line-height: 1.8; color: #555; margin-bottom: 25px;">
                     Вступайте в тг-группу, будем знакомиться,<br>а после свадьбы поделимся фото и видео с мероприятия!
@@ -380,6 +372,11 @@
             fetch(scriptUrl, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(new FormData(this)) })
             .then(() => { document.getElementById('msg').innerText = "Спасибо! Ответ получен."; submitBtn.innerText = "ГОТОВО"; })
             .catch(() => { submitBtn.disabled = false; submitBtn.innerText = "ОШИБКА"; });
+        };
+        
+        // Гарантируем скролл вверх при загрузке
+        window.onload = function() {
+            window.scrollTo(0, 0);
         };
     </script>
 </body>
