@@ -226,7 +226,7 @@
                     <div id="msg" style="margin-top: 15px; color: var(--gold); font-weight: 500;"></div>
                 </form>
 
-                <div class="polaroid-container">
+                <div class="polaroid-container reveal reveal-up">
                     <div class="polaroid polaroid-left" onclick="openLightbox(this)"><img src="img/5.jpg" loading="lazy"></div>
                     <div class="polaroid polaroid-right" onclick="openLightbox(this)"><img src="img/6.jpg" loading="lazy"></div>
                 </div>
@@ -280,7 +280,7 @@
         </section>
 
         <section class="reveal reveal-up" id="timer">
-            <h2 class="section-title">Таймер любви</h2>
+            <h2 class="section-title">До события осталось</h2>
             <div class="card">
                 <div class="timer-grid" id="weddingTimer">
                     <div class="timer-item"><span class="timer-val" id="days">00</span><span class="timer-label">Дней</span></div>
@@ -351,7 +351,6 @@
             document.getElementById('ownDrinkInput').style.display = this.checked ? 'block' : 'none';
         };
 
-        // ЛОГИКА АНКЕТЫ
         let gCount = 0;
         const addBtn = document.getElementById('addGuestBtn');
         const guestsContainer = document.getElementById('additional-guests');
@@ -363,7 +362,7 @@
                     addBtn.style.display = 'block';
                 } else {
                     addBtn.style.display = 'none';
-                    guestsContainer.innerHTML = ''; // Сбросить добавленных гостей, если передумал
+                    guestsContainer.innerHTML = '';
                     gCount = 0;
                 }
             });
