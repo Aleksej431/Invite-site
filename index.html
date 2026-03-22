@@ -186,18 +186,23 @@
                         <label style="font-size: 0.85rem; padding-left: 10px; color: #555;">Ваше имя и фамилия</label>
                         <input type="text" name="guest_name" placeholder="Например: Дмитрий Иванов" required style="margin-top: 5px;">
                     </div>
-                    <input type="tel" name="phone" id="phoneInput" placeholder="+7 (___) ___-__-__" required>
+
                     <div style="text-align: left; margin: 10px 0;">
                         <label style="font-size: 0.9rem; font-weight: 500; display: block; margin-bottom: 10px;">Сможете ли вы присутствовать?</label>
                         <label style="display: block; margin-bottom: 12px; cursor: pointer;">
-                            <input type="radio" name="attendance" value="Да" required style="width: auto; margin-right: 10px;"> Обязательно приду
+                            <input type="radio" name="attendance" value="Приду один" required style="width: auto; margin-right: 10px;"> Приду один / одна
+                        </label>
+                        <label style="display: block; margin-bottom: 12px; cursor: pointer;">
+                            <input type="radio" name="attendance" value="Приду с кем-то" style="width: auto; margin-right: 10px;"> Приду с кем-то
                         </label>
                         <label style="display: block; cursor: pointer;">
                             <input type="radio" name="attendance" value="Нет" style="width: auto; margin-right: 10px;"> К сожалению, не смогу присутствовать
                         </label>
                     </div>
+
                     <div id="additional-guests"></div>
-                    <button type="button" id="addGuestBtn" style="background:none; border:1px dashed var(--gold); color:var(--gold); padding:15px; border-radius:25px; cursor:pointer; margin-bottom:15px;">+ Добавить гостя</button>
+                    <button type="button" id="addGuestBtn" style="display:none; background:none; border:1px dashed var(--gold); color:var(--gold); padding:15px; border-radius:25px; cursor:pointer; margin-bottom:15px;">+ Добавить гостя</button>
+
                     <div style="text-align: left; margin: 10px 0;">
                         <label style="font-size: 0.9rem; font-weight: 500; display: block; margin-bottom: 15px;">Что предпочитаете из напитков?</label>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
@@ -262,18 +267,6 @@
             </div>
         </section>
 
-        <section class="reveal reveal-up" id="timer">
-            <h2 class="section-title">Таймер любви</h2>
-            <div class="card">
-                <div class="timer-grid" id="weddingTimer">
-                    <div class="timer-item"><span class="timer-val" id="days">00</span><span class="timer-label">Дней</span></div>
-                    <div class="timer-item"><span class="timer-val" id="hours">00</span><span class="timer-label">Часов</span></div>
-                    <div class="timer-item"><span class="timer-val" id="minutes">00</span><span class="timer-label">Минут</span></div>
-                    <div class="timer-item"><span class="timer-val" id="seconds">00</span><span class="timer-label">Секунд</span></div>
-                </div>
-            </div>
-        </section>
-
         <section class="reveal reveal-up" id="chat">
             <h2 class="section-title">Чат для гостей</h2>
             <div class="card">
@@ -283,6 +276,18 @@
                 <a href="javascript:void(0)" class="btn-gold" style="padding: 15px 10px; line-height: 1.3;">
                     Я не придумал какой чат там будет,<br>поэтому тыкай сколько влезет, она не работает 😏
                 </a>
+            </div>
+        </section>
+
+        <section class="reveal reveal-up" id="timer">
+            <h2 class="section-title">Таймер любви</h2>
+            <div class="card">
+                <div class="timer-grid" id="weddingTimer">
+                    <div class="timer-item"><span class="timer-val" id="days">00</span><span class="timer-label">Дней</span></div>
+                    <div class="timer-item"><span class="timer-val" id="hours">00</span><span class="timer-label">Часов</span></div>
+                    <div class="timer-item"><span class="timer-val" id="minutes">00</span><span class="timer-label">Минут</span></div>
+                    <div class="timer-item"><span class="timer-val" id="seconds">00</span><span class="timer-label">Секунд</span></div>
+                </div>
             </div>
         </section>
 
@@ -346,9 +351,24 @@
             document.getElementById('ownDrinkInput').style.display = this.checked ? 'block' : 'none';
         };
 
+        // ЛОГИКА АНКЕТЫ
         let gCount = 0;
         const addBtn = document.getElementById('addGuestBtn');
         const guestsContainer = document.getElementById('additional-guests');
+        const attendanceRadios = document.getElementsByName('attendance');
+
+        for (let radio of attendanceRadios) {
+            radio.addEventListener('change', function() {
+                if (this.value === 'Приду с кем-то') {
+                    addBtn.style.display = 'block';
+                } else {
+                    addBtn.style.display = 'none';
+                    guestsContainer.innerHTML = ''; // Сбросить добавленных гостей, если передумал
+                    gCount = 0;
+                }
+            });
+        }
+
         addBtn.onclick = function() {
             if (guestsContainer.children.length < 9) {
                 gCount++;
@@ -357,12 +377,6 @@
                 wrapper.innerHTML = `<input type="text" name="extra_guest_${gCount}" placeholder="Имя и фамилия гостя" required style="margin:0;"><button type="button" style="background:none; border:none; color:red; cursor:pointer; font-size:1.5rem;" onclick="this.parentElement.remove()">×</button>`;
                 guestsContainer.appendChild(wrapper);
             }
-        };
-
-        document.getElementById('phoneInput').oninput = function() {
-            let matrix = "+7 (___) ___-__-__", i = 0, def = matrix.replace(/\D/g, ""), val = this.value.replace(/\D/g, "");
-            if (def.length >= val.length) val = def;
-            this.value = matrix.replace(/./g, a => /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? "" : a);
         };
 
         document.getElementById('weddingForm').onsubmit = function(e) {
@@ -374,7 +388,6 @@
             .catch(() => { submitBtn.disabled = false; submitBtn.innerText = "ОШИБКА"; });
         };
         
-        // Гарантируем скролл вверх при загрузке
         window.onload = function() {
             window.scrollTo(0, 0);
         };
