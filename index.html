@@ -27,7 +27,6 @@
             scroll-behavior: smooth;
         }
 
-        /* Контейнер теперь используется только для центрирования контента */
         .container { 
             max-width: 1000px; 
             margin: 0 auto; 
@@ -37,51 +36,54 @@
             z-index: 5;
         }
 
-        /* Секции по умолчанию */
+        /* ПОЛНОШИРИННЫЕ СЕКЦИИ С ВОЛНАМИ */
         section { padding: 100px 0; position: relative; width: 100%; }
 
-        /* СЕРЫЕ СЕКЦИИ НА ВСЮ ШИРИНУ */
         section:nth-of-type(even) { 
             background-color: var(--grey-bg); 
             width: 100%;
-            left: 0;
         }
 
-        /* ВОЛНЫ: привязаны к краям экрана */
+        /* ВОЛНЫ НА ВСЮ ШИРИНУ */
         section:nth-of-type(even)::before,
         section:nth-of-type(even)::after {
             content: "";
             position: absolute;
             left: 0;
             width: 100%;
-            height: 50px; 
+            height: 60px; 
             background-repeat: no-repeat;
             background-size: 100% 100%;
             z-index: 1;
         }
 
         section:nth-of-type(even)::before {
-            top: -49px; 
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 50' preserveAspectRatio='none'%3E%3Cpath d='M0,50 Q600,20 1200,50 L1200,50 L0,50 Z' fill='%23f4f4f4'/%3E%3C/svg%3E");
+            top: -59px; 
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60' preserveAspectRatio='none'%3E%3Cpath d='M0,60 C300,45 900,45 1200,60 L1200,60 L0,60 Z' fill='%23f4f4f4'/%3E%3C/svg%3E");
         }
 
         section:nth-of-type(even)::after {
-            bottom: -49px; 
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 50' preserveAspectRatio='none'%3E%3Cpath d='M0,0 Q600,30 1200,0 L1200,0 L0,0 Z' fill='%23f4f4f4'/%3E%3C/svg%3E");
+            bottom: -59px; 
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C300,15 900,15 1200,0 L1200,0 L0,0 Z' fill='%23f4f4f4'/%3E%3C/svg%3E");
         }
 
+        /* ИСПРАВЛЕННОЕ ПОЗИЦИОНИРОВАНИЕ БОКОВЫХ ФОТО */
         .side-photo { 
             position: absolute; 
             width: 220px; 
-            z-index: 1; 
+            z-index: 10; /* Поверх волн и фона */
             pointer-events: none; 
             opacity: 1; 
             display: block; 
         }
-        .photo-1 { left: -140px; transform: rotate(-10deg); top: 18%; } 
-        .photo-2 { right: -100px; transform: rotate(12deg); top: 32%; }
-        .photo-3 { left: -160px; transform: rotate(8deg); top: 60%; } 
-        .photo-4 { right: -120px; transform: rotate(-15deg); top: 85%; }
+        
+        /* Привязка к первой секции (Белой) */
+        #welcome_section .photo-1 { left: -140px; transform: rotate(-10deg); top: 15%; } 
+        #welcome_section .photo-2 { right: -100px; transform: rotate(12deg); top: 35%; }
+        
+        /* Привязка к третьей секции (Белой) */
+        #rsvp .photo-3 { left: -160px; transform: rotate(8deg); top: 15%; } 
+        #rsvp .photo-4 { right: -120px; transform: rotate(-15deg); top: 35%; }
 
         .reveal { opacity: 0; transition: opacity 0.8s ease-out, transform 0.8s ease-out; will-change: transform, opacity; }
         .reveal.active { opacity: 1; transform: translate(0, 0) !important; }
