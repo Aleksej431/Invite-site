@@ -36,24 +36,29 @@
             z-index: 5;
         }
 
-        /* Анимации */
+        /* Анимации появления текста */
         .reveal { opacity: 0; transition: opacity 1.2s ease-out, transform 1.2s ease-out; will-change: transform, opacity; }
         .reveal.active { opacity: 1; transform: translate(0, 0) !important; }
         .reveal-up { transform: translateY(40px); }
         .fade-in { opacity: 0; animation: fadeInEffect 2s ease-out forwards; }
         @keyframes fadeInEffect { from { opacity: 0; } to { opacity: 1; } }
 
-        /* Фото по бокам */
+        /* Фото по бокам - ФИКСИРОВАННОЕ ПОЗИЦИОНИРОВАНИЕ, чтобы не уезжали */
         .side-photo { 
-            position: absolute; 
-            width: 220px; 
+            position: fixed; 
+            width: 180px; 
             z-index: 1; 
             pointer-events: none; 
+            background: white;
+            padding: 10px 10px 30px 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
-        .photo-1 { left: -140px; transform: rotate(-10deg); top: 500px; } 
-        .photo-2 { right: -100px; transform: rotate(12deg); top: 900px; }
-        .photo-3 { left: -160px; transform: rotate(8deg); top: 1800px; } 
-        .photo-4 { right: -120px; transform: rotate(-15deg); top: 2600px; }
+        .side-photo img { width: 100%; height: auto; display: block; }
+        
+        .photo-1 { left: -50px; top: 15%; transform: rotate(-10deg); } 
+        .photo-2 { right: -40px; top: 35%; transform: rotate(12deg); }
+        .photo-3 { left: -60px; top: 60%; transform: rotate(8deg); } 
+        .photo-4 { right: -50px; top: 80%; transform: rotate(-15deg); }
 
         header {
             height: 100vh; display: flex; justify-content: center; align-items: center;
@@ -73,7 +78,6 @@
         section { padding: 100px 0; position: relative; width: 100%; background-color: var(--light-bg); }
         section:nth-of-type(even) { background-color: var(--grey-bg); }
 
-        /* Рваный край */
         .paper-edge { position: absolute; left: 0; width: 100%; height: 40px; z-index: 2; background-size: 100% 100%; }
         .paper-edge-top { top: -20px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 40' preserveAspectRatio='none'%3E%3Cpath d='M0,15 L30,25 L60,10 L90,20 L120,5 L150,15 L180,0 L210,10 L240,0 L270,15 L300,5 L330,15 L360,0 L390,10 L420,0 L450,15 L480,5 L510,15 L540,0 L570,10 L600,0 L630,15 L660,5 L690,15 L720,0 L750,10 L780,0 L810,15 L840,5 L870,15 L900,0 L930,10 L960,0 L990,15 L1000,10 V40 H0 Z' fill='%23fdfcfb'/%3E%3C/svg%3E"); }
         .paper-edge-bottom { bottom: -20px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 40' preserveAspectRatio='none'%3E%3Cpath d='M0,25 L30,15 L60,30 L90,20 L120,35 L150,25 L180,40 L210,30 L240,40 L270,25 L300,35 L330,25 L360,40 L390,30 L420,40 L450,25 L480,35 L510,25 L540,40 L570,30 L600,40 L630,25 L660,35 L690,25 L720,40 L750,30 L780,40 L810,25 L840,35 L870,25 L900,40 L930,30 L960,40 L990,25 L1000,30 V0 H0 Z' fill='%23fdfcfb'/%3E%3C/svg%3E"); }
@@ -89,7 +93,7 @@
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; font-size: 0.9rem; }
         .calendar-day { padding: 8px 0; position: relative; }
         .calendar-day.heart { color: var(--gold); font-weight: bold; position: relative; }
-        .calendar-day.heart::after { content: '❤'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2.2rem; opacity: 0.2; color: var(--gold); pointer-events: none; }
+        .calendar-day.heart::after { content: '❤'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2.2rem; opacity: 0.3; color: var(--gold); pointer-events: none; }
 
         .prog-grid { display: grid; gap: 20px; max-width: 700px; margin: 0 auto; }
         .prog-item { display: flex; align-items: center; padding: 25px; background: rgba(255,255,255,0.6); border-radius: 30px; border: 1px solid rgba(0,0,0,0.05); }
@@ -142,10 +146,10 @@
         <a href="#welcome_section" class="scroll-down">Листать вниз</a>
     </header>
 
-    <div class="polaroid side-photo photo-1"><img src="img/1.jpg" loading="lazy"></div>
-    <div class="polaroid side-photo photo-2"><img src="img/2.jpg" loading="lazy"></div>
-    <div class="polaroid side-photo photo-3"><img src="img/3.jpg" loading="lazy"></div>
-    <div class="polaroid side-photo photo-4"><img src="img/4.jpg" loading="lazy"></div>
+    <div class="side-photo photo-1"><img src="img/1.jpg" loading="lazy"></div>
+    <div class="side-photo photo-2"><img src="img/2.jpg" loading="lazy"></div>
+    <div class="side-photo photo-3"><img src="img/3.jpg" loading="lazy"></div>
+    <div class="side-photo photo-4"><img src="img/4.jpg" loading="lazy"></div>
 
     <section id="welcome_section">
         <div class="paper-edge paper-edge-bottom"></div>
@@ -162,7 +166,10 @@
                         <div style="color:#ccc; font-size:0.7rem;">ПН</div><div style="color:#ccc; font-size:0.7rem;">ВТ</div><div style="color:#ccc; font-size:0.7rem;">СР</div><div style="color:#ccc; font-size:0.7rem;">ЧТ</div><div style="color:#ccc; font-size:0.7rem;">ПТ</div><div style="color:#ccc; font-size:0.7rem;">СБ</div><div style="color:#ccc; font-size:0.7rem;">ВС</div>
                         <div></div><div></div><div></div><div></div><div></div><div class="calendar-day">1</div><div class="calendar-day">2</div>
                         <div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day heart">7</div><div class="calendar-day">8</div><div class="calendar-day">9</div>
-                        <div>...</div>
+                        <div class="calendar-day">10</div><div class="calendar-day">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day">14</div><div class="calendar-day">15</div><div class="calendar-day">16</div>
+                        <div class="calendar-day">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day">21</div><div class="calendar-day">22</div><div class="calendar-day">23</div>
+                        <div class="calendar-day">24</div><div class="calendar-day">25</div><div class="calendar-day">26</div><div class="calendar-day">27</div><div class="calendar-day">28</div><div class="calendar-day">29</div><div class="calendar-day">30</div>
+                        <div class="calendar-day">31</div>
                     </div>
                 </div>
 
@@ -215,6 +222,64 @@
                     <div class="polaroid polaroid-left" onclick="openLightbox(this)"><img src="img/5.jpg" loading="lazy"></div>
                     <div class="polaroid polaroid-right" onclick="openLightbox(this)"><img src="img/6.jpg" loading="lazy"></div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="wishes">
+        <div class="paper-edge paper-edge-top"></div>
+        <div class="paper-edge paper-edge-bottom"></div>
+        <div class="container">
+            <div style="text-align: center;">
+                <h2 class="section-title reveal reveal-up">Пожелания</h2>
+                <p class="reveal reveal-up" style="line-height: 2; color: #555; max-width: 800px; margin: 0 auto; font-size: 1.1rem;">
+                    Ваши улыбки подарят нам незабываемое счастье в этот день. Если вы хотите подарить нам ценный подарок, мы будем очень благодарны пожеланиям в конвертах!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="dresscode">
+        <div class="paper-edge paper-edge-top"></div>
+        <div class="paper-edge paper-edge-bottom"></div>
+        <div class="container">
+            <div class="card">
+                <h2 class="section-title reveal reveal-up">Дресс-код</h2>
+                <p class="reveal reveal-up" style="line-height: 1.8; color: #555; max-width: 700px; margin: 0 auto;">
+                    Мы будем рады видеть вас в любом наряде, в котором вы чувствуете себя счастливыми! Главное — ваше присутствие.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="location">
+        <div class="paper-edge paper-edge-top"></div>
+        <div class="paper-edge paper-edge-bottom"></div>
+        <div class="container">
+            <h2 class="section-title reveal reveal-up">Место церемонии</h2>
+            <div class="card">
+                <p class="reveal reveal-up" style="margin-bottom: 25px; line-height: 1.8;">
+                    <strong>ЗАГС по Ленинскому району</strong> <br>
+                    г. Ульяновск, ул. Гимова, д. 3
+                </p>
+                <div class="reveal reveal-up" style="border-radius:30px; overflow:hidden;">
+                    <iframe src="https://yandex.ru/map-widget/v1/org/otdel_zags_po_leninskomu_rayonu_g_ulyanovska/1088477357/?ll=48.404093%2C54.317406&z=17" width="100%" height="400" frameborder="0"></iframe>
+                </div>
+                <img src="https://sun9-72.userapi.com/s/v1/ig2/9kAvRSbjAp284e_nbfuRI6JwMs6IUntuDn83f5dkoxMx46470zPwsFFSOoLyV8Dw5Aa0QjuPGXAtInDNptOs3eC-.jpg?quality=95&from=bu&cs=1024x0" class="zags-photo reveal reveal-up" alt="ЗАГС" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <section id="chat">
+        <div class="paper-edge paper-edge-top"></div>
+        <div class="paper-edge paper-edge-bottom"></div>
+        <div class="container">
+            <h2 class="section-title reveal reveal-up">Чат для гостей</h2>
+            <div class="card">
+                <p class="reveal reveal-up" style="line-height: 1.8; color: #555; margin-bottom: 25px;">Вступайте в тг-группу, чтобы не пропустить ничего важного!</p>
+                <a href="javascript:void(0)" class="btn-gold reveal reveal-up" style="padding: 15px 10px; line-height: 1.3;">
+                    Я не придумал какой чат там будет,<br>поэтому тыкай сколько влезет, она не работает 😏
+                </a>
             </div>
         </div>
     </section>
@@ -278,7 +343,6 @@
         };
         window.addEventListener('scroll', reveal); reveal();
 
-        // Логика анкеты
         const addBtn = document.getElementById('addGuestBtn');
         const guestsContainer = document.getElementById('additional-guests');
         document.getElementsByName('attendance').forEach(r => {
