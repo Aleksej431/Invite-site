@@ -48,21 +48,19 @@
             position: absolute;
             left: 0;
             width: 100%;
-            height: 40px; /* Высота волны */
+            height: 40px; 
             background-repeat: repeat-x;
-            background-size: 100px 40px; /* Размер одной волны */
+            background-size: 100px 40px; 
             z-index: 1;
         }
 
-        /* Верхняя волна (Серая, выгнутая вверх) */
         section:nth-of-type(even)::before {
-            top: -39px; /* Слегка перекрываем, чтобы не было зазора */
+            top: -39px; 
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'%3E%3Cpath d='M0,40 C30,0 70,0 100,40 L100,40 L0,40 Z' fill='%23f4f4f4'/%3E%3C/svg%3E");
         }
 
-        /* Нижняя волна (Серая, выгнутая вниз) */
         section:nth-of-type(even)::after {
-            bottom: -39px; /* Слегка перекрываем */
+            bottom: -39px; 
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C30,40 70,40 100,0 L100,0 L0,0 Z' fill='%23f4f4f4'/%3E%3C/svg%3E");
         }
 
@@ -196,13 +194,11 @@
         </section>
 
         <section class="reveal reveal-up" id="timeline">
-            <h2 class="section-title">План дня</h2>
+            <h2 class="section-title">Тайминги</h2>
             <div class="prog-grid">
                 <div class="prog-item"><div class="prog-time">14:30</div><div class="prog-info"><h3>Сбор гостей</h3><p>Встречаемся у входа, настраиваемся на праздник.</p></div></div>
                 <div class="prog-item"><div class="prog-time">15:10</div><div class="prog-info"><h3>Церемония</h3><p>Тот самый момент, когда мы станем одной семьей.</p></div></div>
-                <div class="prog-item"><div class="prog-time">16:30</div><div class="prog-info"><h3>Welcome-встреча</h3><p>Фуршет и легкая музыка.</p></div></div>
                 <div class="prog-item"><div class="prog-time">17:30</div><div class="prog-info"><h3>Банкет</h3><p>Праздничный ужин и танцы.</p></div></div>
-                <div class="prog-item"><div class="prog-time">22:00</div><div class="prog-info"><h3>Свадебный торт</h3><p>Сладкое завершение вечера.</p></div></div>
                 <div class="prog-item"><div class="prog-time">22:30</div><div class="prog-info"><h3>Завершение вечера</h3><p>Окончание праздничной программы.</p></div></div>
             </div>
         </section>
