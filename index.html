@@ -36,18 +36,45 @@
             z-index: 5;
         }
 
+        /* Эффект оторванного края для серых секций */
+        section:nth-of-type(even) { 
+            background-color: var(--grey-bg); 
+            position: relative;
+            z-index: 2;
+        }
+        
+        section:nth-of-type(even)::before,
+        section:nth-of-type(even)::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 35px;
+            background-color: var(--grey-bg);
+            z-index: 1;
+        }
+
+        section:nth-of-type(even)::before {
+            top: -34px;
+            clip-path: polygon(0% 100%, 5% 40%, 10% 85%, 15% 30%, 20% 70%, 25% 45%, 30% 90%, 35% 20%, 40% 80%, 45% 50%, 50% 100%, 55% 35%, 60% 75%, 65% 40%, 70% 95%, 75% 25%, 80% 85%, 85% 55%, 90% 100%, 95% 45%, 100% 80%, 100% 100%);
+        }
+
+        section:nth-of-type(even)::after {
+            bottom: -34px;
+            clip-path: polygon(0% 0%, 5% 60%, 10% 15%, 15% 70%, 20% 30%, 25% 55%, 30% 10%, 35% 80%, 40% 20%, 45% 50%, 50% 0%, 55% 65%, 60% 25%, 65% 60%, 70% 5%, 75% 75%, 80% 15%, 85% 45%, 90% 0%, 95% 55%, 100% 20%, 100% 0%);
+        }
+
+        /* Фиксация боковых фото 1-4 */
         .side-photo { 
             position: absolute; 
             width: 220px; 
-            z-index: 1; 
+            z-index: 10; 
             pointer-events: none; 
-            opacity: 1; 
-            display: block; 
         }
-        .photo-1 { left: -140px; transform: rotate(-10deg); top: 18%; } 
-        .photo-2 { right: -100px; transform: rotate(12deg); top: 32%; }
-        .photo-3 { left: -160px; transform: rotate(8deg); top: 60%; } 
-        .photo-4 { right: -120px; transform: rotate(-15deg); top: 85%; }
+        .photo-1 { left: -80px; top: 15%; transform: rotate(-10deg); } 
+        .photo-2 { right: -60px; top: 35%; transform: rotate(12deg); }
+        .photo-3 { left: -90px; top: 60%; transform: rotate(8deg); } 
+        .photo-4 { right: -70px; top: 82%; transform: rotate(-15deg); }
 
         .reveal { opacity: 0; transition: opacity 0.8s ease-out, transform 0.8s ease-out; will-change: transform, opacity; }
         .reveal.active { opacity: 1; transform: translate(0, 0) !important; }
@@ -69,12 +96,11 @@
         .scroll-down::after { content: ''; display: block; width: 1px; height: 50px; background: white; margin: 15px auto 0; animation: scrollLine 2s infinite; }
         @keyframes scrollLine { 0% { height: 0; opacity: 0; } 50% { height: 50px; opacity: 1; } 100% { height: 0; opacity: 0; transform: translateY(20px); } }
 
-        section { padding: 100px 0; position: relative; width: 100%; background-color: var(--light-bg); }
-        section:nth-of-type(even) { background-color: var(--grey-bg); }
+        section { padding: 120px 0; position: relative; width: 100%; background-color: var(--light-bg); }
 
         .calendar { max-width: 320px; margin: 40px auto 0; background: #fff; padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        .calendar-month { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 15px; color: var(--gold); }
-        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; font-size: 0.9rem; }
+        .calendar-month { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 15px; color: var(--gold); text-align: center; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; font-size: 0.9rem; text-align: center; }
         .calendar-day-name { font-weight: 500; font-size: 0.7rem; color: #ccc; padding-bottom: 10px; }
         .calendar-day { padding: 8px 0; position: relative; }
         .calendar-day.active { color: var(--gold); font-weight: bold; }
@@ -85,12 +111,32 @@
         .timer-val { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--gold); display: block; line-height: 1; margin-bottom: 5px; }
         .timer-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; color: #999; }
 
-        .polaroid-container { display: flex; justify-content: center; gap: 40px; padding: 20px 0; perspective: 1000px; margin-top: 40px; }
-        .polaroid { background: white; padding: 15px 15px 45px 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #f0f0f0; transition: transform 0.4s ease; cursor: pointer; max-width: 280px; width: 100%; margin: 0 auto; }
+        /* Контейнер для парных фото */
+        .polaroid-container { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            gap: 30px; 
+            padding: 40px 0; 
+            margin: 40px auto 0;
+            max-width: 100%;
+        }
+
+        .polaroid { 
+            background: white; 
+            padding: 15px 15px 45px 15px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+            border: 1px solid #f0f0f0; 
+            transition: transform 0.4s ease; 
+            cursor: pointer; 
+            max-width: 280px; 
+            width: 100%; 
+            margin: 0 !important;
+        }
         .polaroid img { width: 100%; height: 300px; object-fit: cover; display: block; }
-        .polaroid-left { transform: rotate(-5deg) translateY(10px); }
-        .polaroid-right { transform: rotate(5deg) translateY(-10px); }
-        .polaroid:hover { transform: rotate(0) scale(1.05) translateY(-20px); z-index: 10; }
+        .polaroid-left { transform: rotate(-5deg); }
+        .polaroid-right { transform: rotate(5deg); }
+        .polaroid:hover { transform: rotate(0) scale(1.05) translateY(-10px); z-index: 20; }
 
         .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 3.5rem); text-align: center; margin-bottom: 40px; font-weight: 300; font-style: italic; }
         .card { background: var(--white); padding: 50px 30px; border-radius: 40px; border: 1px solid rgba(184, 156, 125, 0.15); text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.03); position: relative; width: 100%; overflow: hidden; }
@@ -111,7 +157,7 @@
 
         @media (max-width: 768px) {
             .side-photo { display: none; }
-            .polaroid-container { flex-direction: column; align-items: center; gap: 30px; }
+            .polaroid-container { flex-direction: column; gap: 40px; }
             .prog-item { flex-direction: column; text-align: center; padding: 20px; }
             .prog-time { text-align: center; min-width: auto; margin-bottom: 10px; }
             .prog-info { border-left: none; border-top: 1px solid #eee; padding-top: 15px; padding-left: 0; text-align: center; }
@@ -148,7 +194,7 @@
 
                 <div class="calendar" style="margin-bottom: 60px;">
                     <div class="calendar-month">Август 2026</div>
-                    <div class="calendar-grid">
+                    <div class="calendar-grid" id="calendarGrid">
                         <div class="calendar-day-name">ПН</div><div class="calendar-day-name">ВТ</div><div class="calendar-day-name">СР</div><div class="calendar-day-name">ЧТ</div><div class="calendar-day-name">ПТ</div><div class="calendar-day-name">СБ</div><div class="calendar-day-name">ВС</div>
                         <div></div><div></div><div></div><div></div><div></div><div class="calendar-day">1</div><div class="calendar-day">2</div>
                         <div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day active">7</div><div class="calendar-day">8</div><div class="calendar-day">9</div>
@@ -218,7 +264,7 @@
                     <div id="msg" style="margin-top: 15px; color: var(--gold); font-weight: 500;"></div>
                 </form>
 
-                <div class="polaroid-container reveal reveal-up">
+                <div class="polaroid-container">
                     <div class="polaroid polaroid-left" onclick="openLightbox(this)"><img src="img/5.jpg" loading="lazy"></div>
                     <div class="polaroid polaroid-right" onclick="openLightbox(this)"><img src="img/6.jpg" loading="lazy"></div>
                 </div>
@@ -280,7 +326,7 @@
                     <div class="timer-item"><span class="timer-val" id="minutes">00</span><span class="timer-label">Минут</span></div>
                     <div class="timer-item"><span class="timer-val" id="seconds">00</span><span class="timer-label">Секунд</span></div>
                 </div>
-                <div class="polaroid" style="margin-top: 40px;" onclick="openLightbox(this)">
+                <div class="polaroid" style="margin: 40px auto 0;" onclick="openLightbox(this)">
                     <img src="img/time.jpg" loading="lazy">
                 </div>
             </div>
