@@ -13,7 +13,7 @@
             --gold: #b89c7d;
             --dark: #1a1a1a;
             --light-bg: #fdfcfb;
-            --blue-bg: #f0f7ff; 
+            --grey-bg: #f5f5f5; /* Новый нежно-серый цвет */
             --white: #ffffff;
         }
 
@@ -27,7 +27,7 @@
             scroll-behavior: smooth;
         }
 
-        section:nth-of-type(even) { background-color: var(--blue-bg); }
+        section:nth-of-type(even) { background-color: var(--grey-bg); }
         section:nth-of-type(odd) { background-color: var(--white); }
 
         .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; width: 100%; position: relative; z-index: 5; }
@@ -95,10 +95,28 @@
         input:focus { border-color: var(--gold); background: #fff; }
         .btn-gold { background: var(--dark); color: white; padding: 22px; border-radius: 50px; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: 0.4s; border: none; font-weight: 400; text-decoration: none; display: block; }
         
-        .zags-photo { width: 100%; border-radius: 25px; margin-top: 25px; object-fit: cover; height: 350px; display: block; }
+        /* Миниатюрное фото загса */
+        .zags-photo-mini { 
+            width: 180px; 
+            height: 120px; 
+            border-radius: 15px; 
+            margin: 0 auto 20px; 
+            object-fit: cover; 
+            display: block; 
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
 
-        .timer-photo-full { width: 100%; max-width: 600px; margin: 0 auto 20px; border-radius: 25px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .timer-photo-full img { width: 100%; height: auto; display: block; }
+        /* Эффект слияния (блюр/градиент) для фото таймера */
+        .timer-photo-faded { 
+            width: 100%; 
+            max-width: 600px; 
+            margin: 0 auto 20px; 
+            position: relative;
+            mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+        }
+        .timer-photo-faded img { width: 100%; height: auto; display: block; }
 
         #lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 1000; cursor: zoom-out; }
         #lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; }
@@ -168,6 +186,21 @@
             </div>
         </section>
 
+        <section id="location">
+            <h2 class="section-title reveal-text">Место церемонии</h2>
+            <div class="card reveal reveal-up">
+                <img src="img/dash.jpg" class="zags-photo-mini reveal-text" alt="ЗАГС" loading="lazy">
+                <p class="reveal-text" style="margin-bottom: 25px; line-height: 1.8;">
+                    Церемония бракосочетания пройдет в <br>
+                    <strong>отделе ЗАГС по Ленинскому району</strong>. <br>
+                    г. Ульяновск, ул. Гимова, д. 3 🏛️
+                </p>
+                <div class="reveal-text" style="border-radius:30px; overflow:hidden;">
+                    <iframe src="https://yandex.ru/map-widget/v1/org/otdel_zags_po_leninskomu_rayonu_g_ulyanovska/1088477357/?ll=48.404093%2C54.317406&z=17" width="100%" height="400" frameborder="0"></iframe>
+                </div>
+            </div>
+        </section>
+
         <section id="timeline">
             <h2 class="section-title reveal-text">Тайминг</h2>
             <div class="prog-grid">
@@ -221,11 +254,6 @@
                         <input type="text" name="own_drink" id="ownDrinkInput" placeholder="Что именно вы предпочитаете?" style="display:none; margin-top:10px; padding: 12px 20px;">
                     </div>
 
-                    <div style="text-align: left; margin-top: 10px;">
-                        <label style="font-size: 0.9rem; font-weight: 500; display: block; margin-bottom: 5px;">Какую музыку предпочитаете?</label>
-                        <input type="text" name="music" placeholder="О музыкальных вкусах...">
-                    </div>
-
                     <button type="submit" class="btn-gold" id="submitBtn" style="margin-top: 20px;">Подтвердить участие</button>
                     <div id="msg" style="margin-top: 15px; color: var(--gold); font-weight: 500;"></div>
                 </form>
@@ -256,18 +284,15 @@
             </div>
         </section>
 
-        <section id="location">
-            <h2 class="section-title reveal-text">Место церемонии</h2>
+        <section id="chat">
+            <h2 class="section-title reveal-text">Чат для гостей</h2>
             <div class="card reveal reveal-up">
-                <p class="reveal-text" style="margin-bottom: 25px; line-height: 1.8;">
-                    Церемония бракосочетания пройдет в <br>
-                    <strong>отделе ЗАГС по Ленинскому району</strong>. <br>
-                    г. Ульяновск, ул. Гимова, д. 3 🏛️
+                <p class="reveal-text" style="line-height: 1.8; color: #555; margin-bottom: 25px;">
+                    Вступайте в тг-группу, будем знакомиться,<br>а после свадьбы поделимся фото и видео с мероприятия!
                 </p>
-                <div class="reveal-text" style="border-radius:30px; overflow:hidden;">
-                    <iframe src="https://yandex.ru/map-widget/v1/org/otdel_zags_po_leninskomu_rayonu_g_ulyanovska/1088477357/?ll=48.404093%2C54.317406&z=17" width="100%" height="400" frameborder="0"></iframe>
-                </div>
-                <img src="img/dash.jpg" class="zags-photo reveal-text" alt="ЗАГС" loading="lazy">
+                <a href="javascript:void(0)" class="btn-gold reveal-text" style="padding: 15px 10px; line-height: 1.3;">
+                    Я не придумал какой чат там будет,<br>поэтому тыкай сколько влезет, она не работает 😏
+                </a>
             </div>
         </section>
 
@@ -275,7 +300,7 @@
             <div class="card reveal reveal-up">
                 <h2 class="section-title reveal-text" style="margin-bottom: 30px; letter-spacing: 2px;">ДО СВАДЬБЫ ОСТАЛОСЬ:</h2>
                 
-                <div class="timer-photo-full reveal-text">
+                <div class="timer-photo-faded reveal-text">
                     <img src="img/time.jpg" loading="lazy" alt="Мы">
                 </div>
 
