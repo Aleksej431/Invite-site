@@ -12,6 +12,7 @@
         :root {
             --gold: #b89c7d;
             --dark: #1a1a1a;
+            --light-bg: #ffffff; 
             --grey-bg: #f7f7f7; 
             --white: #ffffff;
         }
@@ -26,21 +27,21 @@
             scroll-behavior: smooth;
         }
 
-        /* Растягиваем фон и добавляем волну */
+        /* Настройка секций с чередованием и мягкой волной */
         section { 
             padding: 100px 0; 
             position: relative; 
             width: 100%; 
-            /* Эффект легкой волны на стыке */
+            /* Эффект очень мягкой волны */
             clip-path: ellipse(150% 100% at 50% 100%);
-            margin-top: -40px; /* Нахлест для плавности */
+            margin-top: -30px; 
         }
 
         section:nth-of-type(odd) { background-color: var(--white); z-index: 1; }
         section:nth-of-type(even) { background-color: var(--grey-bg); z-index: 2; }
 
-        /* Первый блок после хедера без волны сверху */
-        #welcome_section { clip-path: ellipse(150% 100% at 50% 100%); margin-top: 0; }
+        /* Убираем отступ у первой секции, чтобы она не наезжала на хедер */
+        #welcome_section { margin-top: 0; }
 
         .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; width: 100%; position: relative; z-index: 5; }
 
@@ -147,12 +148,12 @@
         <a href="#welcome_section" class="scroll-down">Листать вниз</a>
     </header>
 
-    <section id="welcome_section">
-        <div class="container">
-            <div class="polaroid side-photo photo-1"><img src="img/1.jpg" loading="lazy"></div>
-            <div class="polaroid side-photo photo-2"><img src="img/2.jpg" loading="lazy"></div>
-            <div class="polaroid side-photo photo-3"><img src="img/3.jpg" loading="lazy"></div>
-
+    <div class="container">
+        <div class="polaroid side-photo photo-1"><img src="img/1.jpg" loading="lazy"></div>
+        <div class="polaroid side-photo photo-2"><img src="img/2.jpg" loading="lazy"></div>
+        <div class="polaroid side-photo photo-3"><img src="img/3.jpg" loading="lazy"></div>
+        
+        <section id="welcome_section">
             <div class="card reveal reveal-up">
                 <h2 class="section-title reveal-text">Дорогие друзья и родные</h2>
                 <p class="reveal-text" style="line-height: 2; max-width: 750px; margin: 0 auto 40px; color: #555; font-size: 1.1rem;">
@@ -182,11 +183,9 @@
                     <div class="polaroid polaroid-right" onclick="openLightbox(this)"><img src="img/story2.jpg" loading="lazy"></div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="location">
-        <div class="container">
+        <section id="location">
             <h2 class="section-title reveal-text">Место церемонии</h2>
             <div class="card reveal reveal-up">
                 <img src="img/dash.jpg" class="zags-photo-mini reveal-text" alt="ЗАГС" loading="lazy">
@@ -199,11 +198,9 @@
                     <iframe src="https://yandex.ru/map-widget/v1/org/otdel_zags_po_leninskomu_rayonu_g_ulyanovska/1088477357/?ll=48.404093%2C54.317406&z=17" width="100%" height="400" frameborder="0"></iframe>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="timeline">
-        <div class="container">
+        <section id="timeline">
             <h2 class="section-title reveal-text">Тайминг</h2>
             <div class="prog-grid">
                 <div class="prog-item reveal reveal-up">
@@ -217,11 +214,9 @@
                 <div class="prog-item reveal reveal-up"><div class="prog-time">16:30</div><div class="prog-info"><h3>Welcome встреча</h3><p>Фуршет, общение и подготовка к банкету.</p></div></div>
                 <div class="prog-item reveal reveal-up"><div class="prog-time">22:30</div><div class="prog-info"><h3>Завершение вечера</h3><p>Финал нашего прекрасного торжества.</p></div></div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="rsvp">
-        <div class="container">
+        <section id="rsvp">
             <div class="card reveal reveal-right">
                 <h2 class="section-title reveal-text">Анкета гостя</h2>
                 <p class="reveal-text" style="font-size: 0.9rem; color: #888; margin-bottom: 25px;">Будем благодарны, если вы подтвердите своё присутствие до 07.06.26</p>
@@ -273,22 +268,18 @@
                     <div class="polaroid polaroid-right" onclick="openLightbox(this)"><img src="img/6.jpg" loading="lazy"></div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="wishes">
-        <div class="container">
+        <section id="wishes">
             <div style="text-align: center;">
                 <h2 class="section-title reveal-text">Пожелания</h2>
                 <p class="reveal-text" style="line-height: 2; color: #555; max-width: 800px; margin: 0 auto; font-size: 1.1rem;">
                     Ваши улыбки и смех подарят нам незабываемое счастье в этот день. Если вы хотите подарить нам ценный и нужный подарок, мы будем очень благодарны вашим пожеланиям в конвертах, которые помогут осуществить наши мечты!
                 </p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="dresscode">
-        <div class="container">
+        <section id="dresscode">
             <div class="card reveal reveal-up">
                 <h2 class="section-title reveal-text">Дресс-код</h2>
                 <p class="reveal-text" style="line-height: 1.8; color: #555; max-width: 700px; margin: 0 auto;">
@@ -302,11 +293,9 @@
                     <div class="color-circle" style="background-color: #D8D8D8;"></div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="chat" style="position: relative;">
-        <div class="container">
+        <section id="chat" style="position: relative;">
             <div class="polaroid side-photo photo-4"><img src="img/4.jpg" loading="lazy"></div>
             <h2 class="section-title reveal-text">Чат для гостей</h2>
             <div class="card reveal reveal-up">
@@ -317,11 +306,9 @@
                     Чат будет доступен 07.07.26
                 </a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="contacts">
-        <div class="container">
+        <section id="contacts">
             <div class="card reveal reveal-up">
                 <h2 class="section-title reveal-text" style="margin-bottom: 30px; letter-spacing: 2px;">ДО СВАДЬБЫ ОСТАЛОСЬ:</h2>
                 
@@ -350,8 +337,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+    </div>
 
     <footer>
         <div class="footer-love">С ЛЮБОВЬЮ</div>
