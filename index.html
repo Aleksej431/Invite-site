@@ -31,7 +31,7 @@
             padding: 100px 0; 
             position: relative; 
             width: 100%; 
-            /* Эффект легкой волны на стыке */
+            /* Одинаковый эффект легкой волны на стыке для всех */
             clip-path: ellipse(150% 100% at 50% 100%);
             margin-top: -40px; /* Нахлест для плавности */
         }
@@ -39,16 +39,17 @@
         section:nth-of-type(odd) { background-color: var(--white); z-index: 1; }
         section:nth-of-type(even) { background-color: var(--grey-bg); z-index: 2; }
 
-        /* Первый блок после хедера без волны сверху */
-        #welcome_section { clip-path: ellipse(150% 100% at 50% 100%); margin-top: 0; }
+        /* Первый блок после хедера */
+        #welcome_section { margin-top: 0; }
 
         .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; width: 100%; position: relative; z-index: 5; }
 
+        /* Восстановленные законные места для фото 1-4 */
         .side-photo { position: absolute; width: 220px; z-index: 10; pointer-events: none; opacity: 1; display: block; }
         .photo-1 { left: -140px; transform: rotate(-10deg); top: 18%; } 
         .photo-2 { right: -100px; transform: rotate(12deg); top: 32%; }
         .photo-3 { left: -160px; transform: rotate(8deg); top: 60%; } 
-        .photo-4 { right: -120px; transform: rotate(-15deg); top: auto; bottom: -20px; }
+        .photo-4 { right: -120px; transform: rotate(-15deg); top: 85%; } /* Исходное место */
 
         .reveal, .reveal-text { opacity: 0; transition: all 0.8s ease-out; }
         .reveal.active, .reveal-text.active { opacity: 1; transform: translate(0, 0) !important; }
@@ -147,12 +148,15 @@
         <a href="#welcome_section" class="scroll-down">Листать вниз</a>
     </header>
 
+    <div class="container">
+        <div class="polaroid side-photo photo-1"><img src="img/1.jpg" loading="lazy"></div>
+        <div class="polaroid side-photo photo-2"><img src="img/2.jpg" loading="lazy"></div>
+        <div class="polaroid side-photo photo-3"><img src="img/3.jpg" loading="lazy"></div>
+        <div class="polaroid side-photo photo-4"><img src="img/4.jpg" loading="lazy"></div>
+    </div>
+
     <section id="welcome_section">
         <div class="container">
-            <div class="polaroid side-photo photo-1"><img src="img/1.jpg" loading="lazy"></div>
-            <div class="polaroid side-photo photo-2"><img src="img/2.jpg" loading="lazy"></div>
-            <div class="polaroid side-photo photo-3"><img src="img/3.jpg" loading="lazy"></div>
-
             <div class="card reveal reveal-up">
                 <h2 class="section-title reveal-text">Дорогие друзья и родные</h2>
                 <p class="reveal-text" style="line-height: 2; max-width: 750px; margin: 0 auto 40px; color: #555; font-size: 1.1rem;">
@@ -305,9 +309,8 @@
         </div>
     </section>
 
-    <section id="chat" style="position: relative;">
+    <section id="chat">
         <div class="container">
-            <div class="polaroid side-photo photo-4"><img src="img/4.jpg" loading="lazy"></div>
             <h2 class="section-title reveal-text">Чат для гостей</h2>
             <div class="card reveal reveal-up">
                 <p class="reveal-text" style="line-height: 1.8; color: #555; margin-bottom: 25px;">
