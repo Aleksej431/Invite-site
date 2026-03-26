@@ -32,13 +32,14 @@
 
         .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; width: 100%; position: relative; z-index: 5; }
 
-        .side-photo { position: absolute; width: 220px; z-index: 1; pointer-events: none; opacity: 1; display: block; }
+        /* Вернул исходный масштаб и позиционирование боковых фото */
+        .side-photo { position: absolute; width: 220px; z-index: 10; pointer-events: none; opacity: 1; display: block; }
         .photo-1 { left: -140px; transform: rotate(-10deg); top: 18%; } 
         .photo-2 { right: -100px; transform: rotate(12deg); top: 32%; }
         .photo-3 { left: -160px; transform: rotate(8deg); top: 60%; } 
-        .photo-4 { right: -120px; transform: rotate(-15deg); top: 78%; }
+        .photo-4 { right: -120px; transform: rotate(-15deg); top: auto; bottom: -20px; } /* Привязано к родителю чата */
 
-        .reveal, .reveal-text { opacity: 0; transition: all 0.8s ease-out; will-change: transform, opacity; }
+        .reveal, .reveal-text { opacity: 0; transition: all 0.8s ease-out; }
         .reveal.active, .reveal-text.active { opacity: 1; transform: translate(0, 0) !important; }
         .reveal-up { transform: translateY(30px); }
         .reveal-text { transform: translateY(20px); transition-delay: 0.2s; }
@@ -72,10 +73,10 @@
         .timer-val { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--gold); display: block; line-height: 1; margin-bottom: 2px; }
         .timer-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; color: #999; }
 
+        /* Исходный код масштабирования полароидов */
         .polaroid-container { display: flex; justify-content: center; gap: 40px; padding: 20px 0; perspective: 1000px; margin-top: 40px; }
         .polaroid { background: white; padding: 15px 15px 45px 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #f0f0f0; transition: transform 0.4s ease; cursor: pointer; max-width: 280px; width: 100%; }
-        /* Исправление сжатия фото */
-        .polaroid img { width: 100%; height: auto; max-height: 400px; object-fit: cover; display: block; }
+        .polaroid img { width: 100%; height: 300px; object-fit: cover; display: block; }
         .polaroid-left { transform: rotate(-5deg) translateY(10px); }
         .polaroid-right { transform: rotate(5deg) translateY(-10px); }
         .polaroid:hover { transform: rotate(0) scale(1.05) translateY(-20px); z-index: 10; }
@@ -123,6 +124,8 @@
 
         @media (max-width: 768px) {
             .side-photo { display: none; }
+            .polaroid-container { flex-direction: column; align-items: center; gap: 30px; }
+            .polaroid img { height: 300px; } /* Восстановление масштаба на мобилках */
             .prog-item { flex-direction: column; text-align: center; padding: 20px; }
             .prog-info { border-left: none; border-top: 1px solid #eee; padding-top: 15px; padding-left: 0; text-align: center; }
             .card { padding: 40px 20px; }
@@ -150,7 +153,6 @@
         <div class="polaroid side-photo photo-1"><img src="img/1.jpg" loading="lazy"></div>
         <div class="polaroid side-photo photo-2"><img src="img/2.jpg" loading="lazy"></div>
         <div class="polaroid side-photo photo-3"><img src="img/3.jpg" loading="lazy"></div>
-        <div class="polaroid side-photo photo-4"><img src="img/4.jpg" loading="lazy"></div>
         
         <section id="welcome_section">
             <div class="card reveal reveal-up">
@@ -191,7 +193,7 @@
                 <p class="reveal-text" style="margin-bottom: 25px; line-height: 1.8;">
                     Церемония бракосочетания пройдет в <br>
                     <strong>отделе ЗАГС по Ленинскому району</strong>. <br>
-                    г. Ульяновск, ул. Гимова, д. 3 🏛️
+                    г. Ульяновск, ул. Гимова, д. 3
                 </p>
                 <div class="reveal-text" style="border-radius:30px; overflow:hidden;">
                     <iframe src="https://yandex.ru/map-widget/v1/org/otdel_zags_po_leninskomu_rayonu_g_ulyanovska/1088477357/?ll=48.404093%2C54.317406&z=17" width="100%" height="400" frameborder="0"></iframe>
@@ -269,15 +271,6 @@
             </div>
         </section>
 
-        <section id="wishes">
-            <div style="text-align: center;">
-                <h2 class="section-title reveal-text">Пожелания</h2>
-                <p class="reveal-text" style="line-height: 2; color: #555; max-width: 800px; margin: 0 auto; font-size: 1.1rem;">
-                    Ваши улыбки и смех подарят нам незабываемое счастье в этот день. Если вы хотите подарить нам ценный и нужный подарок, мы будем очень благодарны вашим пожеланиям в конвертах, которые помогут осуществить наши мечты!
-                </p>
-            </div>
-        </section>
-
         <section id="dresscode">
             <div class="card reveal reveal-up">
                 <h2 class="section-title reveal-text">Дресс-код</h2>
@@ -294,7 +287,9 @@
             </div>
         </section>
 
-        <section id="chat">
+        <section id="chat" style="position: relative;">
+            <div class="polaroid side-photo photo-4"><img src="img/4.jpg" loading="lazy"></div>
+            
             <h2 class="section-title reveal-text">Чат для гостей</h2>
             <div class="card reveal reveal-up">
                 <p class="reveal-text" style="line-height: 1.8; color: #555; margin-bottom: 25px;">
