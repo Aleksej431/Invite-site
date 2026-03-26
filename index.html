@@ -27,9 +27,21 @@
             scroll-behavior: smooth;
         }
 
-        /* Чередование фонов секций */
-        section:nth-of-type(odd) { background-color: var(--white); }
-        section:nth-of-type(even) { background-color: var(--grey-bg); }
+        /* Настройка секций с чередованием и мягкой волной */
+        section { 
+            padding: 100px 0; 
+            position: relative; 
+            width: 100%; 
+            /* Эффект очень мягкой волны */
+            clip-path: ellipse(150% 100% at 50% 100%);
+            margin-top: -30px; 
+        }
+
+        section:nth-of-type(odd) { background-color: var(--white); z-index: 1; }
+        section:nth-of-type(even) { background-color: var(--grey-bg); z-index: 2; }
+
+        /* Убираем отступ у первой секции, чтобы она не наезжала на хедер */
+        #welcome_section { margin-top: 0; }
 
         .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; width: 100%; position: relative; z-index: 5; }
 
@@ -48,6 +60,7 @@
             height: 100vh; display: flex; justify-content: center; align-items: center;
             color: var(--white); text-align: center; position: relative; overflow: hidden;
             background: url('img/background.jpg') center center / cover no-repeat;
+            z-index: 3;
         }
         .header-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.25); z-index: 1; }
         .hero-content { position: relative; z-index: 2; width: 90%; }
@@ -80,10 +93,8 @@
         .polaroid-right { transform: rotate(5deg) translateY(-10px); }
         .polaroid:hover { transform: rotate(0) scale(1.05) translateY(-20px); z-index: 10; }
 
-        section { padding: 80px 0; position: relative; width: 100%; }
         .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 3.5rem); text-align: center; margin-bottom: 40px; font-weight: 300; font-style: italic; }
         
-        /* Карточки всегда белые на любом фоне секции */
         .card { background: var(--white); padding: 50px 30px; border-radius: 40px; border: 1px solid rgba(184, 156, 125, 0.15); text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.03); position: relative; width: 100%; overflow: hidden; }
 
         .prog-grid { display: grid; gap: 20px; max-width: 700px; margin: 0 auto; }
@@ -118,7 +129,7 @@
             .prog-info { border-left: none; border-top: 1px solid #eee; padding-top: 15px; padding-left: 0; text-align: center; }
             .card { padding: 40px 20px; }
         }
-        footer { padding: 60px 0; text-align: center; font-family: 'Cormorant Garamond', serif; background: var(--white); line-height: 1.6; }
+        footer { padding: 80px 0; text-align: center; font-family: 'Cormorant Garamond', serif; background: var(--white); line-height: 1.6; }
         .footer-love { font-size: 0.9rem; letter-spacing: 5px; opacity: 0.5; text-transform: uppercase; margin-bottom: 5px; }
         .footer-names { font-size: 2rem; opacity: 0.8; font-style: italic; }
     </style>
