@@ -12,8 +12,8 @@
         :root {
             --gold: #b89c7d;
             --dark: #1a1a1a;
-            --light-bg: #fdfcfb;
-            --grey-bg: #f5f5f5; /* Новый нежно-серый цвет */
+            --light-bg: #ffffff; 
+            --grey-bg: #f7f7f7; 
             --white: #ffffff;
         }
 
@@ -22,26 +22,26 @@
         html, body { 
             margin: 0; padding: 0; width: 100%; 
             overflow-x: hidden; 
-            background-color: var(--light-bg); color: var(--dark); 
+            background-color: var(--white); color: var(--dark); 
             font-family: 'Montserrat', sans-serif; font-weight: 300;
             scroll-behavior: smooth;
         }
 
-        section:nth-of-type(even) { background-color: var(--grey-bg); }
+        /* Чередование фонов секций */
         section:nth-of-type(odd) { background-color: var(--white); }
+        section:nth-of-type(even) { background-color: var(--grey-bg); }
 
         .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; width: 100%; position: relative; z-index: 5; }
 
-        .side-photo { position: absolute; width: 220px; z-index: 1; pointer-events: none; opacity: 1; display: block; }
+        .side-photo { position: absolute; width: 220px; z-index: 10; pointer-events: none; opacity: 1; display: block; }
         .photo-1 { left: -140px; transform: rotate(-10deg); top: 18%; } 
         .photo-2 { right: -100px; transform: rotate(12deg); top: 32%; }
         .photo-3 { left: -160px; transform: rotate(8deg); top: 60%; } 
-        .photo-4 { right: -120px; transform: rotate(-15deg); top: 85%; }
+        .photo-4 { right: -120px; transform: rotate(-15deg); top: auto; bottom: -20px; }
 
-        .reveal, .reveal-text { opacity: 0; transition: all 0.8s ease-out; will-change: transform, opacity; }
+        .reveal, .reveal-text { opacity: 0; transition: all 0.8s ease-out; }
         .reveal.active, .reveal-text.active { opacity: 1; transform: translate(0, 0) !important; }
         .reveal-up { transform: translateY(30px); }
-        .reveal-right { transform: translateX(30px); }
         .reveal-text { transform: translateY(20px); transition-delay: 0.2s; }
 
         header {
@@ -64,7 +64,6 @@
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; font-size: 0.9rem; }
         .calendar-day-name { font-weight: 500; font-size: 0.7rem; color: #ccc; padding-bottom: 10px; }
         .calendar-day { padding: 8px 0; position: relative; display: flex; align-items: center; justify-content: center; }
-        
         .calendar-day.active { color: white; font-weight: bold; }
         .calendar-day.active .heart-svg { position: absolute; width: 38px; height: 38px; z-index: 0; fill: #e74c3c; }
         .calendar-day.active .day-num { position: relative; z-index: 1; top: -1px; }
@@ -83,55 +82,45 @@
 
         section { padding: 80px 0; position: relative; width: 100%; }
         .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 3.5rem); text-align: center; margin-bottom: 40px; font-weight: 300; font-style: italic; }
+        
+        /* Карточки всегда белые на любом фоне секции */
         .card { background: var(--white); padding: 50px 30px; border-radius: 40px; border: 1px solid rgba(184, 156, 125, 0.15); text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.03); position: relative; width: 100%; overflow: hidden; }
 
         .prog-grid { display: grid; gap: 20px; max-width: 700px; margin: 0 auto; }
-        .prog-item { display: flex; align-items: center; padding: 25px; background: #fafafa; border-radius: 30px; }
+        .prog-item { display: flex; align-items: center; padding: 25px; background: #fafafa; border-radius: 30px; border: 1px solid rgba(0,0,0,0.03); }
         .prog-time { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--gold); min-width: 110px; text-align: left; }
         .prog-info { text-align: left; border-left: 1px solid #ddd; padding-left: 25px; }
 
         .rsvp-form { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
         input, select { background: #f9f9f9; border: 1px solid #eee; padding: 18px 25px; border-radius: 25px; width: 100%; outline: none; transition: 0.3s; font-size: 16px; }
-        input:focus { border-color: var(--gold); background: #fff; }
         .btn-gold { background: var(--dark); color: white; padding: 22px; border-radius: 50px; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: 0.4s; border: none; font-weight: 400; text-decoration: none; display: block; }
         
-        /* Миниатюрное фото загса */
-        .zags-photo-mini { 
-            width: 180px; 
-            height: 120px; 
-            border-radius: 15px; 
-            margin: 0 auto 20px; 
-            object-fit: cover; 
-            display: block; 
-            border: 4px solid white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
+        .zags-photo-mini { width: 180px; height: 120px; border-radius: 15px; margin: 0 auto 20px; object-fit: cover; display: block; border: 4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 
-        /* Эффект слияния (блюр/градиент) для фото таймера */
-        .timer-photo-faded { 
-            width: 100%; 
-            max-width: 600px; 
-            margin: 0 auto 20px; 
-            position: relative;
-            mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
-            -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
-        }
+        .timer-photo-faded { width: 100%; max-width: 600px; margin: 0 auto 20px; position: relative; mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent); }
         .timer-photo-faded img { width: 100%; height: auto; display: block; }
+
+        .color-palette { display: flex; justify-content: center; gap: 15px; margin-top: 25px; }
+        .color-circle { width: 45px; height: 45px; border-radius: 50%; border: 2px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
 
         #lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 1000; cursor: zoom-out; }
         #lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; }
 
+        @media (min-width: 992px) { .zags-photo-mini { width: 270px; height: 180px; } }
+
         @media (max-width: 768px) {
             .side-photo { display: none; }
             .polaroid-container { flex-direction: column; align-items: center; gap: 30px; }
+            .polaroid { width: 100%; max-width: 280px; }
+            .polaroid img { height: 300px; } 
             .prog-item { flex-direction: column; text-align: center; padding: 20px; }
-            .prog-time { text-align: center; min-width: auto; margin-bottom: 10px; }
+            .prog-time { min-width: auto; text-align: center; margin-bottom: 10px; }
             .prog-info { border-left: none; border-top: 1px solid #eee; padding-top: 15px; padding-left: 0; text-align: center; }
             .card { padding: 40px 20px; }
-            .timer-grid { gap: 8px; }
-            .timer-item { min-width: 60px; }
         }
-        footer { padding: 60px 0; text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; opacity: 0.5; background: var(--white); }
+        footer { padding: 60px 0; text-align: center; font-family: 'Cormorant Garamond', serif; background: var(--white); line-height: 1.6; }
+        .footer-love { font-size: 0.9rem; letter-spacing: 5px; opacity: 0.5; text-transform: uppercase; margin-bottom: 5px; }
+        .footer-names { font-size: 2rem; opacity: 0.8; font-style: italic; }
     </style>
 </head>
 <body>
@@ -152,7 +141,6 @@
         <div class="polaroid side-photo photo-1"><img src="img/1.jpg" loading="lazy"></div>
         <div class="polaroid side-photo photo-2"><img src="img/2.jpg" loading="lazy"></div>
         <div class="polaroid side-photo photo-3"><img src="img/3.jpg" loading="lazy"></div>
-        <div class="polaroid side-photo photo-4"><img src="img/4.jpg" loading="lazy"></div>
         
         <section id="welcome_section">
             <div class="card reveal reveal-up">
@@ -193,7 +181,7 @@
                 <p class="reveal-text" style="margin-bottom: 25px; line-height: 1.8;">
                     Церемония бракосочетания пройдет в <br>
                     <strong>отделе ЗАГС по Ленинскому району</strong>. <br>
-                    г. Ульяновск, ул. Гимова, д. 3 🏛️
+                    г. Ульяновск, ул. Гимова, д. 3
                 </p>
                 <div class="reveal-text" style="border-radius:30px; overflow:hidden;">
                     <iframe src="https://yandex.ru/map-widget/v1/org/otdel_zags_po_leninskomu_rayonu_g_ulyanovska/1088477357/?ll=48.404093%2C54.317406&z=17" width="100%" height="400" frameborder="0"></iframe>
@@ -204,7 +192,13 @@
         <section id="timeline">
             <h2 class="section-title reveal-text">Тайминг</h2>
             <div class="prog-grid">
-                <div class="prog-item reveal reveal-up"><div class="prog-time">14:30</div><div class="prog-info"><h3>Сбор гостей</h3><p>Встречаемся у входа, настраиваемся на праздник.</p></div></div>
+                <div class="prog-item reveal reveal-up">
+                    <div class="prog-time">14:30</div>
+                    <div class="prog-info">
+                        <h3>Сбор гостей</h3>
+                        <p>Начинаем этот прекрасный день с улыбок, теплых встреч и легкого предвкушения праздника.</p>
+                    </div>
+                </div>
                 <div class="prog-item reveal reveal-up"><div class="prog-time">15:10</div><div class="prog-info"><h3>Церемония</h3><p>Тот самый момент, когда мы станем одной семьей.</p></div></div>
                 <div class="prog-item reveal reveal-up"><div class="prog-time">16:30</div><div class="prog-info"><h3>Welcome встреча</h3><p>Фуршет, общение и подготовка к банкету.</p></div></div>
                 <div class="prog-item reveal reveal-up"><div class="prog-time">22:30</div><div class="prog-info"><h3>Завершение вечера</h3><p>Финал нашего прекрасного торжества.</p></div></div>
@@ -214,7 +208,7 @@
         <section id="rsvp">
             <div class="card reveal reveal-right">
                 <h2 class="section-title reveal-text">Анкета гостя</h2>
-                <p class="reveal-text" style="font-size: 0.9rem; color: #888; margin-bottom: 25px;">Будем благодарны, если вы подтвердите своё присутствие до 07.07.26</p>
+                <p class="reveal-text" style="font-size: 0.9rem; color: #888; margin-bottom: 25px;">Будем благодарны, если вы подтвердите своё присутствие до 07.06.26</p>
                 
                 <form class="rsvp-form reveal-text" id="weddingForm">
                     <div style="text-align: left;">
@@ -255,7 +249,7 @@
                     </div>
 
                     <button type="submit" class="btn-gold" id="submitBtn" style="margin-top: 20px;">Подтвердить участие</button>
-                    <div id="msg" style="margin-top: 15px; color: var(--gold); font-weight: 500;"></div>
+                    <div id="msg" style="margin-top: 15px; color: var(--gold); font-weight: 500; line-height: 1.4;"></div>
                 </form>
 
                 <div class="polaroid-container reveal reveal-up">
@@ -278,20 +272,27 @@
             <div class="card reveal reveal-up">
                 <h2 class="section-title reveal-text">Дресс-код</h2>
                 <p class="reveal-text" style="line-height: 1.8; color: #555; max-width: 700px; margin: 0 auto;">
-                    Мы будем рады видеть вас в любом наряде, в котором вы чувствуете себя счастливыми! Главное — это ваше присутствие. <br>
-                    Но если вы вдруг решите поддержать атмосферу праздника и сменить любимую пижаму или домашние тапочки на вечерний образ — мы будем не против. 😉
+                    Для нас самое главное Ваше присутствие! Но мы будем очень благодарны, если Вы отдадите предпочтение образам в пастельных тонах, без принтов и ярких оттенков.
                 </p>
+                <div class="color-palette reveal-text">
+                    <div class="color-circle" style="background-color: #E6D5C3;"></div>
+                    <div class="color-circle" style="background-color: #D6BDC0;"></div>
+                    <div class="color-circle" style="background-color: #C7D1C2;"></div>
+                    <div class="color-circle" style="background-color: #B9A590;"></div>
+                    <div class="color-circle" style="background-color: #D8D8D8;"></div>
+                </div>
             </div>
         </section>
 
-        <section id="chat">
+        <section id="chat" style="position: relative;">
+            <div class="polaroid side-photo photo-4"><img src="img/4.jpg" loading="lazy"></div>
             <h2 class="section-title reveal-text">Чат для гостей</h2>
             <div class="card reveal reveal-up">
                 <p class="reveal-text" style="line-height: 1.8; color: #555; margin-bottom: 25px;">
-                    Вступайте в тг-группу, будем знакомиться,<br>а после свадьбы поделимся фото и видео с мероприятия!
+                    Вступайте в чат, будем знакомиться,<br>а после свадьбы поделимся фото и видео с мероприятия!
                 </p>
                 <a href="javascript:void(0)" class="btn-gold reveal-text" style="padding: 15px 10px; line-height: 1.3;">
-                    Я не придумал какой чат там будет,<br>поэтому тыкай сколько влезет, она не работает 😏
+                    Чат будет доступен 07.07.26
                 </a>
             </div>
         </section>
@@ -312,7 +313,8 @@
                 </div>
 
                 <hr style="border: none; border-top: 1px solid #eee; margin: 40px 0;">
-                <h3 class="reveal-text" style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-style: italic; margin-bottom: 25px;">Контакты</h3>
+                
+                <h2 class="section-title reveal-text" style="margin-bottom: 30px;">Контакты</h2>
                 <div class="reveal-text" style="display: flex; flex-direction: column; align-items: center; gap: 30px;">
                     <div style="text-align:center;">
                         <div style="color: var(--gold); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">Алина</div>
@@ -328,7 +330,10 @@
 
     </div>
 
-    <footer>Алексей & Алина ❤️ 07.08.2026</footer>
+    <footer>
+        <div class="footer-love">С ЛЮБОВЬЮ</div>
+        <div class="footer-names">Алексей & Алина</div>
+    </footer>
 
     <script>
         const scriptUrl = "https://script.google.com/macros/s/AKfycbzFsWKeo5RtSd1dUNG-ROPKrwL1Q7P6VDcle4z1oyY-oC1V9FCIb6X7o9pKIyCZ6KLR/exec";
@@ -393,7 +398,10 @@
             const submitBtn = document.getElementById('submitBtn');
             submitBtn.disabled = true; submitBtn.innerText = "ОТПРАВЛЯЕМ...";
             fetch(scriptUrl, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(new FormData(this)) })
-            .then(() => { document.getElementById('msg').innerText = "Спасибо! Ответ получен."; submitBtn.innerText = "ГОТОВО"; })
+            .then(() => { 
+                document.getElementById('msg').innerHTML = "Ваш ответ успешно отправлен!<br>Спасибо! Мы с нетерпением ждём, чтобы отпраздновать вместе с вами!"; 
+                submitBtn.innerText = "ГОТОВО"; 
+            })
             .catch(() => { submitBtn.disabled = false; submitBtn.innerText = "ОШИБКА"; });
         };
         
