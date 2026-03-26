@@ -32,6 +32,7 @@
 
         .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; width: 100%; position: relative; z-index: 5; }
 
+        /* Боковые фото */
         .side-photo { position: absolute; width: 220px; z-index: 10; pointer-events: none; opacity: 1; display: block; }
         .photo-1 { left: -140px; transform: rotate(-10deg); top: 18%; } 
         .photo-2 { right: -100px; transform: rotate(12deg); top: 32%; }
@@ -72,6 +73,7 @@
         .timer-val { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--gold); display: block; line-height: 1; margin-bottom: 2px; }
         .timer-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; color: #999; }
 
+        /* Масштабирование полароидов */
         .polaroid-container { display: flex; justify-content: center; gap: 40px; padding: 20px 0; perspective: 1000px; margin-top: 40px; }
         .polaroid { background: white; padding: 15px 15px 45px 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #f0f0f0; transition: transform 0.4s ease; cursor: pointer; max-width: 280px; width: 100%; }
         .polaroid img { width: 100%; height: 300px; object-fit: cover; display: block; }
@@ -81,22 +83,33 @@
 
         section { padding: 80px 0; position: relative; width: 100%; }
         .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 3.5rem); text-align: center; margin-bottom: 40px; font-weight: 300; font-style: italic; }
-        
-        /* Исправлено выравнивание карточек */
-        .card { background: var(--white); padding: 50px 30px; border-radius: 40px; border: 1px solid rgba(184, 156, 125, 0.15); text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.03); position: relative; width: 100%; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .card { background: var(--white); padding: 50px 30px; border-radius: 40px; border: 1px solid rgba(184, 156, 125, 0.15); text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.03); position: relative; width: 100%; overflow: hidden; }
 
         .prog-grid { display: grid; gap: 20px; max-width: 700px; margin: 0 auto; }
         .prog-item { display: flex; align-items: center; padding: 25px; background: #fafafa; border-radius: 30px; }
         .prog-time { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--gold); min-width: 110px; text-align: left; }
         .prog-info { text-align: left; border-left: 1px solid #ddd; padding-left: 25px; }
 
-        .rsvp-form { width: 100%; max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
+        .rsvp-form { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
         input, select { background: #f9f9f9; border: 1px solid #eee; padding: 18px 25px; border-radius: 25px; width: 100%; outline: none; transition: 0.3s; font-size: 16px; }
         .btn-gold { background: var(--dark); color: white; padding: 22px; border-radius: 50px; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: 0.4s; border: none; font-weight: 400; text-decoration: none; display: block; }
         
-        .zags-photo-mini { width: 180px; height: 120px; border-radius: 15px; margin: 0 auto 20px; object-fit: cover; display: block; border: 4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .zags-photo-mini { 
+            width: 180px; 
+            height: 120px; 
+            border-radius: 15px; 
+            margin: 0 auto 20px; 
+            object-fit: cover; 
+            display: block; 
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
 
-        .timer-photo-faded { width: 100%; max-width: 600px; margin: 0 auto 20px; position: relative; mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent); }
+        .timer-photo-faded { 
+            width: 100%; max-width: 600px; margin: 0 auto 20px; position: relative;
+            mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+        }
         .timer-photo-faded img { width: 100%; height: auto; display: block; }
 
         .color-palette { display: flex; justify-content: center; gap: 15px; margin-top: 25px; }
@@ -105,19 +118,19 @@
         #lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 1000; cursor: zoom-out; }
         #lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; }
 
-        @media (min-width: 992px) { .zags-photo-mini { width: 270px; height: 180px; } }
+        @media (min-width: 992px) {
+            .zags-photo-mini { width: 270px; height: 180px; }
+        }
 
         @media (max-width: 768px) {
             .side-photo { display: none; }
             .polaroid-container { flex-direction: column; align-items: center; gap: 30px; }
             .polaroid { width: 100%; max-width: 280px; }
             .polaroid img { height: 300px; } 
-            
-            /* Исправлено выравнивание времени и контента в тайминге */
-            .prog-item { flex-direction: column; text-align: center; padding: 30px 20px; }
+            .prog-item { flex-direction: column; text-align: center; padding: 20px; }
+            /* Исправлено: время теперь центрируется на мобильных устройствах */
             .prog-time { min-width: auto; text-align: center; margin-bottom: 10px; }
-            .prog-info { border-left: none; border-top: 1px solid #eee; padding-top: 15px; padding-left: 0; text-align: center; width: 100%; }
-            
+            .prog-info { border-left: none; border-top: 1px solid #eee; padding-top: 15px; padding-left: 0; text-align: center; }
             .card { padding: 40px 20px; }
         }
         footer { padding: 60px 0; text-align: center; font-family: 'Cormorant Garamond', serif; background: var(--white); line-height: 1.6; }
@@ -185,7 +198,7 @@
                     <strong>отделе ЗАГС по Ленинскому району</strong>. <br>
                     г. Ульяновск, ул. Гимова, д. 3
                 </p>
-                <div class="reveal-text" style="border-radius:30px; overflow:hidden; width: 100%;">
+                <div class="reveal-text" style="border-radius:30px; overflow:hidden;">
                     <iframe src="https://yandex.ru/map-widget/v1/org/otdel_zags_po_leninskomu_rayonu_g_ulyanovska/1088477357/?ll=48.404093%2C54.317406&z=17" width="100%" height="400" frameborder="0"></iframe>
                 </div>
             </div>
@@ -314,7 +327,7 @@
                     <div class="timer-item"><span class="timer-val" id="seconds">00</span><span class="timer-label">Сек</span></div>
                 </div>
 
-                <hr style="border: none; border-top: 1px solid #eee; margin: 40px 0; width: 100%;">
+                <hr style="border: none; border-top: 1px solid #eee; margin: 40px 0;">
                 
                 <h2 class="section-title reveal-text" style="margin-bottom: 30px;">Контакты</h2>
                 <div class="reveal-text" style="display: flex; flex-direction: column; align-items: center; gap: 30px;">
@@ -329,6 +342,7 @@
                 </div>
             </div>
         </section>
+
     </div>
 
     <footer>
