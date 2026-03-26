@@ -13,7 +13,7 @@
             --gold: #b89c7d;
             --dark: #1a1a1a;
             --light-bg: #fdfcfb;
-            --blue-bg: #f0f7ff; 
+            --blue-bg: #f0f7ff; /* Нежно-голубой для чередования */
             --white: #ffffff;
         }
 
@@ -27,17 +27,33 @@
             scroll-behavior: smooth;
         }
 
+        /* Чередование фонов блоков */
         section:nth-of-type(even) { background-color: var(--blue-bg); }
         section:nth-of-type(odd) { background-color: var(--white); }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; width: 100%; position: relative; z-index: 5; }
+        .container { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+            width: 100%; 
+            position: relative; 
+            z-index: 5;
+        }
 
-        .side-photo { position: absolute; width: 220px; z-index: 1; pointer-events: none; opacity: 1; display: block; }
+        .side-photo { 
+            position: absolute; 
+            width: 220px; 
+            z-index: 1; 
+            pointer-events: none; 
+            opacity: 1; 
+            display: block; 
+        }
         .photo-1 { left: -140px; transform: rotate(-10deg); top: 18%; } 
         .photo-2 { right: -100px; transform: rotate(12deg); top: 32%; }
         .photo-3 { left: -160px; transform: rotate(8deg); top: 60%; } 
         .photo-4 { right: -120px; transform: rotate(-15deg); top: 85%; }
 
+        /* Эффекты появления */
         .reveal, .reveal-text { opacity: 0; transition: all 0.8s ease-out; will-change: transform, opacity; }
         .reveal.active, .reveal-text.active { opacity: 1; transform: translate(0, 0) !important; }
         .reveal-up { transform: translateY(30px); }
@@ -63,8 +79,12 @@
         .calendar-month { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 15px; color: var(--gold); }
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; font-size: 0.9rem; }
         .calendar-day-name { font-weight: 500; font-size: 0.7rem; color: #ccc; padding-bottom: 10px; }
-        .calendar-day { padding: 8px 0; position: relative; display: flex; align-items: center; justify-content: center; }
-        .calendar-day.active { color: #e74c3c; font-size: 1.2rem; font-weight: bold; }
+        .calendar-day { padding: 8px 0; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; }
+        
+        /* Измененный стиль сердечка с цифрой */
+        .calendar-day.active { position: relative; color: white; z-index: 1; }
+        .calendar-day.active::before { content: '❤'; position: absolute; font-size: 2.2rem; color: #e74c3c; z-index: -1; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .calendar-day.active .day-num { position: relative; font-weight: bold; font-size: 0.9rem; }
 
         .timer-grid { display: flex; justify-content: center; gap: 10px; margin-top: 15px; flex-wrap: nowrap; }
         .timer-item { text-align: center; min-width: 60px; padding: 8px; border: 1px solid rgba(184, 156, 125, 0.2); border-radius: 12px; background: rgba(255,255,255,0.9); }
@@ -97,8 +117,9 @@
         #lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 1000; cursor: zoom-out; }
         #lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; }
 
-        .timer-polaroid { margin: 0 auto; max-width: 320px; }
-        .timer-polaroid img { height: 320px !important; object-fit: contain !important; }
+        /* Специальный стиль для полароида с таймером */
+        .timer-polaroid { margin: 0 auto; max-width: 320px; padding-bottom: 60px; } /* Добавлен отступ снизу */
+        .timer-polaroid img { height: 320px !important; object-fit: contain !important; margin-bottom: 20px; } /* contain, отступ до таймера */
 
         @media (max-width: 768px) {
             .side-photo { display: none; }
@@ -109,6 +130,7 @@
             .card { padding: 40px 20px; }
             .timer-grid { gap: 5px; }
             .timer-item { min-width: 55px; }
+            .calendar-day.active::before { font-size: 2rem; }
         }
         footer { padding: 60px 0; text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; opacity: 0.5; background: var(--white); }
     </style>
@@ -145,7 +167,7 @@
                     <div class="calendar-grid">
                         <div class="calendar-day-name">ПН</div><div class="calendar-day-name">ВТ</div><div class="calendar-day-name">СР</div><div class="calendar-day-name">ЧТ</div><div class="calendar-day-name">ПТ</div><div class="calendar-day-name">СБ</div><div class="calendar-day-name">ВС</div>
                         <div></div><div></div><div></div><div></div><div></div><div class="calendar-day">1</div><div class="calendar-day">2</div>
-                        <div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day active">❤</div><div class="calendar-day">8</div><div class="calendar-day">9</div>
+                        <div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day active"><span class="day-num">7</span></div><div class="calendar-day">8</div><div class="calendar-day">9</div>
                         <div class="calendar-day">10</div><div class="calendar-day">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day">14</div><div class="calendar-day">15</div><div class="calendar-day">16</div>
                         <div class="calendar-day">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day">21</div><div class="calendar-day">22</div><div class="calendar-day">23</div>
                         <div class="calendar-day">24</div><div class="calendar-day">25</div><div class="calendar-day">26</div><div class="calendar-day">27</div><div class="calendar-day">28</div><div class="calendar-day">29</div><div class="calendar-day">30</div>
@@ -383,7 +405,9 @@
             .catch(() => { submitBtn.disabled = false; submitBtn.innerText = "ОШИБКА"; });
         };
         
-        window.onload = function() { window.scrollTo(0, 0); };
+        window.onload = function() {
+            window.scrollTo(0, 0);
+        };
     </script>
 </body>
 </html>
