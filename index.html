@@ -65,7 +65,6 @@
         .calendar-day-name { font-weight: 500; font-size: 0.7rem; color: #ccc; padding-bottom: 10px; }
         .calendar-day { padding: 8px 0; position: relative; display: flex; align-items: center; justify-content: center; }
         
-        /* Новое красивое сердечко в календаре */
         .calendar-day.active { color: white; font-weight: bold; }
         .calendar-day.active .heart-svg { position: absolute; width: 38px; height: 38px; z-index: 0; fill: #e74c3c; }
         .calendar-day.active .day-num { position: relative; z-index: 1; top: -1px; }
@@ -98,7 +97,6 @@
         
         .zags-photo { width: 100%; border-radius: 25px; margin-top: 25px; object-fit: cover; height: 350px; display: block; }
 
-        /* Стили для полноразмерного фото в блоке ожидания */
         .timer-photo-full { width: 100%; max-width: 600px; margin: 0 auto 20px; border-radius: 25px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .timer-photo-full img { width: 100%; height: auto; display: block; }
 
@@ -184,16 +182,31 @@
             <div class="card reveal reveal-right">
                 <h2 class="section-title reveal-text">Анкета гостя</h2>
                 <p class="reveal-text" style="font-size: 0.9rem; color: #888; margin-bottom: 25px;">Будем благодарны, если вы подтвердите своё присутствие до 07.07.26</p>
+                
                 <form class="rsvp-form reveal-text" id="weddingForm">
-                    <div style="text-align: left;"><label style="font-size: 0.85rem; padding-left: 10px; color: #555;">Ваше имя и фамилия</label><input type="text" name="guest_name" placeholder="Например: Дмитрий Иванов" required style="margin-top: 5px;"></div>
-                    <div style="text-align: left; margin: 10px 0;"><label style="font-size: 0.9rem; font-weight: 500; display: block; margin-bottom: 10px;">Сможете ли вы присутствовать?</label>
-                        <label style="display: block; margin-bottom: 12px; cursor: pointer;"><input type="radio" name="attendance" value="Приду один" required style="width: auto; margin-right: 10px;"> Приду один / одна</label>
-                        <label style="display: block; margin-bottom: 12px; cursor: pointer;"><input type="radio" name="attendance" value="Приду с кем-то" style="width: auto; margin-right: 10px;"> Приду с кем-то</label>
-                        <label style="display: block; cursor: pointer;"><input type="radio" name="attendance" value="Нет" style="width: auto; margin-right: 10px;"> К сожалению, не смогу присутствовать</label>
+                    <div style="text-align: left;">
+                        <label style="font-size: 0.85rem; padding-left: 10px; color: #555;">Ваше имя и фамилия</label>
+                        <input type="text" name="guest_name" placeholder="Например: Дмитрий Иванов" required style="margin-top: 5px;">
                     </div>
+
+                    <div style="text-align: left; margin: 10px 0;">
+                        <label style="font-size: 0.9rem; font-weight: 500; display: block; margin-bottom: 10px;">Сможете ли вы присутствовать?</label>
+                        <label style="display: block; margin-bottom: 12px; cursor: pointer;">
+                            <input type="radio" name="attendance" value="Приду один" required style="width: auto; margin-right: 10px;"> Приду один / одна
+                        </label>
+                        <label style="display: block; margin-bottom: 12px; cursor: pointer;">
+                            <input type="radio" name="attendance" value="Приду с кем-то" style="width: auto; margin-right: 10px;"> Приду с кем-то
+                        </label>
+                        <label style="display: block; cursor: pointer;">
+                            <input type="radio" name="attendance" value="Нет" style="width: auto; margin-right: 10px;"> К сожалению, не смогу присутствовать
+                        </label>
+                    </div>
+
                     <div id="additional-guests"></div>
                     <button type="button" id="addGuestBtn" style="display:none; background:none; border:1px dashed var(--gold); color:var(--gold); padding:15px; border-radius:25px; cursor:pointer; margin-bottom:15px;">+ Добавить гостя</button>
-                    <div style="text-align: left; margin: 10px 0;"><label style="font-size: 0.9rem; font-weight: 500; display: block; margin-bottom: 15px;">Что предпочитаете из напитков?</label>
+
+                    <div style="text-align: left; margin: 10px 0;">
+                        <label style="font-size: 0.9rem; font-weight: 500; display: block; margin-bottom: 15px;">Что предпочитаете из напитков?</label>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                             <label><input type="checkbox" name="drink" value="Вино красное" style="width:auto; margin-right:5px;"> Вино красное</label>
                             <label><input type="checkbox" name="drink" value="Вино белое" style="width:auto; margin-right:5px;"> Вино белое</label>
@@ -202,20 +215,58 @@
                             <label><input type="checkbox" name="drink" value="Коньяк" style="width:auto; margin-right:5px;"> Коньяк</label>
                             <label><input type="checkbox" name="drink" value="Не пью" style="width:auto; margin-right:5px;"> Не пью</label>
                         </div>
-                        <label style="display: block; margin-top: 15px;"><input type="checkbox" id="ownDrinkCheck" style="width:auto; margin-right:5px;"> Свое</label>
+                        <label style="display: block; margin-top: 15px;">
+                            <input type="checkbox" id="ownDrinkCheck" style="width:auto; margin-right:5px;"> Свое
+                        </label>
                         <input type="text" name="own_drink" id="ownDrinkInput" placeholder="Что именно вы предпочитаете?" style="display:none; margin-top:10px; padding: 12px 20px;">
                     </div>
+
+                    <div style="text-align: left; margin-top: 10px;">
+                        <label style="font-size: 0.9rem; font-weight: 500; display: block; margin-bottom: 5px;">Какую музыку предпочитаете?</label>
+                        <input type="text" name="music" placeholder="О музыкальных вкусах...">
+                    </div>
+
                     <button type="submit" class="btn-gold" id="submitBtn" style="margin-top: 20px;">Подтвердить участие</button>
                     <div id="msg" style="margin-top: 15px; color: var(--gold); font-weight: 500;"></div>
                 </form>
+
+                <div class="polaroid-container reveal reveal-up">
+                    <div class="polaroid polaroid-left" onclick="openLightbox(this)"><img src="img/5.jpg" loading="lazy"></div>
+                    <div class="polaroid polaroid-right" onclick="openLightbox(this)"><img src="img/6.jpg" loading="lazy"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="wishes">
+            <div style="text-align: center;">
+                <h2 class="section-title reveal-text">Пожелания</h2>
+                <p class="reveal-text" style="line-height: 2; color: #555; max-width: 800px; margin: 0 auto; font-size: 1.1rem;">
+                    Ваши улыбки и смех подарят нам незабываемое счастье в этот день. Если вы хотите подарить нам ценный и нужный подарок, мы будем очень благодарны вашим пожеланиям в конвертах, которые помогут осуществить наши мечты!
+                </p>
+            </div>
+        </section>
+
+        <section id="dresscode">
+            <div class="card reveal reveal-up">
+                <h2 class="section-title reveal-text">Дресс-код</h2>
+                <p class="reveal-text" style="line-height: 1.8; color: #555; max-width: 700px; margin: 0 auto;">
+                    Мы будем рады видеть вас в любом наряде, в котором вы чувствуете себя счастливыми! Главное — это ваше присутствие. <br>
+                    Но если вы вдруг решите поддержать атмосферу праздника и сменить любимую пижаму или домашние тапочки на вечерний образ — мы будем не против. 😉
+                </p>
             </div>
         </section>
 
         <section id="location">
             <h2 class="section-title reveal-text">Место церемонии</h2>
             <div class="card reveal reveal-up">
-                <p class="reveal-text" style="margin-bottom: 25px; line-height: 1.8;">Церемония бракосочетания пройдет в <br><strong>отделе ЗАГС по Ленинскому району</strong>. <br>г. Ульяновск, ул. Гимова, д. 3 🏛️</p>
-                <div class="reveal-text" style="border-radius:30px; overflow:hidden;"><iframe src="https://yandex.ru/map-widget/v1/org/otdel_zags_po_leninskomu_rayonu_g_ulyanovska/1088477357/?ll=48.404093%2C54.317406&z=17" width="100%" height="400" frameborder="0"></iframe></div>
+                <p class="reveal-text" style="margin-bottom: 25px; line-height: 1.8;">
+                    Церемония бракосочетания пройдет в <br>
+                    <strong>отделе ЗАГС по Ленинскому району</strong>. <br>
+                    г. Ульяновск, ул. Гимова, д. 3 🏛️
+                </p>
+                <div class="reveal-text" style="border-radius:30px; overflow:hidden;">
+                    <iframe src="https://yandex.ru/map-widget/v1/org/otdel_zags_po_leninskomu_rayonu_g_ulyanovska/1088477357/?ll=48.404093%2C54.317406&z=17" width="100%" height="400" frameborder="0"></iframe>
+                </div>
                 <img src="img/dash.jpg" class="zags-photo reveal-text" alt="ЗАГС" loading="lazy">
             </div>
         </section>
@@ -238,8 +289,14 @@
                 <hr style="border: none; border-top: 1px solid #eee; margin: 40px 0;">
                 <h3 class="reveal-text" style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-style: italic; margin-bottom: 25px;">Контакты</h3>
                 <div class="reveal-text" style="display: flex; flex-direction: column; align-items: center; gap: 30px;">
-                    <div style="text-align:center;"><div style="color: var(--gold); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">Алина</div><a href="tel:+79374577054" style="text-decoration:none; color:var(--dark); font-size:1.15rem; display:block; margin-top:5px;">+7 (937) 457-70-54</a></div>
-                    <div style="text-align:center;"><div style="color: var(--gold); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">Алексей</div><a href="tel:+79378780431" style="text-decoration:none; color:var(--dark); font-size:1.15rem; display:block; margin-top:5px;">+7 (937) 878-04-31</a></div>
+                    <div style="text-align:center;">
+                        <div style="color: var(--gold); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">Алина</div>
+                        <a href="tel:+79374577054" style="text-decoration:none; color:var(--dark); font-size:1.15rem; display:block; margin-top:5px;">+7 (937) 457-70-54</a>
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="color: var(--gold); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">Алексей</div>
+                        <a href="tel:+79378780431" style="text-decoration:none; color:var(--dark); font-size:1.15rem; display:block; margin-top:5px;">+7 (937) 878-04-31</a>
+                    </div>
                 </div>
             </div>
         </section>
