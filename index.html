@@ -192,12 +192,15 @@
             г. Ульяновск, ул. Мира, 47/2А
         </p>
 
-        <!-- Фото над картой -->
-        <img src="img/dash.jpg" 
-             class="zags-photo-mini reveal-text" 
-             alt="Банкетный зал Атмосфера" 
-             loading="lazy" 
-             style="margin-bottom: 15px; width: 100%; border-radius: 20px;">
+        <!-- Фото на всю ширину с кликабельным увеличением -->
+        <a href="img/dash.jpg" target="_blank" style="display:block; margin-bottom: 15px; border-radius: 20px; overflow:hidden; cursor:pointer;">
+            <img src="img/dash.jpg" 
+                 alt="Банкетный зал Атмосфера" 
+                 loading="lazy" 
+                 style="width:100%; height:auto; display:block; transition: transform 0.2s;"
+                 onmouseover="this.style.transform='scale(1.02)'" 
+                 onmouseout="this.style.transform='scale(1)'">
+        </a>
 
         <div class="reveal-text" style="border-radius:30px; overflow:hidden;">
             <div style="position:relative;overflow:hidden;">
